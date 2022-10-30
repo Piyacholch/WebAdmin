@@ -56,7 +56,7 @@
             class="btn btn-outline-danger delete"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
-            @click="confirmdeletezone(item.id)"
+            @click="deletechat(id)"
           >
             ลบ
           </button>
@@ -79,8 +79,8 @@
       >
         <div class="modal-dialog modal-dialog-centered modal-md">
           <div class="modal-content border border-warning border-5">
-            <div class="modal-header border-0">
-            <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+            <div class="modal-header border-0">  
+          
             <button
               type="button"
               class="btn-close float-end"
@@ -143,10 +143,7 @@ export default {
         // console.log(response);
       });
     },
-    // confirmdeletezone(id) {
-    //   this.dialog_delete = true
-    //   this.id = id
-    // },
+
     confirmdeletezone(id) {
       this.id = id;
     },

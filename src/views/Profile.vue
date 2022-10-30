@@ -7,7 +7,7 @@
     <br />
     <span class="displayName">{{ displayName }}</span> <br>
     <span class="email">{{ email }}</span> <br />
-
+<b-button>fff</b-button>
 
     <!-- Form ปลี่ยนชื่อ+รูป -->
     <!-- <form>

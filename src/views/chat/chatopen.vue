@@ -67,7 +67,7 @@
             class="btn btn-outline-danger delete"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
-            @click="confirmdeletezone(item.id)"
+            @click="deletechat(item.id)"
           >
             ลบ
           </button>
@@ -88,7 +88,7 @@
             <span class="material-icons"> mode_edit </span>
           </button>
 
-          <button
+          <!-- <button
             type="button"
             class="btn btn-outline-danger delete delete-res"
             data-bs-toggle="modal"
@@ -96,11 +96,8 @@
             @click="confirmdeletezone(item.id)"
           >
             <span class="material-icons"> delete_outline </span>
-          </button>
-          <!-- <button type="button" class="btn btn-outline-danger delete"
-          @click="deletechat(item.id)">
-                ลบ
-            </button> -->
+          </button> -->
+         
         </div>
       </div>
     </div>
@@ -118,7 +115,7 @@
       <div class="modal-dialog modal-dialog-centered modal-md">
         <div class="modal-content border border-warning border-5">
           <div class="modal-header border-0">
-            <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+            
             <button
               type="button"
               class="btn-close float-end"
@@ -180,10 +177,8 @@ export default {
         // console.log(response);
       });
     },
-    // confirmdeletezone(id) {
-    //   this.dialog_delete = true
-    //   this.id = id
-    // },
+   
+    
     confirmdeletezone(id) {
       this.id = id;
     },
@@ -191,7 +186,7 @@ export default {
       axios.delete("http://localhost:5050/chatopen/" + id).then(() => {
         this.id = id;
         this.getchatopen();
-        // console.log(response.data)
+       
       });
     },
   },
