@@ -1,8 +1,12 @@
 <template>
   <Navbar />
   <div class="Box">
-    <div>
+    <div class="px-5">
       <h1>ชุดข้อความตอบกลับประโยคสุดท้าย</h1>
+      <hr />
+    </div>
+    <div class="mb-5 px-5">
+      <Breadcrumb />
     </div>
 
     <div class="search">
@@ -14,21 +18,16 @@
               class="form-control"
               placeholder="Search.."
               aria-describedby="button-addon2"
+              v-model="search"
             />
-            <button
-              class="btn btn-outline-warning"
-              type="button"
-              id="button-addon2"
-            >
+            <button class="btn btn-primary" type="button" id="button-addon2">
               ค้นหา
             </button>
           </div>
         </div>
         <div class="col-3 col-sm-2 col-md-3 col-flex">
           <a href="/insertchatclose">
-            <button type="button" class="btn btn-outline-success">
-              เพิ่มข้อความ
-            </button>
+            <button type="button" class="btn btn-success">เพิ่มข้อความ</button>
           </a>
         </div>
       </div>
@@ -37,15 +36,15 @@
     <div class="block">
       <div
         class="row block-item block-bm"
-        v-for="(item, index) in loaddata"
-        :key="index"
+        v-for="item in filtersearch"
+        :key="item"
       >
         <!-- <div class="col-1">{{ item.id }}</div> -->
         <div class="col-8">{{ item.Text }}</div>
         <div class="col-3">
           <button
             type="button"
-            class="btn btn-outline-primary edit"
+            class="btn btn-primary edit"
             @click="$router.push(`/updatechatclose/${item.id}/${item.Text}`)"
           >
             แก้ไข
@@ -53,10 +52,10 @@
 
           <button
             type="button"
-            class="btn btn-outline-danger delete"
+            class="btn btn-danger delete"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
-            @click="deletechat(id)"
+            @click="confirmdeletezone(item.id)"
           >
             ลบ
           </button>
@@ -79,18 +78,18 @@
       >
         <div class="modal-dialog modal-dialog-centered modal-md">
           <div class="modal-content border border-warning border-5">
-            <div class="modal-header border-0">  
-          
-            <button
-              type="button"
-              class="btn-close float-end"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+            <div class="modal-header border-0">
+              <button
+                type="button"
+                class="btn-close float-end"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
-            <div class="modal-body text-center fs-4 fw-bold">คุณต้องการลบข้อความนี้หรือไม่ ?</div>
-            <div  class="modal-footer border-0 mt-3">
-
+            <div class="modal-body text-center fs-4 fw-bold">
+              คุณต้องการลบข้อความนี้หรือไม่ ?
+            </div>
+            <div class="modal-footer border-0 mt-3">
               <button
                 type="button"
                 class="btn btn-warning"
@@ -106,7 +105,6 @@
               >
                 ยกเลิก
               </button>
-              
             </div>
           </div>
         </div>
@@ -117,13 +115,14 @@
   
   <script>
 import Navbar from "../../components/Navbar.vue";
+import Breadcrumb from "../../components/BC-chatclose.vue";
 import axios from "axios";
 export default {
-  components: { Navbar },
+  components: { Navbar, Breadcrumb },
   watch: {
     search() {
       this.getchatopen();
-    }
+    },
   },
   data() {
     return {
@@ -139,7 +138,7 @@ export default {
   methods: {
     getchatopen() {
       axios.get("http://localhost:5050/chatclose").then((response) => {
-        this.loaddata = response.data; 
+        this.loaddata = response.data;
         // console.log(response);
       });
     },
@@ -155,6 +154,13 @@ export default {
       });
     },
   },
+  computed: {
+    filtersearch() {
+      return this.loaddata.filter((loaddata) => {
+        return loaddata.Text.toLowerCase().includes(this.search.toLowerCase());
+      });
+    },
+  },
 };
 </script>
   
@@ -163,9 +169,8 @@ export default {
   background-color: #f5f5f5;
 }
 h1 {
-  padding-left: 60px;
   padding-top: 40px;
-  padding-bottom: 50px;
+  padding-bottom: 10px;
 }
 /* .search {
   padding-left: 60px;

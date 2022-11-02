@@ -1,8 +1,11 @@
 <template>
   <Navbar />
   <div class="Box">
-    <div>
-      <h1>ชุดข้อความตอบกลับประโยคสุดท้าย</h1>
+    <div class="px-5">
+      <h1>ชุดข้อความตอบกลับประโยคกระตุ้น</h1>
+    </div>
+    <div class="mb-5 px-5">
+      <Breadcrumb />
     </div>
 
     <div class="search">
@@ -14,6 +17,7 @@
               class="form-control"
               placeholder="Search.."
               aria-describedby="button-addon2"
+              v-model="search"
             />
             <button
               class="btn btn-outline-warning"
@@ -37,8 +41,8 @@
     <div class="block">
       <div
         class="row block-item block-bm"
-        v-for="(item, index) in loaddata"
-        :key="index"
+        v-for="item in filtersearch"
+        :key="item"
       >
         <!-- <div class="col-1">{{ item.id }}</div> -->
         <div class="col-8">{{ item.Text }}</div>
@@ -117,9 +121,10 @@
   
   <script>
 import Navbar from "../../components/Navbar.vue";
+import Breadcrumb from "../../components/BC-chatstimulate.vue";
 import axios from "axios";
 export default {
-  components: { Navbar },
+  components: { Navbar, Breadcrumb },
   watch: {
     search() {
       this.getchatopen();
@@ -158,6 +163,13 @@ export default {
       });
     },
   },
+  computed: {
+    filtersearch() {
+      return this.loaddata.filter((loaddata) => {
+        return loaddata.Text.toLowerCase().includes(this.search.toLowerCase());
+      });
+    },
+  },
 };
 </script>
   
@@ -166,13 +178,10 @@ export default {
   background-color: #f5f5f5;
 }
 h1 {
-  padding-left: 60px;
   padding-top: 40px;
-  padding-bottom: 50px;
+  padding-bottom: 10px;
 }
-/* .search {
-  padding-left: 60px;
-} */
+
 .row-menu {
   width: 90%;
   margin: auto;

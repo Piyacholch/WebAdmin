@@ -196,7 +196,7 @@ import { useStore } from 'vuex'
             // icon: 'bx-folder',
           },
           {
-            link: 'help',
+            link: 'admin',
             name: 'จัดการแอดมิน',
             tooltip: 'จัดการแอดมิน',
             icon: 'bx-notepad',

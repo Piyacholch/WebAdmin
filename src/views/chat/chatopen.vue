@@ -11,34 +11,33 @@
   </head>
   <Navbar />
   <div class="Box">
-    <div>
+    <div class="px-5">
       <h1>ชุดข้อความตอบกลับประโยคทักทาย</h1>
+      <hr />
+    </div>
+    <div class="mb-5 px-5">
+      <Breadcrumb />
     </div>
 
     <div class="search">
       <div class="row row-menu">
-        <div class="col-lg-9 search-res">
+        <div class="col-lg-9 search-res p-0">
           <div class="input-group mb-3">
             <input
               type="text"
               class="form-control"
               placeholder="Search.."
               aria-describedby="button-addon2"
+              v-model="search"
             />
-            <button
-              class="btn btn-outline-warning"
-              type="button"
-              id="button-addon2"
-            >
+            <button class="btn btn-primary" type="button" id="button-addon2">
               ค้นหา
             </button>
           </div>
         </div>
         <div class="col-lg-3 col-flex">
           <a href="/insertchatopen">
-            <button type="button" class="btn btn-outline-success">
-              เพิ่มข้อความ
-            </button>
+            <button type="button" class="btn btn-success">เพิ่มข้อความ</button>
           </a>
         </div>
       </div>
@@ -47,8 +46,8 @@
     <div class="block">
       <div
         class="row block-item block-bm"
-        v-for="(item, index) in loaddata"
-        :key="index"
+        v-for="item in filtersearch"
+        :key="item"
       >
         <!-- <div class="col-1">{{ item.id }}</div> -->
         <div class="col-8">{{ item.Text }}</div>
@@ -56,7 +55,7 @@
         <div class="col-3 button-1">
           <button
             type="button"
-            class="btn btn-outline-primary edit"
+            class="btn btn-primary edit"
             @click="$router.push(`/updatechatopen/${item.id}/${item.Text}`)"
           >
             แก้ไข
@@ -64,10 +63,10 @@
 
           <button
             type="button"
-            class="btn btn-outline-danger delete"
+            class="btn btn-danger delete"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
-            @click="deletechat(item.id)"
+            @click="confirmdeletezone(item.id)"
           >
             ลบ
           </button>
@@ -88,7 +87,7 @@
             <span class="material-icons"> mode_edit </span>
           </button>
 
-          <!-- <button
+          <button
             type="button"
             class="btn btn-outline-danger delete delete-res"
             data-bs-toggle="modal"
@@ -96,8 +95,7 @@
             @click="confirmdeletezone(item.id)"
           >
             <span class="material-icons"> delete_outline </span>
-          </button> -->
-         
+          </button>
         </div>
       </div>
     </div>
@@ -115,7 +113,6 @@
       <div class="modal-dialog modal-dialog-centered modal-md">
         <div class="modal-content border border-warning border-5">
           <div class="modal-header border-0">
-            
             <button
               type="button"
               class="btn-close float-end"
@@ -151,14 +148,15 @@
   
   <script>
 import Navbar from "../../components/Navbar.vue";
+import Breadcrumb from "../../components/BC-chatopen.vue";
 import axios from "axios";
 export default {
-  components: { Navbar },
-  watch: {
-    search() {
-      this.getchatopen();
-    },
-  },
+  components: { Navbar, Breadcrumb },
+  // watch: {
+  //   Text() {
+  //     this.getchatopen();
+  //   },
+  // },
   data() {
     return {
       loaddata: [],
@@ -174,11 +172,11 @@ export default {
     getchatopen() {
       axios.get("http://localhost:5050/chatopen").then((response) => {
         this.loaddata = response.data;
-        // console.log(response);
+
+        console.log(response);
       });
     },
-   
-    
+
     confirmdeletezone(id) {
       this.id = id;
     },
@@ -186,7 +184,13 @@ export default {
       axios.delete("http://localhost:5050/chatopen/" + id).then(() => {
         this.id = id;
         this.getchatopen();
-       
+      });
+    },
+  },
+  computed: {
+    filtersearch() {
+      return this.loaddata.filter((loaddata) => {
+        return loaddata.Text.toLowerCase().includes(this.search.toLowerCase());
       });
     },
   },
@@ -198,9 +202,8 @@ export default {
   background-color: #f5f5f5;
 }
 h1 {
-  padding-left: 60px;
   padding-top: 40px;
-  padding-bottom: 50px;
+  padding-bottom: 10px;
 }
 /* .search {
   padding-left: 60px;
@@ -274,10 +277,10 @@ h1 {
   display: none;
 }
 @media (max-width: 720px) {
-  h1{
+  h1 {
     padding-left: 12px;
   }
-  .search-res{
+  .search-res {
     padding: 0px;
   }
   .input-group {
@@ -303,18 +306,17 @@ h1 {
     font-size: 14px;
     margin: auto;
   }
-  .edit-res{
+  .edit-res {
     width: 40% !important;
     padding: 0px !important;
   }
-  .delete-res{
+  .delete-res {
     padding: 0px !important;
     width: 40% !important;
   }
-  .material-icons{
+  .material-icons {
     font-size: 16px !important;
     text-align: center !important;
   }
-
 }
 </style>

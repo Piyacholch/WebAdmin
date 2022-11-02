@@ -14,6 +14,7 @@
                 class="form-control"
                 placeholder="Search.."
                 aria-describedby="button-addon2"
+                v-model="search"
               />
               <button
                 class="btn btn-outline-warning"
@@ -37,8 +38,8 @@
       <div class="block">
         <div
           class="row block-item block-bm"
-          v-for="(item, index) in loaddata"
-          :key="index"
+          v-for="item in filtersearch"
+        :key="item"
         >
           <!-- <div class="col-1">{{ item.id }}</div> -->
           <div class="col-8">{{ item.title }}</div>
@@ -158,6 +159,13 @@
         });
       },
     },
+    computed: {
+    filtersearch() {
+      return this.loaddata.filter((loaddata) => {
+        return loaddata.title.toLowerCase().includes(this.search.toLowerCase());
+      });
+    },
+  },
   };
   </script>
     

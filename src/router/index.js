@@ -27,6 +27,7 @@ import assistance from '../views/assistance.vue'
 import forgotpassword from '../views/forgotPassword.vue'
 import replymessage from '../views/reply_message.vue'
 import Register from '../views/Register.vue'
+import admin from '../views/admin.vue'
 import help from '../views/help.vue'
 //Chat
 import chatopen from '../views/chat/chatopen.vue'
@@ -129,11 +130,6 @@ const routes = [
     name: 'updateactivitye',
     component: updateactivitye
   },
-  // {
-  //   path: '/pagination',
-  //   name: 'pagination',
-  //   component: pagination
-  // },
   {
     path: '/updateAssistance/:id/:name/:tel/:description',
     name: 'updateassistance',
@@ -175,6 +171,11 @@ const routes = [
     component: forgotpassword
   },
   {
+    path: '/admin',
+    name: 'admin',
+    component: admin
+  },
+  {
     path: '/help',
     name: 'help',
     component: help
@@ -206,6 +207,7 @@ const routes = [
       name: 'chatclose',
       component: chatclose
     },
+    
 ]
 
 const router = createRouter({
