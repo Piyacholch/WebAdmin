@@ -1,8 +1,9 @@
 <template>
     <Navbar />
     <div class="Box">
-      <div>
+      <div class="px-5">
         <h1>กิจกรรมที่ชอบ</h1>
+        <hr />
       </div>
   
       <div class="search">
@@ -17,7 +18,7 @@
                 v-model="search"
               />
               <button
-                class="btn btn-outline-warning"
+                class="btn btn-primary"
                 type="button"
                 id="button-addon2"
               >
@@ -27,7 +28,7 @@
           </div>
           <div class="col-3 col-sm-2 col-md-3 col-flex">
             <a href="/insertactivity">
-              <button type="button" class="btn btn-outline-success">
+              <button type="button" class="btn btn-success">
                 เพิ่มกิจกรรมที่ชอบ
               </button>
             </a>
@@ -42,11 +43,12 @@
         :key="item"
         >
           <!-- <div class="col-1">{{ item.id }}</div> -->
-          <div class="col-8">{{ item.title }}</div>
+          <div class="col-1">{{ item.id }}</div>
+          <div class="col-7">{{ item.title }}</div>
           <div class="col-3">
             <button
               type="button"
-              class="btn btn-outline-primary edit"
+              class="btn btn-primary edit"
               @click="$router.push(`/updateActivity/${item.id}/${item.title}/${item.description}`)"
             >
               แก้ไข
@@ -54,7 +56,7 @@
   
             <button
               type="button"
-              class="btn btn-outline-danger delete"
+              class="btn btn-danger delete"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
               @click="confirmdelete(item.id)"
@@ -174,10 +176,9 @@
     background-color: #f5f5f5;
   }
   h1 {
-    padding-left: 60px;
-    padding-top: 40px;
-    padding-bottom: 50px;
-  }
+  padding-top: 40px;
+  padding-bottom: 10px;
+}
   /* .search {
     padding-left: 60px;
   } */
@@ -227,7 +228,7 @@
     padding: 20px;
     font-size: 1.2rem;
   }
-  .col-8 {
+  .col-7 {
     display: flex;
     align-items: center;
     padding: 20px;

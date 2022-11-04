@@ -1,10 +1,14 @@
 <template>
   <Navbar />
   <div class="Box">
-    <div>
+    <div class="px-5">
       <h1>ชุดข้อความตอบกลับ</h1>
+      <hr/>
     </div>
-    <div class="row row-1">
+    <div class="mb-5 px-5">
+      <Breadcrumb />
+    </div>
+    <!-- <div class="row row-1">
       <div class="col-12 px-4">
         <div class="search">
           <div class="input-group mb-3">
@@ -24,7 +28,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="block">
       <div class="row block-item">
         <div class="col-9">ชุดข้อความตอบกลับประโยคทักทาย</div>
@@ -72,8 +76,9 @@
 
 <script>
 import Navbar from "../components/Navbar.vue";
+import Breadcrumb from "../components/BC-negative.vue";
 export default {
-  components: { Navbar },
+  components: { Navbar, Breadcrumb  },
 };
 </script>
 
@@ -82,9 +87,8 @@ export default {
   background-color: #f5f5f5;
 }
 h1 {
-  padding-left: 60px;
   padding-top: 40px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 .search {
   padding-left: 60px;

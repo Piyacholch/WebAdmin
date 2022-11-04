@@ -17,7 +17,7 @@
                 v-model="search"
               />
               <button
-                class="btn btn-outline-warning"
+                class="btn btn-primary"
                 type="button"
                 id="button-addon2"
               >
@@ -27,7 +27,7 @@
           </div>
           <div class="col-3 col-sm-2 col-md-3 col-flex">
             <a href="/insertassistance">
-              <button type="button" class="btn btn-outline-success">
+              <button type="button" class="btn btn-success">
                 เพิ่มแหล่งช่วยเหลือ
               </button>
             </a>
@@ -46,7 +46,7 @@
           <div class="col-3">
             <button
               type="button"
-              class="btn btn-outline-primary edit"
+              class="btn btn-primary edit"
               @click="$router.push(`/updateAssistance/${item.id}/${item.Name}/${item.Tel}/${item.Description}`)"
             >
               แก้ไข
@@ -54,7 +54,7 @@
   
             <button
               type="button"
-              class="btn btn-outline-danger delete"
+              class="btn btn-danger delete"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
               @click="confirmdelete(item.id)"

@@ -4,6 +4,19 @@
   <div class="Box pt-5 pb-5">
     <div class="box p-4">
       <h2>เพิ่มข้อความตอบกลับประโยคทักทาย</h2>
+
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label"
+          >หมายเลขเอกสาร</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="id docs"
+          v-model="data.iddocs"
+        />
+      </div>
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label"
           >เพิ่มข้อความตอบกลับ</label
@@ -22,7 +35,7 @@
         <button
           type="button"
           class="btn btn-warning mx-2"
-          @click="submit(data.Text)"
+          @click="submit(data.iddocs, data.Text)"
         >
           ตกลง
         </button>
@@ -41,16 +54,17 @@ export default {
   components: { Navbar },
   data() {
     return {
+      iddocs: "",
       Text: "",
       data: [],
     };
   },
   methods: {
-    submit(Text) {
+    submit(iddocs, Text) {
       // const formData = new FormData();
       // formData.append("Text", this.Text);
       axios
-        .post("http://localhost:5050/insertchatopen/" + Text)
+        .post("http://localhost:5050/insertchatopen/" + iddocs + "/"  + Text)
         .then((response) => {
           this.data = response.data;
           this.$router.push("/chatopen");
@@ -58,6 +72,7 @@ export default {
         });
     },
     reset() {
+      this.data.iddocs = "";
       this.Text = "";
     },
   },

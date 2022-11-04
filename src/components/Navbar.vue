@@ -161,6 +161,13 @@ import { useStore } from 'vuex'
           // },
           {
             link: '/',
+            name: 'โปรไฟล์',
+            tooltip: 'โปรไฟล์',
+            icon: 'bx-user',
+            // icon: 'bx-folder',
+          },
+          {
+            link: 'dashboard',
             name: 'แดชบอร์ด',
             tooltip: 'แดชบอร์ด',
             icon: 'bx bx-grid-alt',
@@ -188,13 +195,7 @@ import { useStore } from 'vuex'
             // icon: 'bx-chat',
           },
          
-          {
-            link: 'profile',
-            name: 'โปรไฟล์',
-            tooltip: 'โปรไฟล์',
-            icon: 'bx-user',
-            // icon: 'bx-folder',
-          },
+          
           {
             link: 'admin',
             name: 'จัดการแอดมิน',

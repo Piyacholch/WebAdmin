@@ -1,9 +1,9 @@
 
 import { createRouter, createWebHistory } from 'vue-router'
 import { auth } from '../firebase'
-import Home from '../views/Home.vue'
+import dashboard from '../views/Home.vue'
 import Login from '../views/Login.vue'
-import profile from '../views/Profile.vue'
+import Home from '../views/Profile.vue'
 
 import insertchatopen from '../views/insert/insertChatopen.vue'
 import insertchatpostive from '../views/insert/insertChatpositive.vue'
@@ -45,22 +45,14 @@ const routes = [
     }
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/About.vue'),
-    meta: {
-      requiresAuth: true
-    }
+    path: '/dashboard',
+    name: 'dashboard',
+    component: dashboard,
   },
   {
     path: '/login',
     name: 'Login',
     component: Login
-  },
-  {
-    path: '/profile',
-    name: 'profile',
-    component: profile
   },
   /////////////////////// insert ////////////////////////
   {
@@ -230,3 +222,4 @@ router.beforeEach((to, from, next) => {
 })
 
 export default router
+

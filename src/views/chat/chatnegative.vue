@@ -20,7 +20,7 @@
               v-model="search"
             />
             <button
-              class="btn btn-outline-warning"
+              class="btn btn-primary"
               type="button"
               id="button-addon2"
             >
@@ -30,7 +30,7 @@
         </div>
         <div class="col-3 col-sm-2 col-md-3 col-flex">
           <a href="/insertchatnegative">
-            <button type="button" class="btn btn-outline-success">
+            <button type="button" class="btn btn-success">
               เพิ่มข้อความ
             </button>
           </a>
@@ -45,11 +45,12 @@
         :key="item"
       >
         <!-- <div class="col-1">{{ item.id }}</div> -->
-        <div class="col-8">{{ item.Text }}</div>
+        <div class="col-1">{{ item.id }}</div>
+        <div class="col-7">{{ item.Text }}</div>
         <div class="col-3">
           <button
             type="button"
-            class="btn btn-outline-primary edit"
+            class="btn btn-primary edit"
             @click="$router.push(`/updatechatnegative/${item.id}/${item.Text}`)"
           >
             แก้ไข
@@ -57,7 +58,7 @@
 
           <button
             type="button"
-            class="btn btn-outline-danger delete"
+            class="btn btn-danger delete"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
             @click="confirmdeletezone(item.id)"
@@ -226,7 +227,7 @@ h1 {
   padding: 20px;
   font-size: 1.2rem;
 }
-.col-8 {
+.col-7 {
   display: flex;
   align-items: center;
   padding: 20px;

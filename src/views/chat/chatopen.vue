@@ -49,8 +49,8 @@
         v-for="item in filtersearch"
         :key="item"
       >
-        <!-- <div class="col-1">{{ item.id }}</div> -->
-        <div class="col-8">{{ item.Text }}</div>
+        <div class="col-1">{{ item.id }}</div>
+        <div class="col-7">{{ item.Text }}</div>
 
         <div class="col-3 button-1">
           <button
@@ -254,7 +254,7 @@ h1 {
   padding: 20px;
   font-size: 1.2rem;
 }
-.col-8 {
+.col-7 {
   display: flex;
   align-items: center;
   padding: 20px;
@@ -299,7 +299,7 @@ h1 {
   button {
     font-size: 14px;
   }
-  .col-8 {
+  .col-7 {
     font-size: 14px;
   }
   .col-3 {

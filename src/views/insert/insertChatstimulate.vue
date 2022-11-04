@@ -4,6 +4,19 @@
     <div class="Box pt-5 pb-5">
       <div class="box p-4">
         <h2>เพิ่มข้อความตอบกลับประโยคสุดท้าย</h2>
+
+        <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label"
+          >หมายเลขเอกสาร</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="id docs"
+          v-model="data.iddocs"
+        />
+      </div>
         <div class="mb-3">
           <label for="exampleFormControlTextarea1" class="form-label" 
             >เพิ่มข้อความตอบกลับ</label
@@ -37,16 +50,17 @@
     components: { Navbar },
     data() {
       return {
+        iddocs: "",
         Text: "",
         data: [],
       };
     },
     methods: {
-      submit(Text) {
+      submit(iddocs, Text) {
         // const formData = new FormData();
         // formData.append("Text", this.Text);
         axios
-          .post("http://localhost:5050/insertchatstimulate/" + Text)
+          .post("http://localhost:5050/insertchatstimulate/"  + iddocs + "/" + Text)
           .then((response) => {
             this.data = response.data;
             this.$router.push("/chatstimulate");
@@ -54,6 +68,7 @@
           });
       },
       reset() {
+        this.data.iddocs = "";
         this.data.Text = '';
       },
     },

@@ -79,6 +79,10 @@ export default createStore({
       router.push('/')
     },
 
+    
+
+
+
     async logout ({ commit }) {
       await signOut(auth)
 

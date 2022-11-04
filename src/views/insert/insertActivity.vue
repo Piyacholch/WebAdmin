@@ -1,25 +1,20 @@
 <template>
   <Navbar />
-
-  <div>
-    <div >
-      <p>Upload an image to Firebase:</p>
-      <input type="file" @change="previewImage" accept="image/*" >                
-    </div>
-    <div>
-      <p>Progress: {{uploadValue.toFixed()+"%"}}
-      <progress id="progress" :value="uploadValue" max="100" ></progress>  </p>
-    </div>
-    <div v-if="imageData!=null">                     
-        <img class="preview" :src="picture">
-        <br>
-      <button @click="onUpload">Upload</button>
-    </div>   
-  </div>
-
   <div class="Box pt-5 pb-5">
     <div class="box p-4">
       <h2>เพิ่มกิจกรรมที่ชอบ</h2>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label"
+          >หมายเลขเอกสาร</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="id docs"
+          v-model="data.iddocs"
+        />
+      </div>
 
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label"
@@ -58,7 +53,6 @@
           v-model="data.Website"
         />
       </div>
-      
 
       <!-- <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label" 
@@ -78,7 +72,9 @@
         <button
           type="button"
           class="btn btn-warning mx-2"
-          @click="submit(data.Name, data.Description, data.Website)"
+          @click="
+            submit(data.iddocs, data.Name, data.Description, data.Website)
+          "
         >
           ตกลง
         </button>
@@ -98,23 +94,22 @@ export default {
   components: { Navbar },
   data() {
     return {
+      iddocs: "",
       Name: "",
       Website: "",
       Description: "",
       data: [],
-
-      imageData: null,
-      picture: null,
-      uploadValue: 0,
     };
   },
   methods: {
-    submit(Name, Description, Website) {
+    submit(iddocs, Name, Description, Website) {
       // const formData = new FormData();
       // formData.append("Text", this.Text);
       axios
         .post(
           "http://localhost:5050/insertactivity/" +
+            iddocs +
+            "/" +
             Name +
             "/" +
             Description +
@@ -128,17 +123,13 @@ export default {
         });
     },
     reset() {
+      this.data.iddocs = "";
       this.data.Name = "";
       this.data.Description = "";
       this.data.Website = "";
-      
     },
-    
-    },
-  created() {
-    
-
   },
+  created() {},
 };
 </script>
     

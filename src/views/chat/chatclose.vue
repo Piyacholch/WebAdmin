@@ -40,7 +40,8 @@
         :key="item"
       >
         <!-- <div class="col-1">{{ item.id }}</div> -->
-        <div class="col-8">{{ item.Text }}</div>
+        <div class="col-1">{{ item.id }}</div>
+        <div class="col-7">{{ item.Text }}</div>
         <div class="col-3">
           <button
             type="button"
@@ -221,7 +222,7 @@ h1 {
   padding: 20px;
   font-size: 1.2rem;
 }
-.col-8 {
+.col-7 {
   display: flex;
   align-items: center;
   padding: 20px;

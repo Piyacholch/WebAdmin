@@ -7,6 +7,18 @@
 
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label"
+          >หมายเลขเอกสาร</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="id docs"
+          v-model="data.iddocs"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label"
           >ชื่อแหล่งช่วยเหลือ</label
         >
         <input
@@ -60,7 +72,7 @@
         <button
           type="button"
           class="btn btn-warning mx-2"
-          @click="submit(data.Name, data.Tel, data.Description)"
+          @click="submit(data.iddocs, data.Name, data.Tel, data.Description)"
         >
           ตกลง
         </button>
@@ -72,13 +84,15 @@
   </div>
 </template>
   
-  <script>
+<script>
+
 import axios from "axios";
 import Navbar from "../../components/Navbar.vue";
 export default {
   components: { Navbar },
   data() {
     return {
+      iddocs:"",
       Name: "",
       Tel: "",
       Description: "",
@@ -86,11 +100,11 @@ export default {
     };
   },
   methods: {
-    submit(Name, Tel, Description) {
+    submit(iddocs, Name, Tel, Description) {
       // const formData = new FormData();
       // formData.append("Text", this.Text);
       axios
-        .post("http://localhost:5050/insertassistance/" + Name +"/"+ Tel +"/"+ Description)
+        .post("http://localhost:5050/insertassistance/" + iddocs +"/"+ + Name +"/"+ Tel +"/"+ Description)
         .then((response) => {
           this.data = response.data;
           this.$router.push("/assistance");
@@ -98,6 +112,7 @@ export default {
         });
     },
     reset() {
+      this.data.iddocs = "";
       this.data.Name = "";
       this.data.Tel = "";
       this.data.Description = "";
