@@ -1,21 +1,53 @@
 <template>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+      integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+      crossorigin="anonymous"
+    />
+  </head>
   <div class="all">
     <div class="container" id="container">
       <div class="form-container sign-in-container">
         <form action="#" @submit.prevent="login">
-          <h1>เข้าสู่ระบบ</h1>
+          <h1 class="mb-3">เข้าสู่ระบบ</h1>
 
+          <div class="row">
+            <div class="mb-3 mt-3">
+              <input
+                type="email"
+                placeholder="Email"
+                class="mb-3"
+                v-model="login_form.email"
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                v-model="login_form.password"
+              />
+            </div>
 
-          <input type="email" placeholder="Email" v-model="login_form.email" />
-          <input
-            type="password"
-            placeholder="Password"
-            v-model="login_form.password"
-          />
-          <div v-show="error" class="error">{{ this.errorMsg }}</div>
-          <a href="/forgotpassword" class="a_fg_text">ลืมรหัสผ่าน?</a>
+            <div v-show="error" class="error">{{ this.errorMsg }}</div>
+            <a href="/forgotpassword" class="a_fg_text">ลืมรหัสผ่าน?</a>
 
-          <input type="submit" value="Login" />
+            <div>
+              <button type="submit" class="btn btn-warning mb-3">
+                เข้าสู่ระบบ
+              </button>
+            </div>
+            <p class="mb-2 or">หรือ</p>
+            <div id="GooglerSingIn" v-if="!isSignedIn" class="google mb-2">
+              <button
+                @click="handleSignInGoogle"
+                type="button"
+                class="btn btn-primary btn-sm btn-google"
+              >
+                <i class="fab fa-google-plus-g" @click="handleSignInGoogle"></i>
+                LogIn with Google
+              </button>
+            </div>
+          </div>
         </form>
       </div>
 
@@ -30,12 +62,25 @@
       </div>
     </div>
   </div>
-  
 </template>
   
   <script>
 import { ref } from "vue";
 import { useStore } from "vuex";
+import firebase from "../firebase";
+
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  // FacebookAuthProvider,
+  // getRedirectResult
+} from "firebase/auth";
+
+firebase;
+
+const provider = new GoogleAuthProvider();
+const auth = getAuth();
 
 export default {
   setup() {
@@ -49,6 +94,28 @@ export default {
       login_form,
       login,
     };
+  },
+  data() {
+    return {
+      user: "",
+    };
+  },
+  methods: {
+    handleSignInGoogle() {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          // const user = result.user;
+
+          console.log(result.user.displayName);
+
+          this.user = result.user.displayName;
+          this.isSignedIn = true;
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 };
 </script>
@@ -138,6 +205,10 @@ input {
   border: none;
   padding: 12px 15px;
   margin: 8px 0;
+  width: 100%;
+  border-radius: 5px;
+}
+.btn {
   width: 100%;
 }
 

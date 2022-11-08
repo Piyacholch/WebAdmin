@@ -1,7 +1,16 @@
 <template>
   <Navbar />
 
-  <div class="Box pt-5 pb-5">
+  <div class="Box">
+    <div class="px-5">
+      <h1>เพิ่มแหล่งช่วยเหลือ</h1>
+      <hr />
+    </div>
+    <div class="mb-5 px-5">
+      <Breadcrumb />
+    </div>
+
+
     <div class="box p-4">
       <h2>เพิ่มแหล่งช่วยเหลือ</h2>
 
@@ -54,20 +63,6 @@
         ></textarea>
       </div>
 
-      <!-- <div class="mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label" 
-            >เพิ่มข้อความตอบกลับ</label
-          >
-          <textarea
-            class="form-control"
-            id="validationDefault"
-            for="validationDefault"
-            placeholder="เพิ่มข้อความ"
-            rows="7"
-            v-model="data.Text"
-            required
-          ></textarea>
-        </div> -->
       <div class="footer d-flex justify-content-end mt-4">
         <button
           type="button"
@@ -88,8 +83,9 @@
 
 import axios from "axios";
 import Navbar from "../../components/Navbar.vue";
+import Breadcrumb from "../../components/Bcinsert/bc-insertassistance.vue";
 export default {
-  components: { Navbar },
+  components: { Navbar, Breadcrumb },
   data() {
     return {
       iddocs:"",
@@ -123,8 +119,13 @@ export default {
   
   <style  scoped>
 .Box {
-  background-color: #f5f5f5;
-  height: 750px;
+  background-color: #fff8e1;
+  height: 50rem;
+}
+
+h1 {
+  padding-top: 40px;
+  padding-bottom: 10px;
 }
 h2 {
   text-align: center;

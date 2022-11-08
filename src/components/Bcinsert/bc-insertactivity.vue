@@ -16,10 +16,10 @@
             </div>
           </li>
           <li class="crumb">
-            <div class="link"><a href="/replymessage">แก้ไขชุดข้อความ</a></div>
+            <div class="link"><a href="/activity">กิจกรรมที่ชอบ</a></div>
           </li>
           <li class="crumb  active">
-            <div class="link"><a href="/chatpositive">ชุดข้อความตอบกลับประโยคด้านบวก</a></div>
+            <div class="link"><a href="/insertactivity">เพิ่มกิจกกรมที่ชอบ</a></div>
           </li>
         </ol>
       </nav>

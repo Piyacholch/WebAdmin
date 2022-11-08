@@ -1,7 +1,14 @@
 <template>
   <Navbar />
 
-  <div class="Box pt-5 pb-5">
+  <div class="Box pb-5">
+    <div class="px-5">
+      <h1>แก้ไขกิจกรรมที่ชอบ</h1>
+      <hr />
+    </div>
+    <div class="mb-5 px-5">
+      <Breadcrumb />
+    </div>
     <div class="box p-4">
       <h2>แก้ไขกิจกรรมที่ชอบ</h2>
 
@@ -14,7 +21,7 @@
           class="form-control"
           id="exampleFormControlInput1"
           placeholder="เพิ่มชื่อแหล่งช่วยเหลือ"
-          v-model="data.Name"
+          v-model="data.title"
         />
       </div>
       <div class="mb-3">
@@ -26,7 +33,7 @@
           id="exampleFormControlTextarea1"
           rows="7"
           placeholder="ข้อมูลเพิ่มเติม"
-          v-model="data.Description"
+          v-model="data.description"
         ></textarea>
       </div>
 
@@ -61,9 +68,9 @@
     <script>
 import axios from "axios";
 import Navbar from "../../../components/Navbar.vue";
-
+import Breadcrumb from "../../../components/bcupdate/bc-updateactivity.vue";
 export default {
-  components: { Navbar },
+  components: { Navbar, Breadcrumb },
   data() {
     return {
       Text: null,
@@ -107,8 +114,12 @@ export default {
     
     <style  scoped>
 .Box {
-  background-color: #f5f5f5;
-  height: 750px;
+  background-color: #fff8e1;
+  height: auto;
+}
+h1 {
+  padding-top: 40px;
+  padding-bottom: 10px;
 }
 h2 {
   text-align: center;

@@ -1,7 +1,15 @@
 <template>
   <Navbar />
 
-  <div class="Box pt-5 pb-5">
+  <div class="Box pb-5">
+    <div class="px-5">
+      <h1>เพิ่มข้อความตอบกลับประโยคด้านลบ</h1>
+      <hr />
+    </div>
+    <div class="mb-5 px-5">
+      <Breadcrumb />
+    </div>
+
     <div class="box p-4">
       <h2>เพิ่มข้อความตอบกลับประโยคด้านลบ</h2>
 
@@ -50,8 +58,9 @@
   <script>
 import axios from "axios";
 import Navbar from "../../components/Navbar.vue";
+import Breadcrumb from "../../components/Bcinsert/bc-insertchatnegative.vue";
 export default {
-  components: { Navbar },
+  components: { Navbar, Breadcrumb  },
   data() {
     return {
       iddocs: "",
@@ -61,8 +70,7 @@ export default {
   },
   methods: {
     submit(iddocs, Text) {
-      // const formData = new FormData();
-      // formData.append("Text", this.Text);
+      
       axios
         .post("http://localhost:5050/insertchatnegative/" + iddocs + "/"  + Text)
         .then((response) => {
@@ -81,7 +89,7 @@ export default {
   
   <style  scoped>
 .Box {
-  background-color: #f5f5f5;
+  background-color: #fff8e1;
   height: 750px;
 }
 h2 {
@@ -94,6 +102,32 @@ h2 {
   margin: auto;
   border-radius: 5px;
   box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.1);
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .Box {
+  background-color: #fff8e1;
+  height: 80rem;
+}
+.box {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .Box {
+  background-color: #fff8e1;
+  height: 55rem;
+}
+  .box {
+    width: 80%;
+  }
+  .footer {
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+  }
+  .btn-1 {
+    margin-left: 0px !important;
+  }
 }
 </style>>
   

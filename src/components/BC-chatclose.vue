@@ -10,7 +10,7 @@
         <ol class="default-breadcrumb">
           <li class="crumb">
             <div class="link">
-              <a href="/" class="fa fa-home">
+              <a href="/dashboard" class="fa fa-home">
                 <span class="material-symbols-outlined"> home </span>
               </a>
             </div>
@@ -19,7 +19,7 @@
             <div class="link"><a href="/replymessage">แก้ไขชุดข้อความ</a></div>
           </li>
           <li class="crumb  active">
-            <div class="link"><a href="/chatclose">แก้ไขชุดข้อความตอบกลับประโยคสุดท้าย</a></div>
+            <div class="link"><a href="/chatclose">ชุดข้อความตอบกลับประโยคสุดท้าย</a></div>
           </li>
         </ol>
       </nav>

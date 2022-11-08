@@ -76,7 +76,7 @@
 
 <script>
 import Navbar from "../components/Navbar.vue";
-import Breadcrumb from "../components/BC-negative.vue";
+import Breadcrumb from "../components/BC-chat.vue";
 export default {
   components: { Navbar, Breadcrumb  },
 };
@@ -84,7 +84,8 @@ export default {
 
 <style scoped>
 .Box {
-  background-color: #f5f5f5;
+  background-color: #fff8e1;
+  height: auto;
 }
 h1 {
   padding-top: 40px;
@@ -131,8 +132,23 @@ h1 {
 a {
   text-decoration: none;
 }
-
-@media (max-width: 720px) {
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .Box {
+  background-color: #fff8e1;
+  height: 80rem;
+}
+.col-9{
+  font-size: 1.5rem;
+}
+.edit{
+  font-size: 1.5rem;
+}
+}
+@media screen and (max-width: 767px)  {
+  .Box {
+  background-color: #fff8e1;
+  height: 80rem;
+}
   .search {
     padding-left: 0px;
     padding-bottom: 30px;

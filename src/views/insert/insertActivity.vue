@@ -1,8 +1,18 @@
 <template>
   <Navbar />
-  <div class="Box pt-5 pb-5">
+  
+  <div class="Box pb-5">
+    <div class="px-5">
+      <h1>เพิ่มกิจกรรมที่ชอบ</h1>
+      <hr />
+    </div>
+    <div class="mb-5 px-5">
+      <Breadcrumb />
+    </div>
+    
     <div class="box p-4">
       <h2>เพิ่มกิจกรรมที่ชอบ</h2>
+     
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label"
           >หมายเลขเอกสาร</label
@@ -89,9 +99,9 @@
 <script>
 import axios from "axios";
 import Navbar from "../../components/Navbar.vue";
-
+import Breadcrumb from "../../components/Bcinsert/bc-insertactivity.vue";
 export default {
-  components: { Navbar },
+  components: { Navbar, Breadcrumb },
   data() {
     return {
       iddocs: "",
@@ -138,8 +148,12 @@ img.preview {
   width: 200px;
 }
 .Box {
-  background-color: #f5f5f5;
-  height: 750px;
+  background-color: #fff8e1;
+  height: auto;
+}
+h1 {
+  padding-top: 40px;
+  padding-bottom: 10px;
 }
 h2 {
   text-align: center;

@@ -12,6 +12,9 @@
       <h1>โปรไฟล์ผู้ใช้</h1>
       <hr />
     </div>
+    <div class="mb-5 px-5">
+      <Breadcrumb />
+    </div>
 
     <div class="box">
       <div class="box-item">
@@ -24,6 +27,17 @@
           <div class="form">
             <div class="form-floating mb-3">
               <input
+                type="text"
+                class="form-control"
+                id="floatingInput"
+                placeholder="uid"
+                v-model="uid"
+                disabled
+              />
+              <label for="floatingInput">UID</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
                 type="email"
                 class="form-control"
                 id="floatingInput"
@@ -33,32 +47,99 @@
               />
               <label for="floatingInput">อีเมล</label>
             </div>
-            <div class="form-floating mb-3">
-              <input
-                type="text"
-                class="form-control icon"
-                id="floatingdisplayname"
-                placeholder="dispassword"
-                v-model="displayName"
-              />
-              <span class="material-symbols-outlined"> edit </span>
-              <label for="floatingdisplayname">ชื่อผู้ใช้</label>
-            </div>
+            <!--imgProfile-->
             <div class="form-floating">
               <input
+                type="text"
+                class="form-control"
+                placeholder="photoUR"
+                id="inputChangeName"
+                v-model="photoURL"
+                disabled
+              />
+              <!-- <input
                 type="text"
                 class="form-control"
                 id="floatingphotoURL"
                 placeholder="photoUR"
                 v-model="photoURL"
-              />
-              <span class="material-symbols-outlined"> edit </span>
+              /> -->
+            
               <label for="floatingphotoURL">URL รูปภาพ</label>
+            </div>
+            <br />
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control icon"
+                placeholder="dispassword"
+                v-model="displayName"
+              />
+              <div class="invalid-feedback">Please choose a username.</div>
+              <!-- <input
+                type="text"
+                class="form-control icon"
+                id="floatingdisplayname"
+                placeholder="dispassword"
+                v-model="displayName"
+                
+              /> -->
+              <span class="material-symbols-outlined"> edit </span>
+              <label for="floatingdisplayname">ชื่อผู้ใช้</label>
+            </div>
+            <!--ชื่อจริง - นามสกุล-->
+            <div class="form-floating mb-3">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="ชื่อจริง - นามสกุล"
+                  id="validationCustomUsername"
+                  v-model="data.name"
+                />
+                <span class="material-symbols-outlined"> edit </span>
+                <label for="floatingphotoURL">ชื่อจริง - นามสกุล</label>
+              </div>
+            </div>
+            <!--ที่อยู่-->
+            <!-- <div class="form-floating mb-3">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="floatingaddress"
+                  placeholder="ที่อยู่"
+                  v-model="data.address"
+                />
+                <span class="material-symbols-outlined"> edit </span>
+                <label for="floatingphotoURL">ที่อยู่</label>
+              </div>
+            </div> -->
+            <!--เบอร์โทร-->
+            <div class="form-floating mb-3">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="floatingphonenum"
+                  placeholder="0xxxxxxxxx"
+                  v-model="data.phonenum"
+                />
+                <span class="material-symbols-outlined"> edit </span>
+                <label for="floatingphotoURL">เบอร์โทร</label>
+              </div>
             </div>
           </div>
 
           <div class="pt-3">
-            <button type="button" class="btn btn-warning " @click="UpdateUser()">
+            <button
+              type="button"
+              class="btn btn-warning"
+              @click="
+                Addata(uid, email, displayName, data.name, data.phonenum),
+                  UpdateUser()
+              "
+            >
               ตกลง
             </button>
             <!-- <button type="button" class="btn btn-danger" @click="cancel()">
@@ -70,18 +151,11 @@
     </div>
   </div>
 
-  <!-- <h1>Hello</h1>
-
-  <img :src="photoURL" alt="ไม่มี" class="photoURL" />
-  <br />
-  <span class="displayName">{{ displayName }}</span> <br />
-  <span class="email">{{ email }}</span> <br /> -->
-
   <!--  Form ปลี่ยนชื่อ+รูป -->
   <!-- <form>
     <input type="text" v-model="displayName" id="inputChangeName" />
 
-    <input type="text" v-model="ChangephotoURL" id="inputChangeName" />
+    <input type="text" v-model="photoURL" id="inputChangeName" />
     <button @click="UpdateUser()">submit</button>
   </form> -->
 
@@ -145,22 +219,36 @@
 <script>
 import Navbar from "../components/Navbar.vue";
 import { getAuth, updateProfile } from "firebase/auth";
+import Breadcrumb from "../components/BC-profile.vue";
 import axios from "axios";
 export default {
-  components: { Navbar },
+  components: { Navbar, Breadcrumb },
   data() {
     return {
+      uid: "",
       email: "",
-      Name: "",
-      Address: "",
+      // displayName: "",
+      // photoURL: "",
+      name: "",
+      phonenum: "",
       data: [],
 
       displayName: null,
       photoURL: null,
     };
   },
+  // mounted() {
+  //   this.getadmin();
+  // },
 
   methods: {
+    // getadmin() {
+    //   axios.get("http://localhost:5050/Admin").then((response) => {
+    //     this.Name = name,
+    //     this.data = response.data;
+    //     // console.log(response);
+    //   });
+    // },
     GetUser() {
       const auth = getAuth();
       const user = auth.currentUser;
@@ -189,24 +277,29 @@ export default {
       this.displayName = "";
       this.photoURL = "";
     },
-    submit(email, Name, Address) {
+
+    reset() {
+      this.data.Name = "";
+    },
+    Addata(uid, email, displayName, name, phonenum) {
       axios
         .post(
-          "http://localhost:5050/insertadmin/" +
+          "http://localhost:5050/insertadmindata/" +
+            uid +
+            "/" +
             email +
             "/" +
-            Name +
+            displayName +
             "/" +
-            Address
+            name +
+            "/" +
+            phonenum
         )
         .then((response) => {
           this.data = response.data;
           this.$router.push("/");
+          // console.log(response.data)
         });
-    },
-    reset() {
-      this.data.Name = "";
-      this.data.Address = "";
     },
   },
   created() {
@@ -225,8 +318,8 @@ export default {
 
 <style scoped>
 .container-fluid {
-  background-color: #f5f5f5;
-  height: 50rem;
+  background-color: #fff8e1;
+  height: auto;
 }
 h1 {
   padding-top: 40px;
@@ -237,6 +330,7 @@ h1 {
   border-radius: 15px;
   width: 60%;
   margin: auto;
+  box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.11);
 }
 .box-item {
   width: 90%;
@@ -247,7 +341,7 @@ h1 {
 .photoURL {
   width: 100px;
   height: 100px;
-  border: 3px solid rgb(0, 195, 0);
+  border: 3px solid #ffbd59;
   border-radius: 50%;
 }
 .dispalyname {
@@ -260,7 +354,7 @@ h1 {
   text-align: center;
   color: gray;
 }
-.content{
+.content {
   width: 100%;
 }
 .form-control {
@@ -273,10 +367,32 @@ h1 {
   display: flex;
   justify-content: flex-start;
   align-items: center;
- 
 }
-.btn{
+.btn {
   width: 90%;
   border-radius: 15px;
+}
+.img {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
+/* .photoURL mb-3{
+  width: 80%;
+  margin: auto;
+} */
+.form-floating {
+  width: 100%;
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .container-fluid {
+    background-color: #fff8e1;
+    height: 75rem;
+  }
+}
+@media screen and (max-width: 767px) {
+  .box {
+    width: 100%;
+  }
 }
 </style>

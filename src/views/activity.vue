@@ -1,99 +1,132 @@
 <template>
-    <Navbar />
-    <div class="Box">
-      <div class="px-5">
-        <h1>กิจกรรมที่ชอบ</h1>
-        <hr />
-      </div>
-  
-      <div class="search">
-        <div class="row row-menu">
-          <div class="col-lg-9 col-sm-10 col-md-9">
-            <div class="input-group mb-3">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Search.."
-                aria-describedby="button-addon2"
-                v-model="search"
-              />
-              <button
-                class="btn btn-primary"
-                type="button"
-                id="button-addon2"
-              >
-                ค้นหา
-              </button>
-            </div>
-          </div>
-          <div class="col-3 col-sm-2 col-md-3 col-flex">
-            <a href="/insertactivity">
-              <button type="button" class="btn btn-success">
-                เพิ่มกิจกรรมที่ชอบ
-              </button>
-            </a>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <Navbar />
+  <div class="Box">
+    <div class="px-5">
+      <h1>กิจกรรมที่ชอบ</h1>
+      <hr />
+    </div>
+    <div class="mb-5 px-5">
+      <Breadcrumb />
+    </div>
+
+    <div class="search">
+      <div class="row row-menu">
+        <div class="col-lg-9 search-res p-0">
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search.."
+              aria-describedby="button-addon2"
+              v-model="search"
+            />
           </div>
         </div>
+        <div class="col-lg-3 col-flex">
+          <a href="/insertactivity">
+            <button type="button" class="btn btn-success">
+              เพิ่มกิจกรรมที่ชอบ
+            </button>
+          </a>
+        </div>
       </div>
-  
-      <div class="block">
-        <div
-          class="row block-item block-bm"
-          v-for="item in filtersearch"
+    </div>
+
+    <div class="block">
+      <div
+        class="row block-item block-bm"
+        v-for="item in filtersearch"
         :key="item"
-        >
-          <!-- <div class="col-1">{{ item.id }}</div> -->
-          <div class="col-1">{{ item.id }}</div>
-          <div class="col-7">{{ item.title }}</div>
-          <div class="col-3">
-            <button
-              type="button"
-              class="btn btn-primary edit"
-              @click="$router.push(`/updateActivity/${item.id}/${item.title}/${item.description}`)"
-            >
-              แก้ไข
-            </button>
-  
-            <button
-              type="button"
-              class="btn btn-danger delete"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-              @click="confirmdelete(item.id)"
-            >
-              ลบ
-            </button>
-            <!-- <button type="button" class="btn btn-outline-danger delete"
-            @click="deletechat(item.id)">
-                  ลบ
-              </button> -->
-          </div>
+      >
+        <!-- <div class="col-1">{{ item.id }}</div> -->
+        <div class="col-1">{{ item.id }}</div>
+        <div class="col-7">{{ item.title }}</div>
+        <div class="col-3 button-1">
+          <button
+            type="button button-1"
+            class="btn btn-primary edit"
+            @click="
+              $router.push(
+                `/updateActivity/${item.id}/${item.title}/${item.description}`
+              )
+            "
+          >
+            แก้ไข
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-danger delete"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            @click="confirmdelete(item.id)"
+          >
+            ลบ
+          </button>
         </div>
-  
-        <!-- Button trigger modal -->
-  
-        <!-- Modal -->
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog modal-dialog-centered modal-md">
-            <div class="modal-content border border-warning border-5">
-              <div class="modal-header border-0">
-              <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+
+        <!-- resposive -->
+
+        <div class="col-3 button-res">
+          <button
+            type="button"
+            class="btn btn-primary edit edit-res"
+            @click="
+              $router.push(
+                `/updateActivity/${item.id}/${item.title}/${item.description}`
+              )
+            "
+          >
+            <span class="material-icons"> mode_edit </span>
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-danger delete delete-res"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            @click="confirmdeletezone(item.id)"
+          >
+            <span class="material-icons"> delete_outline </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Button trigger modal -->
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-md">
+          <div class="modal-content border border-warning border-5">
+            <div class="modal-header border-0">
               <button
                 type="button"
                 class="btn-close float-end"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
-              </div>
-              <div class="modal-body text-center fs-4 fw-bold">คุณต้องการลบข้อความนี้หรือไม่ ?</div>
-              <div  class="modal-footer border-0 mt-3">
-  
+            </div>
+            <div class="modal-body text-center fs-4 fw-bold">
+              คุณต้องการลบข้อความนี้หรือไม่ ?
+            </div>
+            <div class="modal-footer border-0 mt-3">
+              <div class="col">
                 <button
                   type="button"
                   class="btn btn-warning"
@@ -102,6 +135,8 @@
                 >
                   ยืนยัน
                 </button>
+              </div>
+              <div class="col">
                 <button
                   type="button"
                   class="btn btn-secondary"
@@ -109,142 +144,210 @@
                 >
                   ยกเลิก
                 </button>
-                
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </template>
+  </div>
+</template>
     
     <script>
-  import Navbar from "../components/Navbar.vue";
-  import axios from "axios";
-  export default {
-    components: { Navbar },
-    // watch: {
-    //   search() {
-    //     this.getchatopen();
-    //   }
+import Navbar from "../components/Navbar.vue";
+import Breadcrumb from "../components/BC-activity.vue";
+import axios from "axios";
+export default {
+  components: { Navbar, Breadcrumb },
+  data() {
+    return {
+      loaddata: [],
+      id: "",
+      search: "",
+      title: "",
+    };
+  },
+  mounted() {
+    this.getactivity();
+  },
+  methods: {
+    getactivity() {
+      axios.get("http://localhost:5050/activity").then((response) => {
+        this.loaddata = response.data;
+        // console.log(response);
+      });
+    },
+    // confirmdeletezone(id) {
+    //   this.dialog_delete = true
+    //   this.id = id
     // },
-    data() {
-      return {
-        loaddata: [],
-        id: "",
-        search: "",
-        title: "",
-      };
+    confirmdelete(id) {
+      this.id = id;
     },
-    mounted() {
-      this.getactivity();
-    },
-    methods: {
-        getactivity() {
-        axios.get("http://localhost:5050/activity").then((response) => {
-          this.loaddata = response.data; 
-          // console.log(response);
-        });
-      },
-      // confirmdeletezone(id) {
-      //   this.dialog_delete = true
-      //   this.id = id
-      // },
-      confirmdelete(id) {
+    deleteactivity(id) {
+      axios.delete("http://localhost:5050/activity/" + id).then(() => {
         this.id = id;
-      },
-      deleteactivity(id) {
-        axios.delete("http://localhost:5050/activity/" + id).then(() => {
-          this.id = id;
-          this.getactivity();
-          // console.log(response.data)
-        });
-      },
+        this.getactivity();
+        // console.log(response.data)
+      });
     },
-    computed: {
+  },
+  computed: {
     filtersearch() {
       return this.loaddata.filter((loaddata) => {
         return loaddata.title.toLowerCase().includes(this.search.toLowerCase());
       });
     },
   },
-  };
-  </script>
+};
+</script>
     
     <style scoped>
-  .Box {
-    background-color: #f5f5f5;
-  }
-  h1 {
+.Box {
+  background-color: #fff8e1;
+  height: auto;
+}
+h1 {
   padding-top: 40px;
   padding-bottom: 10px;
 }
-  /* .search {
-    padding-left: 60px;
-  } */
-  .row-menu {
-    width: 90%;
-    margin: auto;
+.form-control {
+  border: 5px solid #ffbd59;
+  border-radius: 15px;
+}
+.row-menu {
+  width: 90%;
+  margin: auto;
+}
+.col-9 {
+  padding: 0px;
+}
+.bnt-insert {
+  display: flex;
+  justify-content: end;
+  align-items: flex-end;
+  padding-bottom: 30px;
+}
+.input-group {
+  width: 40%;
+  padding-bottom: 20px;
+}
+.col-flex {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 0px !important;
+  padding-bottom: 20px !important;
+}
+.block-bm {
+  margin-bottom: 20px !important;
+}
+.block-item {
+  border-radius: 8px;
+  background-color: #ffff;
+  margin-bottom: 10px;
+  width: 90%;
+  margin: auto;
+  box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.13);
+}
+.block-item:hover {
+  border-left: 5px solid orange;
+  transform: scale(1.03, 1.03);
+}
+.col-1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-size: 1.2rem;
+}
+.col-7 {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  font-size: 1.2rem;
+}
+.col-3 {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  font-size: 1.2rem;
+}
+.edit {
+  width: 30%;
+}
+.delete {
+  width: 30%;
+  margin-left: 10px;
+}
+.button-res {
+  display: none;
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .Box {
+    background-color: #fff8e1;
+    height: 80rem;
   }
-  .col-9 {
+  .button-1 {
+    display: none;
+  }
+  .button-res {
+    display: block;
+  }
+  .edit-res {
+    width: 40% !important;
+    padding: 5px !important;
+  }
+  .delete-res {
+    padding: 5px !important;
+    width: 40% !important;
+  }
+}
+@media screen and (max-width: 767px) {
+  .Box {
+    background-color: #fff8e1;
+    height: auto;
+  }
+  h1 {
+    padding-left: 0px !important;
+  }
+  .search-res {
     padding: 0px;
   }
-  .bnt-insert {
-    display: flex;
-    justify-content: end;
-    align-items: flex-end;
-    padding-bottom: 30px;
-  }
   .input-group {
-    width: 40%;
+    width: 100%;
     padding-bottom: 20px;
   }
-  .col-flex {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    padding: 0px !important;
-    padding-bottom: 20px !important;
+  .col-3 {
+    padding: 0px;
   }
-  .block-bm {
-    margin-bottom: 20px !important;
+  .button-1 {
+    display: none;
   }
-  .block-item {
-    border-radius: 8px;
-    background-color: #ffff;
-    margin-bottom: 10px;
-    width: 90%;
-    margin: auto;
-    box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.13);
+  .button-res {
+    display: block;
   }
-  .block-item:hover {
-    border-left: 5px solid orange;
-    transform: scale(1.03, 1.03);
-  }
-  .col-1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    font-size: 1.2rem;
+  button {
+    font-size: 14px;
   }
   .col-7 {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    font-size: 1.2rem;
+    font-size: 14px;
   }
   .col-3 {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    font-size: 1.2rem;
+    font-size: 14px;
+    margin: auto;
   }
-  .edit {
-    width: 30%;
+  .edit-res {
+    width: 40% !important;
+    padding: 5px !important;
   }
-  .delete {
-    width: 30%;
-    margin-left: 10px;
+  .delete-res {
+    padding: 5px !important;
+    width: 40% !important;
   }
-  </style>
+  .material-icons {
+    font-size: 16px !important;
+    text-align: center !important;
+  }
+}
+</style>

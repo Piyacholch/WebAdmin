@@ -1,8 +1,19 @@
 <template>
+   <head>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
   <Navbar />
   <div class="Box">
     <div class="px-5">
       <h1>ชุดข้อความตอบกลับประโยคด้านบวก</h1>
+      <hr />
     </div>
     <div class="mb-5 px-5">
       <Breadcrumb />
@@ -10,7 +21,7 @@
 
     <div class="search">
       <div class="row row-menu">
-        <div class="col-lg-9 col-sm-10 col-md-9">
+        <div class="col-lg-9 search-res p-0">
           <div class="input-group mb-3">
             <input
               type="text"
@@ -19,18 +30,11 @@
               aria-describedby="button-addon2"
               v-model="search"
             />
-            <button
-              class="btn btn-outline-warning"
-              type="button"
-              id="button-addon2"
-            >
-              ค้นหา
-            </button>
           </div>
         </div>
-        <div class="col-3 col-sm-2 col-md-3 col-flex">
+        <div class="col-lg-3 col-flex">
           <a href="/insertchatpositive">
-            <button type="button" class="btn btn-outline-success">
+            <button type="button" class="btn btn-success">
               เพิ่มข้อความ
             </button>
           </a>
@@ -46,10 +50,10 @@
       >
         <div class="col-1">{{ item.id }}</div>
         <div class="col-7">{{ item.Text }}</div>
-        <div class="col-3">
+        <div class="col-3 button-1">
           <button
             type="button"
-            class="btn btn-outline-primary edit"
+            class="btn btn-primary edit"
             @click="$router.push(`/updatechatpositive/${item.id}/${item.Text}`)"
           >
             แก้ไข
@@ -57,17 +61,36 @@
 
           <button
             type="button"
-            class="btn btn-outline-danger delete"
+            class="btn btn-danger delete"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
             @click="confirmdeletezone(item.id)"
           >
             ลบ
           </button>
-          <!-- <button type="button" class="btn btn-outline-danger delete"
-          @click="deletechat(item.id)">
-                ลบ
-            </button> -->
+        </div>
+
+
+        <!-- resposive -->
+
+        <div class="col-3 button-res">
+          <button
+            type="button"
+            class="btn btn-primary edit edit-res"
+            @click="$router.push(`/updatechatopen/${item.id}/${item.Text}`)"
+          >
+            <span class="material-icons"> mode_edit </span>
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-danger delete delete-res"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            @click="confirmdeletezone(item.id)"
+          >
+            <span class="material-icons"> delete_outline </span>
+          </button>
         </div>
       </div>
 
@@ -94,7 +117,7 @@
             </div>
             <div class="modal-body text-center fs-4 fw-bold">คุณต้องการลบข้อความนี้หรือไม่ ?</div>
             <div  class="modal-footer border-0 mt-3">
-
+              <div class="col">
               <button
                 type="button"
                 class="btn btn-warning"
@@ -103,6 +126,8 @@
               >
                 ยืนยัน
               </button>
+              </div>
+              <div class="col">
               <button
                 type="button"
                 class="btn btn-secondary"
@@ -110,7 +135,7 @@
               >
                 ยกเลิก
               </button>
-              
+              </div>
             </div>
           </div>
         </div>
@@ -175,15 +200,17 @@ export default {
   
   <style scoped>
 .Box {
-  background-color: #f5f5f5;
+  background-color: #fff8e1;
+  height: auto;
 }
 h1 {
   padding-top: 40px;
   padding-bottom: 10px;
 }
-/* .search {
-  padding-left: 60px;
-} */
+.form-control {
+  border: 5px solid #ffbd59;
+  border-radius: 15px;
+}
 .row-menu {
   width: 90%;
   margin: auto;
@@ -248,5 +275,76 @@ h1 {
 .delete {
   width: 30%;
   margin-left: 10px;
+}
+.button-res {
+  display: none;
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .Box {
+  background-color: #fff8e1;
+  height: auto;
+  }
+  .button-1 {
+    display: none;
+  }
+  .button-res {
+    display: block;
+  }
+  .edit-res {
+    width: 40% !important;
+    padding: 5px !important;
+  }
+  .delete-res {
+    padding: 5px !important;
+    width: 40% !important;
+  }
+ 
+}
+@media screen and (max-width: 767px) {
+  .Box {
+    background-color: #fff8e1;
+    height: auto;
+  }
+  h1 {
+    padding-left: 0px !important;
+  }
+  .search-res {
+    padding: 0px;
+  }
+  .input-group {
+    width: 100%;
+    padding-bottom: 20px;
+  }
+  .col-3 {
+    padding: 0px;
+  }
+  .button-1 {
+    display: none;
+  }
+  .button-res {
+    display: block;
+  }
+  button {
+    font-size: 14px;
+  }
+  .col-7 {
+    font-size: 14px;
+  }
+  .col-3 {
+    font-size: 14px;
+    margin: auto;
+  }
+  .edit-res {
+    width: 40% !important;
+    padding: 5px !important;
+  }
+  .delete-res {
+    padding: 5px !important;
+    width: 40% !important;
+  }
+  .material-icons {
+    font-size: 16px !important;
+    text-align: center !important;
+  }
 }
 </style>

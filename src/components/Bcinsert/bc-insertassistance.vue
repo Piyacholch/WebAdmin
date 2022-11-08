@@ -16,10 +16,11 @@
             </div>
           </li>
           <li class="crumb">
-            <div class="link"><a href="/replymessage">แก้ไขชุดข้อความ</a></div>
+            <div class="link"><a href="/assistance">แหล่งช่วยเหลือ</a></div>
           </li>
+          
           <li class="crumb  active">
-            <div class="link"><a href="/chatpositive">ชุดข้อความตอบกลับประโยคด้านบวก</a></div>
+            <div class="link"><a href="/insertassistance">เพิ่มแหล่งช่วยเหลือ</a></div>
           </li>
         </ol>
       </nav>

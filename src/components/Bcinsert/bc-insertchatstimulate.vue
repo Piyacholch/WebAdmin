@@ -18,8 +18,12 @@
           <li class="crumb">
             <div class="link"><a href="/replymessage">แก้ไขชุดข้อความ</a></div>
           </li>
+          <li class="crumb">
+            <div class="link"><a href="/chatstimulate">ชุดข้อความตอบกลับประโยคกระตุ้น</a></div>
+          </li>
+        
           <li class="crumb  active">
-            <div class="link"><a href="/chatpositive">ชุดข้อความตอบกลับประโยคด้านบวก</a></div>
+            <div class="link"><a href="/insertchatstimulate">เพิ่มชุดข้อความตอบกลับประโยคกระตุ้น</a></div>
           </li>
         </ol>
       </nav>

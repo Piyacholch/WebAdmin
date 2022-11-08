@@ -1,12 +1,19 @@
 <template>
   <Navbar />
 
-  <div class="Box pt-5 pb-5">
+  <div class="Box pb-5">
+    <div class="px-5">
+      <h1>แก้ไขข้อความตอบกลับประโยคทักทาย</h1>
+      <hr />
+    </div>
+    <div class="mb-5 px-5">
+      <Breadcrumb />
+    </div>
     <div class="box p-4">
-      <h2>เพิ่มข้อความตอบกลับประโยคทักทาย</h2>
+      <h2>แก้ไขข้อความตอบกลับประโยคทักทาย</h2>
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label"
-          >เพิ่มข้อความตอบกลับ</label
+          >แก้ไขข้อความตอบกลับ</label
         >
         <textarea
           class="form-control"
@@ -32,15 +39,15 @@
       </div>
     </div>
   </div>
-  
 </template>
   
   <script>
 import axios from "axios";
 import Navbar from "../../../components/Navbar.vue";
+import Breadcrumb from "../../../components/bcupdate/bc-updatechatopen.vue";
 
 export default {
-  components: { Navbar },
+  components: { Navbar, Breadcrumb },
   data() {
     return {
       Text: null,
@@ -54,21 +61,20 @@ export default {
   },
   methods: {
     getChatByID() {
-      
       axios
         .get(`http://localhost:5050/chatopenByID/${this.$route.params.id}`)
         .then((response) => {
           this.data = response.data;
-         
         });
     },
     updateChatopen() {
       axios
-        .patch(`http://localhost:5050/updatechatOpen/${this.$route.params.id}/${this.data?.Text}`)
+        .patch(
+          `http://localhost:5050/updatechatOpen/${this.$route.params.id}/${this.data?.Text}`
+        )
         .then((response) => {
           this.data = response.data;
           this.$router.push("/chatopen");
-        
         });
     },
     reset() {
@@ -80,8 +86,12 @@ export default {
   
 <style  scoped>
 .Box {
-  background-color: #f5f5f5;
-  height: 750px;
+  background-color: #fff8e1;
+  height: auto;
+}
+h1 {
+  padding-top: 40px;
+  padding-bottom: 10px;
 }
 h2 {
   text-align: center;
@@ -94,18 +104,30 @@ h2 {
   border-radius: 5px;
   box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.1);
 }
-@media (max-width: 720px) {
-  .box{
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .Box {
+    background-color: #fff8e1;
+    height: 80rem;
+  }
+  .box {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .Box {
+    background-color: #fff8e1;
+    height: 80rem;
+  }
+  .box {
     width: 80%;
   }
-  .footer{
+  .footer {
     display: flex;
     justify-content: center !important;
     align-items: center;
   }
-  .btn-1{
+  .btn-1 {
     margin-left: 0px !important;
   }
-
 }
 </style>

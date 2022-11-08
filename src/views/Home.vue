@@ -1,122 +1,109 @@
 <template>
   <Navbar />
-  <div class="box">
-    <div class="mt-3 pb-5 px-3">
-      <h1>Dashboard</h1> 
-    
+  <div class="Box">
+    <div class="px-5">
+      <h1>ภาพรวมระบบ</h1>
+      <hr />
     </div>
-    <div class="row row-1">
-      <div class="flexbox px-5">
-        <div class="item">
-          <div class="content1">
-            <p>111</p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="content2">
-            <p>22222</p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="content3">
-            <p>33333</p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="content4">
-            <p>44444</p>
-          </div>
-        </div>
-      </div>
+    <div class="mb-5 px-5">
+      <Breadcrumb />
     </div>
 
-    <!-- responesive -->
-    <!-- <div class="row row-res px-5 mb-4 mt-4">
-      <div class="col pie">
-        <div class="chart-pie">
-          <div class="chart">
-            <canvas id="myChart1" width="400" height="350px"></canvas>
+    <div class="row px-5">
+      <div class="grid">
+        <div class="item">
+          <div class="content">
+            <div class="row align-items-center">
+              <div class="col">
+                <div class="bg-icon">
+                  <img src="../assets/dashboard/user-profile.png" alt="icon" />
+                </div>
+              </div>
+              <div class="col">
+                <p class="num mt-3">5</p>
+                <p class="name pt-2">เข้าใช้ด้วยอีเมลและรหัสผ่าน</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="content">
+           
+            <div class="row align-items-center">
+              <div class="col">
+                <div class="bg-icon">
+                  <img src="../assets/dashboard/google.png" alt="icon" />
+                </div>
+              </div>
+              <div class="col">
+                <p class="num mt-3">5</p>
+                <p class="name pt-2">เข้าใช้ด้วยบัญชี Google</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="content">
+            <div class="row align-items-center">
+              <div class="col">
+                <div class="bg-icon">
+                  <img src="../assets/dashboard/users.png" alt="icon" />
+                </div>
+              </div>
+              <div class="col">
+                <p class="num mt-3">5</p>
+                <p class="name pt-2">ผู้ดูแลระบบทั้งหมด</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="content">
+            <div class="row align-items-center">
+              <div class="col">
+                <div class="bg-icon">
+                  <img src="../assets/dashboard/smile.png" alt="icon" />
+                </div>
+              </div>
+              <div class="col">
+                <p class="num mt-3">5</p>
+                <p class="name pt-2">วัดระดับอารมณ์ทั้งหมด</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="row row-res1 px-5 mb-4">
-      <div class="col-6">
-        <div class="imformation">One of three columns</div>
-      </div>
-      <div class="col-6">
-        <div class="imformation">One of three columns</div>
-      </div>
-    </div> -->
-    <!-- responesive -->
-
-    <div class="row row-2 px-5 mb-4">
-      <div class="col-6 pie">
-        <div class="chart-pie">
-          <div class="chart">
-            <canvas id="myChart" width="400" height="220px"></canvas>
-          </div>
+    <div class="row px-5 mt-3">
+      <div class="col-sm-8">
+        <div class="chart">
+          <canvas id="myChart" width="400" height="350px"></canvas>
         </div>
       </div>
-      <div class="col-3 ">
-        <div class="imformation">One of three columns</div>
-      </div>
-      <div class="col-3">
-        <div class="imformation">One of three columns</div>
-      </div>
-    </div>
-    <div class="row row-3 px-5">
-      <div class="dash-2">
-        <div class="line-chart">
-          5555555555
-          <canvas id="myChartline" width="400" height="100"></canvas>
+      <div class="col-sm-4">
+        <div class="imformation">
+          <h3>ข้อมูลผู้ใช้</h3>
         </div>
       </div>
     </div>
   </div>
+
+
+  
 </template>
 
 <script>
-
 import Chart from "chart.js/auto";
 import Navbar from "../components/Navbar.vue";
+import Breadcrumb from "../components/BC-dashboard.vue";
+
 export default {
-  components: { Navbar },
+  components: { Navbar, Breadcrumb },
 
   mounted() {
     const ctx = document.getElementById("myChart");
 
     const myChart = new Chart(ctx, {
-      type: "bar",
-      data: {
-        labels: ["Red", "Orange", "Yellow", "Green", "Blue"],
-        datasets: [
-          {
-            label: "My First Dataset",
-            data: [300, 50, 100, 50, 60],
-            backgroundColor: [
-              "rgb(255, 99, 132)",
-              "rgb(54, 162, 235)",
-              "rgb(255, 205, 86)",
-              "rgb(255, 205, 86)",
-              "rgb(255, 205, 86)",
-            ],
-            hoverOffset: 4,
-          },
-        ],
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
-      },
-    });
-
-    const mcl = document.getElementById("myChartline");
-
-    const myChartline = new Chart(mcl, {
       type: "line",
       data: {
         labels: ["Red", "Orange", "Yellow", "Green", "Blue"],
@@ -144,7 +131,37 @@ export default {
       },
     });
 
-    // // response
+    // const mcl = document.getElementById("myChartline");
+
+    // const myChartline = new Chart(mcl, {
+    //   type: "line",
+    //   data: {
+    //     labels: ["Red", "Orange", "Yellow", "Green", "Blue"],
+    //     datasets: [
+    //       {
+    //         label: "My First Dataset",
+    //         data: [300, 50, 100, 50, 60],
+    //         backgroundColor: [
+    //           "rgb(255, 99, 132)",
+    //           "rgb(54, 162, 235)",
+    //           "rgb(255, 205, 86)",
+    //           "rgb(255, 205, 86)",
+    //           "rgb(255, 205, 86)",
+    //         ],
+    //         hoverOffset: 4,
+    //       },
+    //     ],
+    //   },
+    //   options: {
+    //     scales: {
+    //       y: {
+    //         beginAtZero: true,
+    //       },
+    //     },
+    //   },
+    // });
+
+    // response
     // const ct = document.getElementById("myChart1");
 
     // const myChart1 = new Chart(ct, {
@@ -177,72 +194,59 @@ export default {
 
     // myChart1;
     myChart;
-    myChartline;
+    // myChartline;
   },
- 
 };
 </script>
 
 <style scoped>
-.box {
+.Box {
   background-color: #fff8e1;
+  height: 50rem;
 }
-.flexbox {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: stretch;
   align-items: stretch;
-  box-sizing: border-box;
-  margin: 0px -8.5px;
+  column-gap: 5px;
+  row-gap: 20px;
 }
 
-.item {
+.content {
+  color: #242424;
+  background-color: #ffbd59;
+  border-radius: 12px;
+  font-weight: 600;
+  text-align: center;
   box-sizing: border-box;
-  width: 25%;
-  margin-bottom: 20px;
-  padding: 0px 8.5px;
+  height: 100%;
+  padding: 10px;
+  box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.13);
 }
 
-.content1 {
-  color: #242424;
-  background-color: #ffcc80;
-  font-weight: 600;
-  text-align: center;
-  box-sizing: border-box;
-  height: 100%;
-  padding: 10px;
-  border-radius: 8px;
+.bg-icon {
+  margin: auto;
+  width: 80px;
+  height: 80px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.content2 {
-  color: #242424;
-  background-color: #d0d9ff;
-  font-weight: 600;
-  text-align: center;
-  box-sizing: border-box;
-  height: 100%;
-  padding: 10px;
-  border-radius: 8px;
+img {
+  padding: 20px;
 }
-.content3 {
-  color: #242424;
-  background-color: #a3e9a4;
-  font-weight: 600;
-  text-align: center;
-  box-sizing: border-box;
-  height: 100%;
-  padding: 10px;
-  border-radius: 8px;
+.num {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ffffff;
 }
-.content4 {
-  color: #242424;
-  background-color: #b39ddb;
-  font-weight: 600;
-  text-align: center;
-  box-sizing: border-box;
-  height: 100%;
-  padding: 10px;
-  border-radius: 8px;
+.name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #f5f5f5;
 }
 .pie {
   padding-left: 0px;
@@ -252,14 +256,17 @@ export default {
   border-radius: 8px;
 }
 .chart {
-  width: 80%;
+  background-color: white;
+  border-radius: 12px;
+  width: 100%;
   height: auto;
-  margin: auto;
+  box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.13);
 }
 .imformation {
   background-color: #ffff;
   border-radius: 8px;
   height: 100%;
+  box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.13);
 }
 .dash-2 {
   background-color: #ffff;
@@ -272,37 +279,47 @@ export default {
   margin: auto;
 }
 
-@media (max-width: 720px) {
-  .flexbox {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: stretch;
-    box-sizing: border-box;
-    margin: 0px -10px;
-  }
-
-  .item {
-    box-sizing: border-box;
-    width: 100%;
-    margin-bottom: 20px;
-    padding: 0px 10px;
-  }
-  .row-2 {
-    display: none;
-  }
-  .chart-pie {
-    padding-right: 0px;
-  }
-  #myChart1 {
-    height: 270px !important;
-    width: 100% !important;
-  }
-  .imformation {
-    background-color: #ffff;
-    border-radius: 8px;
-    height: 200px;
-  }
+@media screen and (max-width: 767px) {
+  .Box {
+  background-color: #fff8e1;
+  height: auto;
 }
+  .grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: stretch;
+  align-items: stretch;
+  column-gap: 13px;
+  row-gap: 20px;
+}
+
+.content {
+  color: #242424;
+  background-color: #ffbd59;
+  font-weight: 600;
+  text-align: center;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 10px;
+}
+.bg-icon {
+  margin: auto;
+  width: 70px;
+  height: 70px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+img {
+  padding: 20px;
+  width: 80px;
+}
+.imformation{
+  margin-top: 10px;
+  height: 200px;
+}
+
+} 
 </style>

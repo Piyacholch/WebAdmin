@@ -30,9 +30,6 @@
               aria-describedby="button-addon2"
               v-model="search"
             />
-            <button class="btn btn-primary" type="button" id="button-addon2">
-              ค้นหา
-            </button>
           </div>
         </div>
         <div class="col-lg-3 col-flex">
@@ -70,10 +67,6 @@
           >
             ลบ
           </button>
-          <!-- <button type="button" class="btn btn-outline-danger delete"
-          @click="deletechat(item.id)">
-                ลบ
-            </button> -->
         </div>
 
         <!-- resposive -->
@@ -81,7 +74,7 @@
         <div class="col-3 button-res">
           <button
             type="button"
-            class="btn btn-outline-primary edit edit-res"
+            class="btn btn-primary edit edit-res"
             @click="$router.push(`/updatechatopen/${item.id}/${item.Text}`)"
           >
             <span class="material-icons"> mode_edit </span>
@@ -89,7 +82,7 @@
 
           <button
             type="button"
-            class="btn btn-outline-danger delete delete-res"
+            class="btn btn-danger delete delete-res"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
             @click="confirmdeletezone(item.id)"
@@ -124,21 +117,25 @@
             คุณต้องการลบข้อความนี้หรือไม่ ?
           </div>
           <div class="modal-footer border-0 mt-3">
-            <button
-              type="button"
-              class="btn btn-warning"
-              data-bs-dismiss="modal"
-              @click="deletechat(id)"
-            >
-              ยืนยัน
-            </button>
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              ยกเลิก
-            </button>
+            <div class="col">
+              <button
+                type="button"
+                class="btn btn-warning"
+                data-bs-dismiss="modal"
+                @click="deletechat(id)"
+              >
+                ยืนยัน
+              </button>
+            </div>
+            <div class="col">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                ยกเลิก
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -199,15 +196,17 @@ export default {
   
   <style scoped>
 .Box {
-  background-color: #f5f5f5;
+  background-color: #fff8e1;
+  height: auto;
 }
 h1 {
   padding-top: 40px;
   padding-bottom: 10px;
 }
-/* .search {
-  padding-left: 60px;
-} */
+.form-control {
+  border: 5px solid #ffbd59;
+  border-radius: 15px;
+}
 .row-menu {
   width: 90%;
   margin: auto;
@@ -276,9 +275,33 @@ h1 {
 .button-res {
   display: none;
 }
-@media (max-width: 720px) {
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .Box {
+    background-color: #fff8e1;
+    height: auto;
+  }
+  .button-1 {
+    display: none;
+  }
+  .button-res {
+    display: block;
+  }
+  .edit-res {
+    width: 40% !important;
+    padding: 5px !important;
+  }
+  .delete-res {
+    padding: 5px !important;
+    width: 40% !important;
+  }
+}
+@media screen and (max-width: 767px) {
+  .Box {
+    background-color: #fff8e1;
+    height: auto;
+  }
   h1 {
-    padding-left: 12px;
+    padding-left: 0px !important;
   }
   .search-res {
     padding: 0px;
@@ -308,10 +331,10 @@ h1 {
   }
   .edit-res {
     width: 40% !important;
-    padding: 0px !important;
+    padding: 5px !important;
   }
   .delete-res {
-    padding: 0px !important;
+    padding: 5px !important;
     width: 40% !important;
   }
   .material-icons {

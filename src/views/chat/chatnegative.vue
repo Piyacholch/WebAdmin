@@ -1,8 +1,19 @@
 <template>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
   <Navbar />
   <div class="Box">
     <div class="px-5">
       <h1>ชุดข้อความตอบกลับประโยคด้านลบ</h1>
+      <hr />
     </div>
     <div class="mb-5 px-5">
       <Breadcrumb />
@@ -10,7 +21,7 @@
 
     <div class="search">
       <div class="row row-menu">
-        <div class="col-lg-9 col-sm-10 col-md-9">
+        <div class="col-lg-9 search-res p-0">
           <div class="input-group mb-3">
             <input
               type="text"
@@ -19,20 +30,11 @@
               aria-describedby="button-addon2"
               v-model="search"
             />
-            <button
-              class="btn btn-primary"
-              type="button"
-              id="button-addon2"
-            >
-              ค้นหา
-            </button>
           </div>
         </div>
-        <div class="col-3 col-sm-2 col-md-3 col-flex">
+        <div class="col-lg-3 col-flex">
           <a href="/insertchatnegative">
-            <button type="button" class="btn btn-success">
-              เพิ่มข้อความ
-            </button>
+            <button type="button" class="btn btn-success">เพิ่มข้อความ</button>
           </a>
         </div>
       </div>
@@ -41,13 +43,13 @@
     <div class="block">
       <div
         class="row block-item block-bm"
-        v-for= "item in filtersearch"
+        v-for="item in filtersearch"
         :key="item"
       >
         <!-- <div class="col-1">{{ item.id }}</div> -->
         <div class="col-1">{{ item.id }}</div>
         <div class="col-7">{{ item.Text }}</div>
-        <div class="col-3">
+        <div class="col-3 button-1">
           <button
             type="button"
             class="btn btn-primary edit"
@@ -66,6 +68,28 @@
             ลบ
           </button>
         </div>
+
+        <!-- resposive -->
+
+        <div class="col-3 button-res">
+          <button
+            type="button"
+            class="btn btn-primary edit edit-res"
+            @click="$router.push(`/updatechatopen/${item.id}/${item.Text}`)"
+          >
+            <span class="material-icons"> mode_edit </span>
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-danger delete delete-res"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            @click="confirmdeletezone(item.id)"
+          >
+            <span class="material-icons"> delete_outline </span>
+          </button>
+        </div>
       </div>
 
       <!-- Button trigger modal -->
@@ -81,33 +105,37 @@
         <div class="modal-dialog modal-dialog-centered modal-md">
           <div class="modal-content border border-warning border-5">
             <div class="modal-header border-0">
-            <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
-            <button
-              type="button"
-              class="btn-close float-end"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+              <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+              <button
+                type="button"
+                class="btn-close float-end"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
-            <div class="modal-body text-center fs-4 fw-bold">คุณต้องการลบข้อความนี้หรือไม่ ?</div>
-            <div  class="modal-footer border-0 mt-3">
-
-              <button
-                type="button"
-                class="btn btn-warning"
-                data-bs-dismiss="modal"
-                @click="deletechat(id)"
-              >
-                ยืนยัน
-              </button>
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                ยกเลิก
-              </button>
-              
+            <div class="modal-body text-center fs-4 fw-bold">
+              คุณต้องการลบข้อความนี้หรือไม่ ?
+            </div>
+            <div class="modal-footer border-0 mt-3">
+              <div class="col">
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  data-bs-dismiss="modal"
+                  @click="deletechat(id)"
+                >
+                  ยืนยัน
+                </button>
+              </div>
+              <div class="col">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  ยกเลิก
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -125,7 +153,7 @@ export default {
   watch: {
     search() {
       this.getchatopen();
-    }
+    },
   },
   data() {
     return {
@@ -141,14 +169,10 @@ export default {
   methods: {
     getchatopen() {
       axios.get("http://localhost:5050/chatnegative").then((response) => {
-        this.loaddata = response.data; 
+        this.loaddata = response.data;
         // console.log(response);
       });
     },
-    // confirmdeletezone(id) {
-    //   this.dialog_delete = true
-    //   this.id = id
-    // },
     confirmdeletezone(id) {
       this.id = id;
     },
@@ -160,27 +184,29 @@ export default {
       });
     },
   },
-  computed:{
-        filtersearch(){
-            return this.loaddata.filter(loaddata=> {
-                return loaddata.Text.toLowerCase().includes(this.search.toLowerCase())
-            })
-        }
+  computed: {
+    filtersearch() {
+      return this.loaddata.filter((loaddata) => {
+        return loaddata.Text.toLowerCase().includes(this.search.toLowerCase());
+      });
+    },
   },
 };
 </script>
   
   <style scoped>
 .Box {
-  background-color: #f5f5f5;
+  background-color: #fff8e1;
+  height: auto;
 }
 h1 {
   padding-top: 40px;
   padding-bottom: 10px;
 }
-/* .search {
-  padding-left: 60px;
-} */
+.form-control {
+  border: 5px solid #ffbd59;
+  border-radius: 15px;
+}
 .row-menu {
   width: 90%;
   margin: auto;
@@ -245,5 +271,75 @@ h1 {
 .delete {
   width: 30%;
   margin-left: 10px;
+}
+.button-res {
+  display: none;
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .Box {
+    background-color: #fff8e1;
+    height: 80rem;
+  }
+  .button-1 {
+    display: none;
+  }
+  .button-res {
+    display: block;
+  }
+  .edit-res {
+    width: 40% !important;
+    padding: 5px !important;
+  }
+  .delete-res {
+    padding: 5px !important;
+    width: 40% !important;
+  }
+}
+@media screen and (max-width: 767px) {
+  .Box {
+    background-color: #fff8e1;
+    height: auto;
+  }
+  h1 {
+    padding-left: 0px !important;
+  }
+  .search-res {
+    padding: 0px;
+  }
+  .input-group {
+    width: 100%;
+    padding-bottom: 20px;
+  }
+  .col-3 {
+    padding: 0px;
+  }
+  .button-1 {
+    display: none;
+  }
+  .button-res {
+    display: block;
+  }
+  button {
+    font-size: 14px;
+  }
+  .col-7 {
+    font-size: 14px;
+  }
+  .col-3 {
+    font-size: 14px;
+    margin: auto;
+  }
+  .edit-res {
+    width: 40% !important;
+    padding: 5px !important;
+  }
+  .delete-res {
+    padding: 5px !important;
+    width: 40% !important;
+  }
+  .material-icons {
+    font-size: 16px !important;
+    text-align: center !important;
+  }
 }
 </style>

@@ -1,49 +1,53 @@
 <template>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+      integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+      crossorigin="anonymous"
+    />
+  </head>
   <div class="all">
     <div class="container" id="container">
       <div class="form-container sign-in-container">
         <form action="#" @submit.prevent="register">
-          <h1>สมัครสมาชิก</h1>
-
+          <h1 class="mb-3">สมัครสมาชิก</h1>
           <div class="row">
-            <div class="col-12">
-              <div id="GooglerSingIn" v-if="!isSignedIn">
-                <button
-                  @click="handleSignInGoogle"
-                  type="button"
-                  class="btn btn-primary btn-sm"
-                >
-                  <i class="fab fa-google-plus-g" @click="handleSignInGoogle"
-                    >G</i
-                  >
-                  Login with Google
-                </button>
-              </div>
+            <div class="mb-3 mt-3">
+              <input
+                type="email"
+                placeholder="Email"
+                class="mb-3"
+                v-model="register_form.email"
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                v-model="register_form.password"
+              />
+            </div>
+            <div>
+              <button type="submit" class="btn btn-warning mb-3">
+                สมัครสมาชิก
+              </button>
+            </div>
+            <p class="mb-2 or">หรือ</p>
+            <div id="GooglerSingIn" v-if="!isSignedIn" class="google mb-2">
+              <button
+                @click="handleSignInGoogle"
+                type="button"
+                class="btn btn-primary btn-sm btn-google"
+              >
+                <i class="fab fa-google-plus-g" @click="handleSignInGoogle"></i>
+                Sign In with Google
+              </button>
+            </div>
+            <div class="toLogin">
+             <a href="/login"><p class="mb-2 or" id="a_toLogin">เข้าสู่ระบบ</p></a> 
             </div>
           </div>
 
-          <p class="mt-2">หรือใช้บัญชีของคุณ</p>
-
-          <!-- <div id="GooglerSingIn" v-if="!isSignedIn">
-            <h3>Google Signin</h3>
-            <button @click="handleSignInGoogle">Google</button>
-          </div> -->
-
-          <input type="text" placeholder="Name" v-model="register_form.name" />
-
-          <input
-            type="email"
-            placeholder="Email"
-            v-model="register_form.email"
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            v-model="register_form.password"
-          />
           <div v-show="error" class="error">{{ this.errorMsg }}</div>
-        
-          <input type="submit" value="Register" class="mt-3"/>
         </form>
       </div>
 
@@ -138,6 +142,11 @@ export default {
   font-family: "Kanit", sans-serif;
 }
 
+@media screen and (min-width: 768px) and (max-width: 1023px){
+
+#a_toLogin:link,#a_toLogin:visited,#a_toLogin:hover,#a_toLogin:active{
+color: blue;
+}
 .all {
   margin-top: 4%;
   display: flex;
@@ -163,7 +172,11 @@ p {
   letter-spacing: 0.5px;
   margin: 20px 0 30px;
 }
-
+p.or {
+  color: grey;
+  font-size: 14px;
+  font-weight: bold;
+}
 span {
   font-size: 12px;
 }
@@ -218,6 +231,7 @@ input {
   padding: 12px 15px;
   margin: 8px 0;
   width: 100%;
+  border-radius: 5px;
 }
 
 #container {
@@ -262,6 +276,9 @@ input {
   z-index: 5;
   animation: show 0.6s;
 }
+.btn {
+  width: 100%;
+}
 
 @keyframes show {
   0%,
@@ -294,8 +311,6 @@ input {
 
 .overlay {
   background: #ffbd59;
-  background: -webkit-linear-gradient(to right, #ffbd59, #ffb545);
-  background: linear-gradient(to right, #ffbd59, #ffb545);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
@@ -382,5 +397,33 @@ footer i {
 footer a {
   color: #3c97bf;
   text-decoration: none;
+  
+}
+
+}
+@media screen and (max-width: 767px) {
+  .overlay-container {
+ display: none;
+}
+form {
+  background-color: #fff;
+  width: 400px;
+  height: 100%;
+  text-align: center;
+  margin: auto;
+}
+.btn-primary{
+  height: 42px;
+}
+.btn-warning {
+  height: 42px;
+
+}
+.toLogin{
+  text-align: end;
+}
+#a_toLogin:link,#a_toLogin:visited,#a_toLogin:hover,#a_toLogin:active{
+color: blue;
+}
 }
 </style>
