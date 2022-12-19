@@ -117,7 +117,7 @@ export default {
       // formData.append("Text", this.Text);
       axios
         .post(
-          "http://localhost:5050/insertactivity/" +
+          process.env.VUE_APP_BACKEND_BASE_URL+"/insertactivity/" +
             iddocs +
             "/" +
             Name +

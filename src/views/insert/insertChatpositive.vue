@@ -70,7 +70,7 @@ export default {
   methods: {
     submit(iddocs, Text) {
       axios
-        .post("http://localhost:5050/insertchatpositive/" + iddocs + "/" + Text)
+        .post(process.env.VUE_APP_BACKEND_BASE_URL+"/insertchatpositive/" + iddocs + "/" + Text)
         .then((response) => {
           this.data = response.data;
           this.$router.push("/chatpositive");

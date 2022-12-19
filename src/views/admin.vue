@@ -135,7 +135,7 @@ export default {
   },
   methods: {
     getadmin() {
-      axios.get("http://localhost:5050/Admin").then((response) => {
+      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/Admin").then((response) => {
         this.loaddata = response.data;
         // console.log(response);
       });

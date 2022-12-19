@@ -168,7 +168,7 @@ export default {
   },
   methods: {
     getchatopen() {
-      axios.get("http://localhost:5050/chatpositive").then((response) => {
+      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/chatpositive").then((response) => {
         this.loaddata = response.data; 
         // console.log(response);
       });
@@ -181,7 +181,7 @@ export default {
       this.id = id;
     },
     deletechat(id) {
-      axios.delete("http://localhost:5050/chatpositive/" + id).then(() => {
+      axios.delete(process.env.VUE_APP_BACKEND_BASE_URL+"/chatpositive/" + id).then(() => {
         this.id = id;
         this.getchatopen();
         // console.log(response.data)

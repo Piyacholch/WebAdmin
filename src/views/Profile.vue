@@ -243,7 +243,7 @@ export default {
 
   methods: {
     // getadmin() {
-    //   axios.get("http://localhost:5050/Admin").then((response) => {
+    //   axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/Admin").then((response) => {
     //     this.Name = name,
     //     this.data = response.data;
     //     // console.log(response);
@@ -284,7 +284,7 @@ export default {
     Addata(uid, email, displayName, name, phonenum) {
       axios
         .post(
-          "http://localhost:5050/insertadmindata/" +
+          process.env.VUE_APP_BACKEND_BASE_URL+"/insertadmindata/" +
             uid +
             "/" +
             email +

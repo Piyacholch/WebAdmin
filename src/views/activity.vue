@@ -172,7 +172,7 @@ export default {
   },
   methods: {
     getactivity() {
-      axios.get("http://localhost:5050/activity").then((response) => {
+      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/activity").then((response) => {
         this.loaddata = response.data;
         // console.log(response);
       });
@@ -185,7 +185,7 @@ export default {
       this.id = id;
     },
     deleteactivity(id) {
-      axios.delete("http://localhost:5050/activity/" + id).then(() => {
+      axios.delete(process.env.VUE_APP_BACKEND_BASE_URL+"/activity/" + id).then(() => {
         this.id = id;
         this.getactivity();
         // console.log(response.data)

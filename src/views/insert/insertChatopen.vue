@@ -72,7 +72,7 @@ export default {
       // const formData = new FormData();
       // formData.append("Text", this.Text);
       axios
-        .post("http://localhost:5050/insertchatopen/" + iddocs + "/" + Text)
+        .post(process.env.VUE_APP_BACKEND_BASE_URL+"/insertchatopen/" + iddocs + "/" + Text)
         .then((response) => {
           this.data = response.data;
           this.$router.push("/chatopen");

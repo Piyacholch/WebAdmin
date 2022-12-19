@@ -82,7 +82,7 @@ export default {
   },
   methods: {
       getactivity() {
-      axios.get("http://localhost:5050/admin").then((response) => {
+      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/admin").then((response) => {
         this.loaddata = response.data; 
         // console.log(response);
       });
@@ -93,7 +93,7 @@ export default {
     // },
  
     deletetest(id) {
-      axios.delete("http://localhost:5050/admin/" + id).then(() => {
+      axios.delete(process.env.VUE_APP_BACKEND_BASE_URL+"/admin/" + id).then(() => {
         this.id = id;
         this.getactivity();
         // console.log(response.data)

@@ -87,7 +87,7 @@ export default {
   methods: {
     getAcitityByID() {
       axios
-        .get(`http://localhost:5050/ActivityByID/${this.$route.params.id}`)
+        .get(process.env.VUE_APP_BACKEND_BASE_URL+`/ActivityByID/${this.$route.params.id}`)
         .then((response) => {
           this.data = response.data;
         });
@@ -95,7 +95,7 @@ export default {
     updateChatopen() {
       axios
         .patch(
-          `http://localhost:5050/updateActivity/${this.$route.params.id}/${this.data?.Name}/${this.data?.Website}/${this.data?.Description}`
+          process.env.VUE_APP_BACKEND_BASE_URL+`/updateActivity/${this.$route.params.id}/${this.data?.Name}/${this.data?.Website}/${this.data?.Description}`
         )
         .then((response) => {
           this.data = response.data;

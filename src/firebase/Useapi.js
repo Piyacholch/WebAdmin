@@ -1,7 +1,7 @@
 
 import axios from "axios";
 export default function useApi() {
-    const baseURL = "http://localhost:5050";
+    const baseURL = process.env.VUE_APP_BACKEND_BASE_URL+"";
     const api = axios.create({
         baseURL,
       });

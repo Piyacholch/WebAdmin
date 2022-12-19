@@ -171,7 +171,7 @@ export default {
   },
   methods: {
     getassitance() {
-      axios.get("http://localhost:5050/assistance").then((response) => {
+      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/assistance").then((response) => {
         this.loaddata = response.data;
         // console.log(response);
       });
@@ -180,7 +180,7 @@ export default {
       this.id = id;
     },
     deletechat(id) {
-      axios.delete("http://localhost:5050/assistance/" + id).then(() => {
+      axios.delete(process.env.VUE_APP_BACKEND_BASE_URL+"/assistance/" + id).then(() => {
         this.id = id;
         this.getassitance();
         // console.log(response.data)

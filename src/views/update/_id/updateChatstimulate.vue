@@ -62,7 +62,7 @@ export default {
   methods: {
     getChatByID() {
       axios
-        .get(`http://localhost:5050/chatstimulateByID/${this.$route.params.id}`)
+        .get(process.env.VUE_APP_BACKEND_BASE_URL+`/chatstimulateByID/${this.$route.params.id}`)
         .then((response) => {
           this.data = response.data;
         });
@@ -70,7 +70,7 @@ export default {
     updateChatopen() {
       axios
         .patch(
-          `http://localhost:5050/updatechatStimulate/${this.$route.params.id}/${this.data?.Text}`
+          process.env.VUE_APP_BACKEND_BASE_URL+`/updatechatStimulate/${this.$route.params.id}/${this.data?.Text}`
         )
         .then((response) => {
           this.data = response.data;

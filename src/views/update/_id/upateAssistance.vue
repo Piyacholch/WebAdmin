@@ -99,7 +99,7 @@ export default {
   methods: {
     getAssistanceByID() {
       axios
-        .get(`http://localhost:5050/AssistanceByID/${this.$route.params.id}`)
+        .get(process.env.VUE_APP_BACKEND_BASE_URL+`/AssistanceByID/${this.$route.params.id}`)
         .then((response) => {
           this.data = response.data;
         });
@@ -107,7 +107,7 @@ export default {
     updateAssistance() {
       axios
         .patch(
-          `http://localhost:5050/updateAssistance/${this.$route.params.id}/${this.data?.Name}/${this.data?.Tel}/${this.data?.Description}`
+          process.env.VUE_APP_BACKEND_BASE_URL+`/updateAssistance/${this.$route.params.id}/${this.data?.Name}/${this.data?.Tel}/${this.data?.Description}`
         )
         .then((response) => {
           this.data = response.data;

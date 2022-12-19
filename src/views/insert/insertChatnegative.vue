@@ -72,7 +72,7 @@ export default {
     submit(iddocs, Text) {
       
       axios
-        .post("http://localhost:5050/insertchatnegative/" + iddocs + "/"  + Text)
+        .post(process.env.VUE_APP_BACKEND_BASE_URL+"/insertchatnegative/" + iddocs + "/"  + Text)
         .then((response) => {
           this.data = response.data;
           this.$router.push("/chatnegative");
