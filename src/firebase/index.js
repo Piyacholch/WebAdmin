@@ -2,14 +2,13 @@ import { initializeApp } from "firebase/app"
 import { getAuth } from "firebase/auth"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC7j5dvP47JFB2pBVbqiQNkssr90ZaPzuM",
-  authDomain: "gler-yglt.firebaseapp.com",
-  databaseURL: "https://gler-yglt-default-rtdb.firebaseio.com",
-  projectId: "gler-yglt",
-  storageBucket: "gler-yglt.appspot.com",
-  messagingSenderId: "798041588376",
-  appId: "1:798041588376:web:a55b4f72d91aa566cf86ed",
-  measurementId: "G-LP9H4T20HJ"
+  apiKey: "AIzaSyBPP69MP2p6FFHYqm5VtHhHOcMQo6XuNdo",
+  authDomain: "gler2-wqhk.firebaseapp.com",
+  projectId: "gler2-wqhk",
+  storageBucket: "gler2-wqhk.appspot.com",
+  messagingSenderId: "402129947349",
+  appId: "1:402129947349:web:a053549bbd052824b1705c",
+  measurementId: "G-6QS252KPMK"
 }
 
 const app = initializeApp(firebaseConfig)
