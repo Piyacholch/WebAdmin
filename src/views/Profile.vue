@@ -282,6 +282,9 @@ export default {
       this.data.Name = "";
     },
     Addata(uid, email, displayName, name, phonenum) {
+      if(displayName == displayName|| name == null ||phonenum==null ){
+    alert("กรุณากรอกข้อมูลทุกช่อง!!");
+  }else if(displayName != displayName|| name != null || phonenum != null ){
       axios
         .post(
           process.env.VUE_APP_BACKEND_BASE_URL+"/insertadmindata/" +
@@ -299,7 +302,7 @@ export default {
           this.data = response.data;
           this.$router.push("/");
           // console.log(response.data)
-        });
+        });}
     },
   },
   created() {

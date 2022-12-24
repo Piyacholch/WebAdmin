@@ -35,7 +35,7 @@
           class="form-control"
           id="exampleFormControlInput1"
           placeholder="เพิ่มชื่อแหล่งช่วยเหลือ"
-          v-model="data.Name"
+          v-model="data.title"
         />
       </div>
       <div class="mb-3">
@@ -47,7 +47,7 @@
           id="exampleFormControlTextarea1"
           rows="7"
           placeholder="ข้อมูลเพิ่มเติม"
-          v-model="data.Description"
+          v-model="data.description"
         ></textarea>
       </div>
 
@@ -60,7 +60,7 @@
           class="form-control"
           id="exampleFormControlInput3"
           placeholder="เพิ่มเว็บไซต์อ้างอิง"
-          v-model="data.Website"
+          v-model="data.website"
         />
       </div>
 
@@ -83,7 +83,7 @@
           type="button"
           class="btn btn-warning mx-2"
           @click="
-            submit(data.iddocs, data.Name, data.Description, data.Website)
+            submit(data.iddocs, data.title, data.description, data.website)
           "
         >
           ตกลง
@@ -105,38 +105,40 @@ export default {
   data() {
     return {
       iddocs: "",
-      Name: "",
-      Website: "",
-      Description: "",
+      title: "",
+      description: "",
+      website: "",
       data: [],
     };
   },
   methods: {
-    submit(iddocs, Name, Description, Website) {
-      // const formData = new FormData();
-      // formData.append("Text", this.Text);
+    submit(iddocs, title, description, website) {
+
+      if(iddocs == null || title == null || description == null || website == null ){
+        alert("กรุณากรอกข้อมูลทุกช่อง!!");
+      }else if(iddocs != null || title != null || description != null || website != null){
       axios
         .post(
-          process.env.VUE_APP_BACKEND_BASE_URL+"/insertactivity/" +
+          "http://localhost:5050/insertactivity/" +
             iddocs +
             "/" +
-            Name +
+            title +
             "/" +
-            Description +
+            description +
             "/" +
-            Website
+            website
         )
         .then((response) => {
           this.data = response.data;
           this.$router.push("/activity");
           // console.log(response.data)
-        });
+        });}
     },
     reset() {
       this.data.iddocs = "";
-      this.data.Name = "";
-      this.data.Description = "";
-      this.data.Website = "";
+      this.data.title = "";
+      this.data.description = "";
+      this.data.website = "";
     },
   },
   created() {},
@@ -171,5 +173,6 @@ h2 {
     width: 90%;
   }
 }
-</style>>
+
+</style>
     

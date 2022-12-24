@@ -49,7 +49,8 @@
         :key="item"
       >
         <!-- <div class="col-1">{{ item.id }}</div> -->
-        <div class="col-8">{{ item.Name }}</div>
+        <div class="col-1">{{ item.id }}</div>
+        <div class="col-7">{{ item.Name }}</div>
         <div class="col-3 button-1">
           <button
             type="button"

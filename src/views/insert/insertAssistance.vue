@@ -96,16 +96,22 @@ export default {
     };
   },
   methods: {
+    
     submit(iddocs, Name, Tel, Description) {
       // const formData = new FormData();
       // formData.append("Text", this.Text);
+      if(iddocs == null || Name == null || Tel == null || Description == null ){
+        alert("กรุณากรอกข้อมูลทุกช่อง!!");
+      }else if(iddocs != null || Name != null || Tel != null || Description != null){
+axios
       axios
-        .post(process.env.VUE_APP_BACKEND_BASE_URL+"/insertassistance/" + iddocs +"/"+ + Name +"/"+ Tel +"/"+ Description)
+        .post("http://localhost:5050/insertassistance/" + iddocs +"/"+ + Name +"/"+ Tel +"/"+ Description)
         .then((response) => {
           this.data = response.data;
           this.$router.push("/assistance");
           // console.log(response.data)
         });
+      }
     },
     reset() {
       this.data.iddocs = "";
@@ -138,5 +144,10 @@ h2 {
   border-radius: 5px;
   box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.1);
 }
-</style>>
+@media screen and (max-width: 767px){
+  .box{
+    width: 90%;
+  }
+}
+</style>
   

@@ -83,7 +83,7 @@
             class="btn btn-primary edit edit-res"
             @click="
               $router.push(
-                `/updateActivity/${item.id}/${item.title}/${item.description}`
+                `/updateActivity/${item.id}/${item.title}/${item.description}/${item.website}`
               )
             "
           >

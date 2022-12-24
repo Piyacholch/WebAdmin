@@ -76,7 +76,7 @@
         <div class="col-3 button-res">
           <button
             type="button"
-            class="btn btn-primary edit edit-res"
+            class="btn btn-primary edit edit-res" id="control_btn_mobile"
             @click="$router.push(`/updatechatopen/${item.id}/${item.Text}`)"
           >
             <span class="material-icons"> mode_edit </span>
@@ -84,7 +84,7 @@
 
           <button
             type="button"
-            class="btn btn-danger delete delete-res"
+            class="btn btn-danger delete delete-res" id="control_btn_mobile"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
             @click="confirmdeletezone(item.id)"
