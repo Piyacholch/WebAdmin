@@ -46,14 +46,14 @@
           class="form-control"
           id="exampleFormControlInput3"
           placeholder="เพิ่มเว็บไซต์อ้างอิง"
-          v-model="data.Website"
+          v-model="data.website"
         />
       </div>
       <div class="footer d-flex justify-content-end mt-4">
         <button
           type="button"
           class="btn btn-warning mx-2"
-          @click="updateChatopen(data.Name, data.Website, data.Description)"
+          @click="updateChatopen(data.title, data.description, data.website)"
         >
           ตกลง
         </button>
@@ -76,9 +76,9 @@ export default {
       Text: null,
       data: {},
       id: null, 
-      Name : "",
-      Website :"",
-      Description : ""
+      title : "",
+      website :"",
+      description : ""
     };
   },
   mounted() {
@@ -93,19 +93,25 @@ export default {
         });
     },
     updateChatopen() {
+      const title=this.title;
+      const description=this.description;
+      const website=this.website;
+      if(title == null || description == null || website == null ){
+        alert("กรุณากรอกข้อมูลทุกช่อง!!");
+      }else if(title != null || description != null || website != null){
       axios
         .patch(
-          process.env.VUE_APP_BACKEND_BASE_URL+`/updateActivity/${this.$route.params.id}/${this.data?.Name}/${this.data?.Website}/${this.data?.Description}`
+          process.env.VUE_APP_BACKEND_BASE_URL+`/updateActivity/${this.$route.params.id}/${this.data?.title}/${this.data?.description}/${this.data?.website}`
         )
         .then((response) => {
           this.data = response.data;
           this.$router.push("/activity");
-        });
+        });}
     },
     reset() {
-      this.data.Name = "";
-      this.data.Website = "";
-      this.data.Description = "";
+      this.data.title = "";
+      this.data.website = "";
+      this.data.description = "";
       
     },
   },
@@ -132,5 +138,9 @@ h2 {
   border-radius: 5px;
   box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.1);
 }
+@media screen and (max-width: 767px){
+  .box{
+    width: 90%;
+  }
+}
 </style>>
-    

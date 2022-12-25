@@ -153,7 +153,7 @@
   </div>
 </template>
     
-    <script>
+<script>
 import Navbar from "../components/Navbar.vue";
 import Breadcrumb from "../components/BC-assistance.vue";
 import axios from "axios";
@@ -198,7 +198,7 @@ export default {
 };
 </script>
     
-    <style scoped>
+<style scoped>
 .Box {
   background-color: #fff8e1;
   height: 50rem;
@@ -257,9 +257,9 @@ h1 {
   padding: 20px;
   font-size: 1.2rem;
 }
-.col-8 {
-  display: flex;
+.col-7 {
   align-items: center;
+  display: flex;
   padding: 20px;
   font-size: 1.2rem;
 }
@@ -300,6 +300,16 @@ h1 {
   }
 }
 @media screen and (max-width: 767px) {
+  .col-7 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-size: 1.2rem;
+  }
+  #control_btn_mobile {
+    height: 30px;
+  }
   .Box {
     background-color: #fff8e1;
     height: 80rem;
