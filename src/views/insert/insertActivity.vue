@@ -38,18 +38,6 @@
           v-model="data.title"
         />
       </div>
-      <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label"
-          >ข้อมูลเพิ่มเติม</label
-        >
-        <textarea
-          class="form-control"
-          id="exampleFormControlTextarea1"
-          rows="7"
-          placeholder="ข้อมูลเพิ่มเติม"
-          v-model="data.description"
-        ></textarea>
-      </div>
 
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label"
@@ -83,7 +71,7 @@
           type="button"
           class="btn btn-warning mx-2"
           @click="
-            submit(data.iddocs, data.title, data.description, data.website)
+            submit(data.iddocs, data.title, data.website)
           "
         >
           ตกลง
@@ -106,28 +94,18 @@ export default {
     return {
       iddocs: "",
       title: "",
-      description: "",
       website: "",
       data: [],
     };
   },
   methods: {
-    submit(iddocs, title, description, website) {
+    submit(iddocs, title, website) {
 
-      if(iddocs == null || title == null || description == null || website == null ){
+      if(iddocs == null || title == null || website == null ){
         alert("กรุณากรอกข้อมูลทุกช่อง!!");
-      }else if(iddocs != null || title != null || description != null || website != null){
+      }else if(iddocs != null || title != null || website != null){
       axios
-        .post(
-          "http://localhost:5050/insertactivity/" +
-            iddocs +
-            "/" +
-            title +
-            "/" +
-            description +
-            "/" +
-            website
-        )
+        .post(process.env.VUE_APP_BACKEND_BASE_URL+"/insertactivity/" + iddocs +"/" + title + "/" + website)
         .then((response) => {
           this.data = response.data;
           this.$router.push("/activity");
@@ -137,7 +115,6 @@ export default {
     reset() {
       this.data.iddocs = "";
       this.data.title = "";
-      this.data.description = "";
       this.data.website = "";
     },
   },

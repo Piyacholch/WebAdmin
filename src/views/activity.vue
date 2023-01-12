@@ -57,7 +57,7 @@
             class="btn btn-primary edit"
             @click="
               $router.push(
-                `/updateActivity/${item.id}/${item.title}/${item.description}/${item.website}`
+                `/updateActivity/${item.id}/${item.title}/${item.website}`
               )
             "
           >
@@ -83,7 +83,7 @@
             class="btn btn-primary edit edit-res"
             @click="
               $router.push(
-                `/updateActivity/${item.id}/${item.title}/${item.description}/${item.website}`
+                `/updateActivity/${item.id}/${item.title}/${item.website}`
               )
             "
           >
@@ -153,7 +153,7 @@
   </div>
 </template>
     
-    <script>
+<script>
 import Navbar from "../components/Navbar.vue";
 import Breadcrumb from "../components/BC-activity.vue";
 import axios from "axios";

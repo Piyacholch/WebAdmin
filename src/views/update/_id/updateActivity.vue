@@ -24,18 +24,6 @@
           v-model="data.title"
         />
       </div>
-      <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label"
-          >ข้อมูลเพิ่มเติม</label
-        >
-        <textarea
-          class="form-control"
-          id="exampleFormControlTextarea1"
-          rows="7"
-          placeholder="ข้อมูลเพิ่มเติม"
-          v-model="data.description"
-        ></textarea>
-      </div>
 
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label"
@@ -53,7 +41,7 @@
         <button
           type="button"
           class="btn btn-warning mx-2"
-          @click="updateChatopen(data.title, data.description, data.website)"
+          @click="updateChatopen(data.title, data.website)"
         >
           ตกลง
         </button>
@@ -78,7 +66,6 @@ export default {
       id: null, 
       title : "",
       website :"",
-      description : ""
     };
   },
   mounted() {
@@ -94,14 +81,13 @@ export default {
     },
     updateChatopen() {
       const title=this.title;
-      const description=this.description;
       const website=this.website;
-      if(title == null || description == null || website == null ){
+      if(title == null || website == null ){
         alert("กรุณากรอกข้อมูลทุกช่อง!!");
-      }else if(title != null || description != null || website != null){
+      }else if(title != null || website != null){
       axios
         .patch(
-          process.env.VUE_APP_BACKEND_BASE_URL+`/updateActivity/${this.$route.params.id}/${this.data?.title}/${this.data?.description}/${this.data?.website}`
+          process.env.VUE_APP_BACKEND_BASE_URL+`/updateActivity/${this.$route.params.id}/${this.data?.title}/${this.data?.website}`
         )
         .then((response) => {
           this.data = response.data;
@@ -111,7 +97,6 @@ export default {
     reset() {
       this.data.title = "";
       this.data.website = "";
-      this.data.description = "";
       
     },
   },
