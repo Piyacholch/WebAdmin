@@ -20,7 +20,7 @@
                 </div>
               </div>
               <div class="col">
-                <p class="num mt-3">5</p>
+                <p class="num mt-3">{{ password }}</p>
                 <p class="name pt-2">เข้าใช้ด้วยอีเมลและรหัสผ่าน</p>
               </div>
             </div>
@@ -36,7 +36,7 @@
                 </div>
               </div>
               <div class="col">
-                <p class="num mt-3">5</p>
+                <p class="num mt-3">{{ google  }}</p>
                 <p class="name pt-2">เข้าใช้ด้วยบัญชี Google</p>
               </div>
             </div>
@@ -51,7 +51,7 @@
                 </div>
               </div>
               <div class="col">
-                <p class="num mt-3">5</p>
+                <p class="num mt-3">{{ maxloaddata }}</p>
                 <p class="name pt-2">ผู้ดูแลระบบทั้งหมด</p>
               </div>
             </div>
@@ -96,13 +96,21 @@
 import Chart from "chart.js/auto";
 import Navbar from "../components/Navbar.vue";
 import Breadcrumb from "../components/BC-dashboard.vue";
+import axios from "axios";
 
 export default {
   components: { Navbar, Breadcrumb },
-
+  data() {
+    return {
+      maxloaddata: "",
+      password: '',
+      google: ''
+    };
+  },
   mounted() {
-    const ctx = document.getElementById("myChart");
+    this.getadmin();
 
+    const ctx = document.getElementById("myChart");
     const myChart = new Chart(ctx, {
       type: "line",
       data: {
@@ -196,6 +204,18 @@ export default {
     myChart;
     // myChartline;
   },
+  methods: {
+    getadmin() {
+      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/admin").then((response) => {
+        this.maxloaddata = response.data.length;
+        console.log(response.data.length);
+        console.log(response.data);
+        this.password = response.data.filter((item)=>item.provider == 'password').length
+        this.google = response.data.filter((item)=>item.provider == 'google.com').length
+      });
+    },
+  },
+
 };
 </script>
 
