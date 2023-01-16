@@ -57,7 +57,7 @@
             class="btn btn-primary edit"
             @click="
               $router.push(
-                `/updateActivity/${item.id}/${item.title}/${item.website}`
+                `/updateActivity/${item.id}`
               )
             "
           >
@@ -83,7 +83,7 @@
             class="btn btn-primary edit edit-res"
             @click="
               $router.push(
-                `/updateActivity/${item.id}/${item.title}/${item.website}`
+                `/updateActivity/${item.id}`
               )
             "
           >

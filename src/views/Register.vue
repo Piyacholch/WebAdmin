@@ -22,12 +22,19 @@
               />
               <input
                 type="password"
+                class="mb-3"
                 placeholder="Password"
                 v-model="register_form.password"
               />
+              <input
+                type="password"
+                class="mb-3"
+                placeholder="ConfirmPassword"
+                v-model="register_form.confirmPassword"
+              />
             </div>
             <div>
-              <button type="submit" class="btn btn-warning mb-3">
+              <button type="submit" class="btn btn-warning mb-3" :disabled="!isSamePassword()">
                 สมัครสมาชิก
               </button>
             </div>
@@ -87,6 +94,11 @@ export default {
     const register_form = ref({});
     const store = useStore();
 
+    const isSamePassword = () => {
+      const {password='', confirmPassword=''}= register_form.value
+      return password === confirmPassword && password.length > 0
+    }
+
     const register = () => {
       store.dispatch("register", register_form.value);
     };
@@ -94,6 +106,7 @@ export default {
     return {
       register_form,
       register,
+      isSamePassword,
     };
   },
   data() {
@@ -117,21 +130,7 @@ export default {
           console.log(error);
         });
     },
-    // handleSignFacebook() {
-    //   signInWithPopup(auth, providered)
-    //     .then((result) => {
-    //       // The signed-in user info.
-    //       // const user = result.user;
-    //       console.log(result.user.displayName);
-    //       this.user = result.user.displayName;
-    //       this.isSignedInFacebook = true;
-    //       this.$router.push("/");
-    //       // ...
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // },
+
   },
 };
 </script>

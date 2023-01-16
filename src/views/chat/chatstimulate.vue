@@ -53,7 +53,7 @@
             type="button"
             class="btn btn-primary edit"
             @click="
-              $router.push(`/updatechatstimulate/${item.id}/${item.Text}`)
+              $router.push(`/updatechatstimulate/${item.id}`)
             "
           >
             แก้ไข
@@ -76,7 +76,7 @@
           <button
             type="button"
             class="btn btn-primary edit edit-res" id="control_btn_mobile"
-            @click="$router.push(`/updatechatopen/${item.id}/${item.Text}`)"
+            @click="$router.push(`/updatechatopen/${item.id}`)"
           >
             <span class="material-icons"> mode_edit </span>
           </button>

@@ -93,37 +93,37 @@ const routes = [
 
   /////////////////////// update /////////////////////////////
   {
-    path: '/updatechatopen/:id/:Text',
+    path: '/updatechatopen/:id',
     name: 'updatechatopen',
     component: updatechatopen
   },
   {
-    path: '/updatechatpositive/:id/:Text',
+    path: '/updatechatpositive/:id',
     name: 'updatechatpositive',
     component: updatechatpositive
   },
   {
-    path: '/updatechatnegative/:id/:Text',
+    path: '/updatechatnegative/:id',
     name: 'updatechatnegative',
     component: updatechatnegative
   },
   {
-    path: '/updatechatstimulate/:id/:Text',
+    path: '/updatechatstimulate/:id',
     name: 'updatechatstimulate',
     component: updatechatstimulate
   },
   {
-    path: '/updatechatclose/:id/:Text',
+    path: '/updatechatclose/:id',
     name: 'updatechatclose',
     component: updatechatclose
   },
   {
-    path: '/updateActivity/:id/:name/:description/:website',
+    path: '/updateActivity/:id',
     name: 'updateactivitye',
     component: updateactivitye
   },
   {
-    path: '/updateAssistance/:id/:name/:tel/:description',
+    path: '/updateAssistance/:id',
     name: 'updateassistance',
     component: updateassistance
   },
