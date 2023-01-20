@@ -49,7 +49,7 @@
             <button
             type="button"
             class="btn btn-danger delete delete-res"
-            data-bs-toggle="modal1"
+            data-bs-toggle="modal"
             data-bs-target="#exampleModal"
             @click="confirmdelete(item.id)"
           >
@@ -63,7 +63,7 @@
 
    <!-- Modal deleteuser-->
    <div
-        class="modal1 fade"
+        class="modal fade"
         id="exampleModal"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
@@ -75,7 +75,7 @@
               <button
                 type="button"
                 class="btn-close float-end"
-                data-bs-dismiss="modal1"
+                data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
@@ -180,7 +180,7 @@ export default {
   components: { Navbar, Breadcrumb },
   data() {
     return {
-      uid: "",
+      id: "",
       email: "",
       displayName: "",
       phonenum: "",
@@ -211,11 +211,11 @@ export default {
         });
     },
     confirmdelete(id) {
-      this.uid = id;
+      this.id = id;
     },
-    deleteuser(uid) {
-      axios.delete(process.env.VUE_APP_BACKEND_BASE_URL+"/deleteuser/" + uid).then(() => {
-        this.id = uid;
+    deleteuser(id) {
+      axios.delete(process.env.VUE_APP_BACKEND_BASE_URL+"/deleteuser/" + id).then(() => {
+        this.id = id;
         this.getadmin();
         // console.log(response.data)
       });
