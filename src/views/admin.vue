@@ -46,7 +46,7 @@
             <p class="displayname">{{ item.displayName }}</p>
             <p class="email">{{ item.email }}</p>
             <p class="phone">{{ item.phonenum }}</p>
-            <button type="button" class="btn btn-danger delete">ลบ</button>
+            <button type="button" class="btn btn-danger delete" @click="deleteuser(id)">ลบ</button>
           </div>
         </div>
       </div>
@@ -123,6 +123,7 @@ export default {
   components: { Navbar, Breadcrumb },
   data() {
     return {
+      id: "",
       email: "",
       displayName: "",
       phonenum: "",
@@ -151,6 +152,16 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    confirmdelete(id) {
+      this.id = id;
+    },
+    deleteuser(id) {
+      axios.delete(process.env.VUE_APP_BACKEND_BASE_URL+"/deleteuser/" + id).then(() => {
+        this.id = id;
+        this.getassitance();
+        // console.log(response.data)
+      });
     },
   },
 
