@@ -46,13 +46,70 @@
             <p class="displayname">{{ item.displayName }}</p>
             <p class="email">{{ item.email }}</p>
             <p class="phone">{{ item.phonenum }}</p>
-            <button type="button" class="btn btn-danger delete" @click="deleteuser(id)">ลบ</button>
+            <button
+            type="button"
+            class="btn btn-danger delete delete-res"
+            data-bs-toggle="modal1"
+            data-bs-target="#exampleModal"
+            @click="confirmdelete(item.id)"
+          >
+            <span class="material-icons"> delete_outline </span>
+          </button>
+            <!-- <button type="button" class="btn btn-danger delete" @click="deleteuser(id)">ลบ</button> -->
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Modal -->
+   <!-- Modal deleteuser-->
+   <div
+        class="modal1 fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-md">
+          <div class="modal-content border border-warning border-5">
+            <div class="modal-header border-0">
+              <button
+                type="button"
+                class="btn-close float-end"
+                data-bs-dismiss="modal1"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body text-center fs-4 fw-bold">
+              คุณต้องการลบข้อความนี้หรือไม่ ?
+            </div>
+            <div class="modal-footer border-0 mt-3">
+              <div class="col">
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  data-bs-dismiss="modal"
+                  @click="deleteuser(id)"
+                >
+                  ยืนยัน
+                </button>
+              </div>
+              <div class="col">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                ยกเลิก
+              </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    <!-- Modal email-->
     <div
       class="modal fade"
       id="exampleModal"
@@ -123,7 +180,7 @@ export default {
   components: { Navbar, Breadcrumb },
   data() {
     return {
-      id: "",
+      uid: "",
       email: "",
       displayName: "",
       phonenum: "",
@@ -154,12 +211,12 @@ export default {
         });
     },
     confirmdelete(id) {
-      this.id = id;
+      this.uid = id;
     },
-    deleteuser(id) {
-      axios.delete(process.env.VUE_APP_BACKEND_BASE_URL+"/deleteuser/" + id).then(() => {
-        this.id = id;
-        this.getassitance();
+    deleteuser(uid) {
+      axios.delete(process.env.VUE_APP_BACKEND_BASE_URL+"/deleteuser/" + uid).then(() => {
+        this.id = uid;
+        this.getadmin();
         // console.log(response.data)
       });
     },
