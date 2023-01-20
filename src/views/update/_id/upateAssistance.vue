@@ -21,7 +21,7 @@
           class="form-control"
           id="exampleFormControlInput1"
           placeholder="เพิ่มชื่อแหล่งช่วยเหลือ"
-          v-model="data.Name"
+          v-model="data.title"
         />
       </div>
       <div class="mb-3">
@@ -33,7 +33,31 @@
           class="form-control"
           id="exampleFormControlInput2"
           placeholder="เพิ่มเบอร์โทรศัพท์แหล่งช่วยเหลือ"
-          v-model="data.Tel"
+          v-model="data.tel"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Facebook แหล่งช่วยเหลือ</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput2"
+          placeholder="Facebook Page แหล่งช่วยเหลือ"
+          v-model="data.facebook"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label"
+          >LineID แหล่งช่วยเหลือ</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput2"
+          placeholder="Line ID แหล่งช่วยเหลือ"
+          v-model="data.lineID"
         />
       </div>
       <div class="mb-3">
@@ -45,7 +69,7 @@
           id="exampleFormControlTextarea1"
           rows="7"
           placeholder="ข้อมูลเพิ่มเติม"
-          v-model="data.Description"
+          v-model="data.description"
         ></textarea>
       </div>
 
@@ -67,7 +91,7 @@
         <button
           type="button"
           class="btn btn-warning mx-2"
-          @click="updateAssistance(data.Name, data.Tel, data.Description)"
+          @click="updateAssistance(data.title, data.tel, data.facebook, data.lineID, data.description)"
         >
           ตกลง
         </button>
@@ -91,6 +115,7 @@ export default {
       Text: null,
       data: {},
       id: null, 
+      
     };
   },
   mounted() {
@@ -107,7 +132,7 @@ export default {
     updateAssistance() {
       axios
         .patch(
-          process.env.VUE_APP_BACKEND_BASE_URL+`/updateAssistance/${this.$route.params.id}/${this.data?.Name}/${this.data?.Tel}/${this.data?.Description}`
+          process.env.VUE_APP_BACKEND_BASE_URL+`/updateAssistance/${this.$route.params.id}/${this.data?.title}/${this.data?.tel}/${this.data?.facebook}/${this.data?.lineID}/${this.data?.Description}`
         )
         .then((response) => {
           this.data = response.data;
@@ -115,9 +140,11 @@ export default {
         });
     },
     reset() {
-      this.data.Name = "";
-      this.data.Tel = "";
-      this.data.Description = "";
+      this.data.title = "";
+      this.data.tel = "";
+      this.data.facebook = "";
+      this.data.lineID = "";
+      this.data.description = "";
     },
   },
 };

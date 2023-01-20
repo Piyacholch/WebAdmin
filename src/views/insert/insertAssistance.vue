@@ -135,11 +135,11 @@ export default {
     },
     reset() {
       this.data.iddocs = "";
-      this.data.Title = "";
-      this.data.Tel = "";
-      this.data.Facebook = "";
-      this.data.LineID = "";
-      this.data.Description = "";
+      this.data.title = "";
+      this.data.tel = "";
+      this.data.facebook = "";
+      this.data.lineID = "";
+      this.data.description = "";
     },
   },
 };
