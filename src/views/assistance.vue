@@ -50,7 +50,7 @@
       >
         <!-- <div class="col-1">{{ item.id }}</div> -->
         <div class="col-1">{{ item.id }}</div>
-        <div class="col-7">{{ item.Name }}</div>
+        <div class="col-7">{{ item.Title }}</div>
         <div class="col-3 button-1">
           <button
             type="button"
@@ -164,7 +164,7 @@ export default {
       loaddata: [],
       id: "",
       search: "",
-      Name: "",
+      Title: "",
     };
   },
   mounted() {
@@ -191,7 +191,7 @@ export default {
   computed: {
     filtersearch() {
       return this.loaddata.filter((loaddata) => {
-        return loaddata.Name.toLowerCase().includes(this.search.toLowerCase());
+        return loaddata.Title.toLowerCase().includes(this.search.toLowerCase());
       });
     },
   },
@@ -201,7 +201,7 @@ export default {
 <style scoped>
 .Box {
   background-color: #fff8e1;
-  height: 50rem;
+  height: auto;
 }
 h1 {
   padding-top: 40px;

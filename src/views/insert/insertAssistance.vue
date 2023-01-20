@@ -35,7 +35,7 @@
           class="form-control"
           id="exampleFormControlInput1"
           placeholder="เพิ่มชื่อแหล่งช่วยเหลือ"
-          v-model="data.Name"
+          v-model="data.title"
         />
       </div>
       <div class="mb-3">
@@ -47,7 +47,31 @@
           class="form-control"
           id="exampleFormControlInput2"
           placeholder="เพิ่มเบอร์โทรศัพท์แหล่งช่วยเหลือ"
-          v-model="data.Tel"
+          v-model="data.tel"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Facebook แหล่งช่วยเหลือ</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput2"
+          placeholder="Facebook Page แหล่งช่วยเหลือ"
+          v-model="data.facebook"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label"
+          >LineID แหล่งช่วยเหลือ</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput2"
+          placeholder="Line ID แหล่งช่วยเหลือ"
+          v-model="data.lineID"
         />
       </div>
       <div class="mb-3">
@@ -59,7 +83,7 @@
           id="exampleFormControlTextarea1"
           rows="7"
           placeholder="ข้อมูลเพิ่มเติม"
-          v-model="data.Description"
+          v-model="data.description"
         ></textarea>
       </div>
 
@@ -67,7 +91,7 @@
         <button
           type="button"
           class="btn btn-warning mx-2"
-          @click="submit(data.iddocs, data.Name, data.Tel, data.Description)"
+          @click="submit(data.iddocs, data.title, data.tel, data.facebook, data.lineID, data.description)"
         >
           ตกลง
         </button>
@@ -89,34 +113,32 @@ export default {
   data() {
     return {
       iddocs:"",
-      Name: "",
-      Tel: "",
-      Description: "",
+      title: "",
+      tel: "",
+      facebook: "",
+      lineID: "",
+      description: "",
       data: [],
     };
   },
   methods: {
     
-    submit(iddocs, Name, Tel, Description) {
-      // const formData = new FormData();
-      // formData.append("Text", this.Text);
-      if(iddocs == null || Name == null || Tel == null || Description == null ){
-        alert("กรุณากรอกข้อมูลทุกช่อง!!");
-      }else if(iddocs != null || Name != null || Tel != null || Description != null){
-axios
+    submit(iddocs, title, tel, facebook, lineID,description) {
       axios
-        .post("http://localhost:5050/insertassistance/" + iddocs +"/"+ + Name +"/"+ Tel +"/"+ Description)
+        .post(process.env.VUE_APP_BACKEND_BASE_URL+"/insertassistance/" + iddocs +"/"+  title +"/"+ tel +"/"+ facebook+"/"+lineID+"/"+description)
         .then((response) => {
           this.data = response.data;
           this.$router.push("/assistance");
           // console.log(response.data)
         });
-      }
+      
     },
     reset() {
       this.data.iddocs = "";
-      this.data.Name = "";
+      this.data.Title = "";
       this.data.Tel = "";
+      this.data.Facebook = "";
+      this.data.LineID = "";
       this.data.Description = "";
     },
   },

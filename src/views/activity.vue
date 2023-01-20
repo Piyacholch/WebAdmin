@@ -95,7 +95,7 @@
             class="btn btn-danger delete delete-res"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
-            @click="confirmdeletezone(item.id)"
+            @click="confirmdelete(item.id)"
           >
             <span class="material-icons"> delete_outline </span>
           </button>
