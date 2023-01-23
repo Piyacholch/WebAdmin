@@ -110,6 +110,7 @@ export default {
   },
   mounted() {
     this.getadmin();
+    this.getuserline();
 
     const ctx = document.getElementById("myChart");
     const myChart = new Chart(ctx, {
