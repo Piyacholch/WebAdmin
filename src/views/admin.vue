@@ -53,7 +53,7 @@
             data-bs-target="#exampleModal"
             @click="confirmdelete(item.id)"
           >
-            <span class="material-icons"> delete_outline </span>
+            <span class="material-icons"> ลบ </span>
           </button>
             <!-- <button type="button" class="btn btn-danger delete" @click="deleteuser(id)">ลบ</button> -->
           </div>
@@ -80,7 +80,7 @@
               ></button>
             </div>
             <div class="modal-body text-center fs-4 fw-bold">
-              คุณต้องการลบข้อความนี้หรือไม่ ?
+              คุณต้องการลบแอดมินนี้หรือไม่ ?
             </div>
             <div class="modal-footer border-0 mt-3">
               <div class="col">

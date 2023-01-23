@@ -11,6 +11,18 @@
     </div>
     <div class="box p-4">
       <h2>แก้ไขข้อความตอบกลับประโยคทักทาย</h2>
+      <!-- <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label"
+          >หมายเลขเอกสาร</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="id docs"
+          v-model="data.id"
+        />
+      </div> -->
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label"
           >แก้ไขข้อความตอบกลับ</label

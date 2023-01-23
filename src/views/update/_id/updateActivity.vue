@@ -27,21 +27,21 @@
 
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label"
-          >เว็บไซต์อ้างอิง</label
+          >ข้อมูลเพิ่มเติม</label
         >
-        <input
-          type="text"
+        <textarea
           class="form-control"
-          id="exampleFormControlInput3"
-          placeholder="เพิ่มเว็บไซต์อ้างอิง"
-          v-model="data.website"
-        />
+          id="exampleFormControlTextarea1"
+          rows="7"
+          placeholder="ข้อมูลเพิ่มเติม"
+          v-model="data.description"
+        ></textarea>
       </div>
       <div class="footer d-flex justify-content-end mt-4">
         <button
           type="button"
           class="btn btn-warning mx-2"
-          @click="updateChatopen(data.title, data.website)"
+          @click="updateChatopen(data.title, data.description)"
         >
           ตกลง
         </button>
@@ -65,7 +65,7 @@ export default {
       data: {},
       id: null, 
       title : "",
-      website :"",
+      description :"",
     };
   },
   mounted() {
@@ -81,13 +81,13 @@ export default {
     },
     updateChatopen() {
       const title=this.title;
-      const website=this.website;
-      if(title == null || website == null ){
+      const description=this.description;
+      if(title == null || description == null ){
         alert("กรุณากรอกข้อมูลทุกช่อง!!");
-      }else if(title != null || website != null){
+      }else if(title != null || description != null){
       axios
         .patch(
-          process.env.VUE_APP_BACKEND_BASE_URL+`/updateActivity/${this.$route.params.id}/${this.data?.title}/${this.data?.website}`
+          process.env.VUE_APP_BACKEND_BASE_URL+`/updateActivity/${this.$route.params.id}/${this.data?.title}/${this.data?.description}`
         )
         .then((response) => {
           this.data = response.data;
@@ -96,7 +96,7 @@ export default {
     },
     reset() {
       this.data.title = "";
-      this.data.website = "";
+      this.data.description = "";
       
     },
   },
