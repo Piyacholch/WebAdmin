@@ -50,7 +50,7 @@
             type="button"
             class="btn btn-danger delete delete-res"
             data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
+            data-bs-target="#staticBackdrop"
             @click="confirmdelete(item.id)"
           >
             <span class="material-icons"> ลบ </span>
@@ -64,9 +64,9 @@
    <!-- Modal deleteuser-->
    <div
         class="modal fade"
-        id="exampleModal"
+        id="staticBackdrop"
         tabindex="-1"
-        aria-labelledby="exampleModalLabel"
+        aria-labelledby="staticBackdropLabel"
         aria-hidden="true"
       >
         <div class="modal-dialog modal-dialog-centered modal-md">
