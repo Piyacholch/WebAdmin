@@ -38,6 +38,17 @@
             </div>
             <div class="form-floating mb-3">
               <input
+                type="text"
+                class="form-control"
+                id="floatingInput"
+                placeholder="uid"
+                v-model="providerId"
+                disabled
+              />
+              <label for="floatingInput">Provider</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
                 type="email"
                 class="form-control"
                 id="floatingInput"
@@ -136,7 +147,7 @@
               type="button"
               class="btn btn-warning"
               @click="
-                Addata(uid, email, displayName, data.name, data.phonenum),
+                Addata(uid,providerId, email, displayName, data.name, data.phonenum),
                   UpdateUser()
               "
             >
@@ -226,6 +237,7 @@ export default {
   data() {
     return {
       uid: "",
+      providerId:"",
       email: "",
       // displayName: "",
       // photoURL: "",
@@ -281,14 +293,16 @@ export default {
     reset() {
       this.data.Name = "";
     },
-    Addata(uid, email, displayName, name, phonenum) {
+    Addata(uid,providerId, email, displayName, name, phonenum) {
       if(displayName == displayName|| name == null ||phonenum==null ){
     alert("กรุณากรอกข้อมูลทุกช่อง!!");
   }else if(displayName != displayName|| name != null || phonenum != null ){
       axios
         .post(
           process.env.VUE_APP_BACKEND_BASE_URL+"/insertadmindata/" +
-            uid +
+           uid +
+            "/" +
+            providerId +
             "/" +
             email +
             "/" +
@@ -315,6 +329,7 @@ export default {
     this.email = user.email;
     this.displayName = user.displayName;
     this.photoURL = user.photoURL;
+    this.providerId = user.providerData[0].providerId;
   },
 };
 </script>

@@ -187,7 +187,7 @@ export default {
   computed: {
     filtersearch() {
       return this.loaddata.filter((loaddata) => {
-        return loaddata.Text.toLowerCase().includes(this.search.toLowerCase());
+        return loaddata.id.toLowerCase().includes(this.search.toLowerCase());
       });
     },
   },
