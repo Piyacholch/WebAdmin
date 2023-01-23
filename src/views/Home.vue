@@ -62,7 +62,7 @@
             <div class="row align-items-center">
               <div class="col">
                 <div class="bg-icon">
-                  <img src="../assets/dashboard/smile.png" alt="icon" />
+                  <img src="../assets/dashboard/Gler_Profile.jpg" alt="icon" />
                 </div>
               </div>
               <div class="col">
@@ -265,6 +265,7 @@ export default {
 }
 img {
   padding: 20px;
+  width: 90px;
 }
 .num {
   font-size: 2.5rem;
