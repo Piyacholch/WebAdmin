@@ -148,7 +148,7 @@ export default {
   <style  scoped>
 .Box {
   background-color: #fff8e1;
-  height: 50rem;
+  height: auto;
 }
 
 h1 {

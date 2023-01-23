@@ -66,8 +66,8 @@
                 </div>
               </div>
               <div class="col">
-                <p class="num mt-3">5</p>
-                <p class="name pt-2">วัดระดับอารมณ์ทั้งหมด</p>
+                <p class="num mt-3">{{ userlength }}</p>
+                <p class="name pt-2">เพื่อนในไลน์ทั้งหมด</p>
               </div>
             </div>
           </div>
@@ -104,7 +104,8 @@ export default {
     return {
       maxloaddata: "",
       password: '',
-      google: ''
+      google: '',
+      userlength: ''
     };
   },
   mounted() {
@@ -214,6 +215,12 @@ export default {
         this.google = response.data.filter((item)=>item.provider == 'google.com').length
       });
     },
+    getuserline() {
+      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/getusers").then((response) => {
+        this.userlength = response.data.length;
+        console.log(response.data.length);
+      });
+    },
   },
 
 };
@@ -222,7 +229,7 @@ export default {
 <style scoped>
 .Box {
   background-color: #fff8e1;
-  height: 50rem;
+  height: auto;
 }
 .grid {
   display: grid;
