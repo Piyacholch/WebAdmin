@@ -6,6 +6,8 @@ import '..//bootstrap-5.1.3-dist/css/bootstrap.min.css'
 import 'bootstrap'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap";
 
 
 

@@ -249,9 +249,9 @@ export default {
       photoURL: null,
     };
   },
-  // mounted() {
-  //   this.getadmin();
-  // },
+  mounted() {
+    this.getAdminByID();
+  },
 
   methods: {
     // getadmin() {
@@ -267,6 +267,14 @@ export default {
       if (user !== null) {
         console.log(user);
       }
+    },
+    getAdminByID() {
+      axios
+        .get(process.env.VUE_APP_BACKEND_BASE_URL+`/AdminByID/${this.$route.params.uid}`)
+        .then((response) => {
+          this.data = response.data;
+          console.log(response.data)
+        });
     },
     UpdateUser() {
       const auth = getAuth();
