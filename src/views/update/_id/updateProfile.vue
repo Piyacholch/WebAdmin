@@ -53,7 +53,7 @@
           type="text"
           class="form-control icon"
           placeholder="dispassword"
-          v-model="data.displayName"
+          v-model="displayName"
         />
         <div class="invalid-feedback">Please choose a username.</div>
         <span class="material-symbols-outlined"> edit </span>
@@ -157,7 +157,7 @@ export default {
           });
       }
     },
-    Addata(uid, providerId, email, displayName, name, phonenum) {
+    Addata(uid, providerId, email, displayName, phonenum) {
       //     if(displayName == displayName|| name == null ||phonenum==null ){
       //   alert("กรุณากรอกข้อมูลทุกช่อง!!");
       // }else if(displayName != displayName|| name != null || phonenum != null ){
@@ -191,6 +191,7 @@ export default {
     this.uid = user.uid;
     this.email = user.email;
     this.displayName = user.displayName;
+    this.photoURL = user.photoURL;
     this.photoURL = user.photoURL;
     this.providerId = user.providerData[0].providerId;
   },
