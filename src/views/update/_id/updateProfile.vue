@@ -14,6 +14,39 @@
     </div>
 
     <div class="content">
+      <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="floatingInput"
+                placeholder="uid"
+                v-model="uid"
+                disabled
+              />
+              <label for="floatingInput">UID</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="floatingInput"
+                placeholder="uid"
+                v-model="providerId"
+                disabled
+              />
+              <label for="floatingInput">Provider</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="email"
+                class="form-control"
+                id="floatingInput"
+                placeholder="name@example.com"
+                v-model="email"
+                disabled
+              />
+              <label for="floatingInput">อีเมล</label>
+            </div>
       <div class="form-floating">
         <input
           type="text"
@@ -103,13 +136,13 @@ export default {
   methods: {
     getAdminByID() {
       axios
-        .get( process.env.VUE_APP_BACKEND_BASE_URL+`/AdminByIDByID/${this.$route.params.id}`)
+        .get(process.env.VUE_APP_BACKEND_BASE_URL+`/AdminByID/${this.$route.params.id}`)
         .then((response) => {
           this.data = response.data;
           console.log(response.data);
         });
     },
-    GetUser() {
+        GetUser() {
       const auth = getAuth();
       const user = auth.currentUser;
       if (user !== null) {
@@ -160,18 +193,6 @@ export default {
           // console.log(response.data)
         });
     },
-  },
-   created() {
-    this.GetUser();
-    this.UpdateUser();
-
-    const auth = getAuth();
-    const user = auth.currentUser;
-    this.uid = user.uid;
-    this.email = user.email;
-    this.displayName = user.displayName;
-    this.photoURL = user.photoURL;
-    this.providerId = user.providerData[0].providerId;
   },
 };
 </script>
