@@ -107,12 +107,12 @@ export default {
       uid: "",
       providerId: "",
       email: "",
-      // displayName: "",
+      displayName: "",
       // photoURL: "",
       phonenum: "",
       data: [],
       
-      displayName: null,
+      // displayName: null,
       photoURL: null,
     };
   },
