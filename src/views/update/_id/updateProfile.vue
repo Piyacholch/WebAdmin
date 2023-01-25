@@ -72,19 +72,6 @@
       <div class="form-floating mb-3">
         <div class="form-floating">
           <input
-            type="text"
-            class="form-control"
-            placeholder="ชื่อจริง - นามสกุล"
-            id="validationCustomUsername"
-            v-model="data.Name"
-          />
-          <span class="material-symbols-outlined"> edit </span>
-          <label for="floatingphotoURL">ชื่อจริง - นามสกุล</label>
-        </div>
-      </div>
-      <div class="form-floating mb-3">
-        <div class="form-floating">
-          <input
             type="tel"
             class="form-control"
             id="floatingphonenum"
@@ -98,7 +85,7 @@
       <div class="pt-3">
         <button type="button" class="btn btn-warning"
         @click="
-                Addata(uid,providerId, email, displayName, data.name, data.phonenum),
+                Addata(uid,providerId, email, displayName, data.phonenum),
                   UpdateUser()
               ">ตกลง</button>
         <button type="button" class="btn btn-danger" @click="cancel()">
@@ -122,7 +109,6 @@ export default {
       email: "",
       displayName: "",
       // photoURL: "",
-      Name: "",
       phonenum: "",
       data: [],
       
@@ -167,7 +153,7 @@ export default {
           });
       }
     },
-    Addata(uid, providerId, email, displayName, name, phonenum) {
+    Addata(uid, providerId, email, displayName, phonenum) {
       //     if(displayName == displayName|| name == null ||phonenum==null ){
       //   alert("กรุณากรอกข้อมูลทุกช่อง!!");
       // }else if(displayName != displayName|| name != null || phonenum != null ){
@@ -183,12 +169,9 @@ export default {
             "/" +
             displayName +
             "/" +
-            name +
-            "/" +
             phonenum
         )
         .then((response) => {
-          this.data.Name = name
           this.data = response.data;
           this.$router.push("/");
           // console.log(response.data)
