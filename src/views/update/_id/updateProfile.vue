@@ -47,16 +47,7 @@
               />
               <label for="floatingInput">อีเมล</label>
             </div>
-      <div class="form-floating">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="photoUR"
-          id="inputChangeName"
-          v-model="photoURL"
-        />
-        <label for="floatingphotoURL">URL รูปภาพ</label>
-      </div>
+      
       <div class="form-floating mb-3">
         <input
           type="text"
@@ -69,6 +60,19 @@
         <label for="floatingdisplayname">ชื่อผู้ใช้</label>
       </div>
       <!--ชื่อจริง - นามสกุล-->
+      <!-- <div class="form-floating mb-3">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="ชื่อจริง - นามสกุล"
+            id="validationCustomUsername"
+            v-model="data.Name"
+          />
+          <span class="material-symbols-outlined"> edit </span>
+          <label for="floatingphotoURL">ชื่อจริง - นามสกุล</label>
+        </div>
+      </div> -->
       <div class="form-floating mb-3">
         <div class="form-floating">
           <input
@@ -107,12 +111,12 @@ export default {
       uid: "",
       providerId: "",
       email: "",
-      displayName: "",
+      // displayName: "",
       // photoURL: "",
       phonenum: "",
       data: [],
       
-      // displayName: null,
+      displayName: null,
       photoURL: null,
     };
   },
@@ -153,7 +157,7 @@ export default {
           });
       }
     },
-    Addata(uid, providerId, email, displayName, phonenum) {
+    Addata(uid, providerId, email, displayName, name, phonenum) {
       //     if(displayName == displayName|| name == null ||phonenum==null ){
       //   alert("กรุณากรอกข้อมูลทุกช่อง!!");
       // }else if(displayName != displayName|| name != null || phonenum != null ){
