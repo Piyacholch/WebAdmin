@@ -30,7 +30,7 @@
     >
       <div id="my-scroll" style="margin: 6px 14px 0 14px">
         <ul class="nav-list" style="overflow: visible">
-          <li v-if="isSearch" @click="isOpened = true">
+          <li v-if="isSearch" @click="isOpened = false">
             <i class="bx bx-search" />
             <input
               type="text"
@@ -96,7 +96,7 @@ export default {
     //! Menu settings
     isMenuOpen: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     menuTitle: {
       type: String,
@@ -112,7 +112,7 @@ export default {
     },
     isPaddingLeft: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     menuOpenedPaddingLeftBody: {
       type: String,
@@ -270,7 +270,7 @@ export default {
   },
   data() {
     return {
-      isOpened: false,
+      isOpened: true,
     };
   },
   mounted() {

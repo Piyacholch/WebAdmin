@@ -66,7 +66,6 @@
                 placeholder="photoUR"
                 id="inputChangeName"
                 v-model="photoURL"
-                disabled
               />
               <!-- <input
                 type="text"
@@ -75,7 +74,7 @@
                 placeholder="photoUR"
                 v-model="photoURL"
               /> -->
-            
+
               <label for="floatingphotoURL">URL รูปภาพ</label>
             </div>
             <br />
@@ -146,10 +145,7 @@
             <button
               type="button"
               class="btn btn-warning"
-              @click="
-                Addata(uid,providerId, email, displayName, data.name, data.phonenum),
-                  UpdateUser()
-              "
+              @click="$router.push(`/updateProfile/${uid}`)"
             >
               ตกลง
             </button>
@@ -236,8 +232,9 @@ export default {
   components: { Navbar, Breadcrumb },
   data() {
     return {
+      id: "",
       uid: "",
-      providerId:"",
+      providerId: "",
       email: "",
       // displayName: "",
       // photoURL: "",
@@ -250,17 +247,18 @@ export default {
     };
   },
   mounted() {
-    this.getAdminByID();
+    this.getadmin();
   },
 
   methods: {
-    // getadmin() {
-    //   axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/Admin").then((response) => {
-    //     this.Name = name,
-    //     this.data = response.data;
-    //     // console.log(response);
-    //   });
-    // },
+    getadmin() {
+      axios
+        .get(process.env.VUE_APP_BACKEND_BASE_URL + "/Admin")
+        .then((response) => {
+          (this.Name = name), (this.data = response.data);
+          // console.log(response);
+        });
+    },
     GetUser() {
       const auth = getAuth();
       const user = auth.currentUser;
@@ -268,14 +266,7 @@ export default {
         console.log(user);
       }
     },
-    getAdminByID() {
-      axios
-        .get(process.env.VUE_APP_BACKEND_BASE_URL+`/AdminByID/${this.$route.params.uid}`)
-        .then((response) => {
-          this.data = response.data;
-          console.log(response.data)
-        });
-    },
+
     UpdateUser() {
       const auth = getAuth();
       const user = auth.currentUser;
@@ -301,31 +292,30 @@ export default {
     reset() {
       this.data.Name = "";
     },
-    Addata(uid,providerId, email, displayName, name, phonenum) {
-      if(displayName == displayName|| name == null ||phonenum==null ){
-    alert("กรุณากรอกข้อมูลทุกช่อง!!");
-  }else if(displayName != displayName|| name != null || phonenum != null ){
-      axios
-        .post(
-          process.env.VUE_APP_BACKEND_BASE_URL+"/insertadmindata/" +
-           uid +
-            "/" +
-            providerId +
-            "/" +
-            email +
-            "/" +
-            displayName +
-            "/" +
-            name +
-            "/" +
-            phonenum
-        )
-        .then((response) => {
-          this.data = response.data;
-          this.$router.push("/");
-          // console.log(response.data)
-        });}
-    },
+    // Addata(uid,providerId, email, displayName, name, phonenum) {
+    //     if(displayName == displayName|| name == null ||phonenum==null ){
+    //   alert("กรุณากรอกข้อมูลทุกช่อง!!");
+    // }else if(displayName != displayName|| name != null || phonenum != null ){
+    // axios
+    //   .post(
+    //     process.env.VUE_APP_BACKEND_BASE_URL+"/insertadmindata/" +
+    //      uid +
+    //       "/" +
+    //       providerId +
+    //       "/" +
+    //       email +
+    //       "/" +
+    //       displayName +
+    //       "/" +
+    //       name +
+    //       "/" +
+    //       phonenum
+    //   )
+    //   .then((response) => {
+    //     this.data = response.data;
+    //     this.$router.push("/");
+    // console.log(response.data)
+    // });}
   },
   created() {
     this.GetUser();

@@ -32,7 +32,7 @@
             <a href="/forgotpassword" class="a_fg_text">ลืมรหัสผ่าน?</a>
 
             <div>
-              <button type="submit" class="btn btn-warning mb-3">
+              <button type="submit" class="btn btn-warning mb-3"  @click="$router.push(`/profile/${item.id}`)">
                 เข้าสู่ระบบ
               </button>
             </div>

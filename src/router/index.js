@@ -128,9 +128,12 @@ const routes = [
     component: updateassistance
   },
   {
-    path: '/updateProfile',
+    path: '/updateProfile/:id',
     name: 'updateProfile',
-    component: updateProfile
+    component: updateProfile,
+    meta: {
+      requiresAuth: true
+    }
   },
 
 
