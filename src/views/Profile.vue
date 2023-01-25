@@ -42,7 +42,7 @@
                 class="form-control"
                 id="floatingInput"
                 placeholder="uid"
-                v-model="providerId"
+                v-model="data.providerId"
                 disabled
               />
               <label for="floatingInput">Provider</label>
@@ -53,7 +53,7 @@
                 class="form-control"
                 id="floatingInput"
                 placeholder="name@example.com"
-                v-model="email"
+                v-model="data.email"
                 disabled
               />
               <label for="floatingInput">อีเมล</label>

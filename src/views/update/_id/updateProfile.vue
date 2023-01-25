@@ -76,7 +76,7 @@
             class="form-control"
             placeholder="ชื่อจริง - นามสกุล"
             id="validationCustomUsername"
-            v-model="data.name"
+            v-model="data.Name"
           />
           <span class="material-symbols-outlined"> edit </span>
           <label for="floatingphotoURL">ชื่อจริง - นามสกุล</label>
@@ -120,13 +120,13 @@ export default {
       uid: "",
       providerId: "",
       email: "",
-      // displayName: "",
+      displayName: "",
       // photoURL: "",
-      name: "",
+      Name: "",
       phonenum: "",
       data: [],
-      id: "",
-      displayName: null,
+      
+      // displayName: null,
       photoURL: null,
     };
   },
@@ -188,11 +188,24 @@ export default {
             phonenum
         )
         .then((response) => {
+          this.data.Name = name
           this.data = response.data;
           this.$router.push("/");
           // console.log(response.data)
         });
     },
+  },
+  created() {
+    this.GetUser();
+    this.UpdateUser();
+
+    const auth = getAuth();
+    const user = auth.currentUser;
+    this.uid = user.uid;
+    this.email = user.email;
+    this.displayName = user.displayName;
+    this.photoURL = user.photoURL;
+    this.providerId = user.providerData[0].providerId;
   },
 };
 </script>
