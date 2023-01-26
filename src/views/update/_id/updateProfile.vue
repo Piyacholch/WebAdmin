@@ -36,7 +36,7 @@
           </div>
 
           <div class="form-floating mb-3">
-            <input type="text" class="form-control icon" placeholder="dispassword" v-model="displayName" />
+            <input type="text" class="form-control icon" placeholder="dispassword" v-model="data.displayName" />
             <div class="invalid-feedback">Please choose a username.</div>
             <span class="material-symbols-outlined"> edit </span>
             <label for="floatingdisplayname">ชื่อผู้ใช้</label>
@@ -51,7 +51,7 @@
           </div>
           <div class="footer d-flex justify-content-end mt-4">
             <button type="button" class="btn btn-warning mx-2" @click="
-              Addata(uid, providerId, email, displayName, data.phonenum),
+              Addata(uid, providerId, email, data.displayName, data.phonenum),
               UpdateUser()
             ">
               ตกลง
