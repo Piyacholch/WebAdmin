@@ -102,31 +102,38 @@ export default {
   components: { Navbar, Breadcrumb },
   data() {
     return {
+      loaddata:[],
       maxloaddata: "",
       password: '',
       google: '',
-      userlength: ''
+      userlength: '',
+      comfortable: "",  // สบายใจมาก
+      relaxed: "",  // สบายใจ
+      normal: "",  // เฉยๆ
+      worried: "",  // ไม่สบายใจ
+      uncomfortable: "",  // ไม่สบายใจมาก
     };
   },
   mounted() {
     this.getadmin();
     this.getuserline();
+    this.getlevel();
 
     const ctx = document.getElementById("myChart");
     const myChart = new Chart(ctx, {
-      type: "line",
+      type: "bar",
       data: {
-        labels: ["Red", "Orange", "Yellow", "Green", "Blue"],
+        labels: ["สบายใจมาก", "สบายใจ", "เฉยๆ", "ไม่สบายใจ", "ไม่สบายใจมาก"],
         datasets: [
           {
-            label: "My First Dataset",
-            data: [300, 50, 100, 50, 60],
+            label: "ข้อมูลภาพรวมวัดระดับอารมณ์",
+            data: [this.comfortable, 50, 100, 50, 60],
             backgroundColor: [
               "rgb(255, 99, 132)",
               "rgb(54, 162, 235)",
               "rgb(255, 205, 86)",
-              "rgb(255, 205, 86)",
-              "rgb(255, 205, 86)",
+              'rgba(153, 102, 255)',
+              'rgba(75, 192, 192)',
             ],
             hoverOffset: 4,
           },
@@ -210,8 +217,8 @@ export default {
     getadmin() {
       axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/admin").then((response) => {
         this.maxloaddata = response.data.length;
-        console.log(response.data.length);
-        console.log(response.data);
+        // console.log(response.data.length);
+        // console.log(response.data);
         this.password = response.data.filter((item)=>item.provider == 'password').length
         this.google = response.data.filter((item)=>item.provider == 'google.com').length
       });
@@ -219,7 +226,18 @@ export default {
     getuserline() {
       axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/getusers").then((response) => {
         this.userlength = response.data.length;
-        console.log(response.data.length);
+        // console.log(response.data.length);
+      });
+    },
+    getlevel() {
+      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/getlevel").then((response) => {
+        this.uncomfortable = response.data.filter((item)=>item.level == '1').length;
+        this.worried = response.data.filter((item)=>item.level == '2').length;
+        this.normal = response.data.filter((item)=>item.level == '3').length;
+        this.relaxed = response.data.filter((item)=>item.level == '4').length;
+        this.comfortable = response.data.filter((item)=>item.level == 5);
+        this.data = response.data; 
+        console.log(this.comfortable.length);
       });
     },
   },
