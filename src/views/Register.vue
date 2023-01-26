@@ -40,13 +40,9 @@
             </div>
             <p class="mb-2 or">หรือ</p>
             <div id="GooglerSingIn" v-if="!isSignedIn" class="google mb-2">
-              <button
-                @click="handleSignInGoogle"
-                type="button"
-                class="btn btn-primary btn-sm btn-google"
-              >
-                <i class="fab fa-google-plus-g" @click="handleSignInGoogle"></i>
-                Sign In with Google
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#scrollable1">
+                <i class="fab fa-google-plus-g"></i>
+                LogIn with Google
               </button>
             </div>
             <div class="toLogin">
@@ -69,6 +65,82 @@
       </div>
     </div>
   </div>
+  <!-- modal pdpa -->
+  <div class="modal fade" id="scrollable1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-left fs-4 fw-bold">
+            <h2 class="header-modal">นโยบายความเป็นส่วนตัวสำหรับลูกค้า</h2>
+            <p>เกลอ ให้ความสำคัญกับการคุ้มครองข้อมูลส่วนบุคคลของคุณ
+              โดยนโยบายความเป็นส่วนตัวฉบับนี้ได้อธิบายแนวปฏิบัติเกี่ยวกับการเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคล
+              รวมถึงสิทธิต่าง ๆ ของเจ้าของข้อมูลส่วนบุคคล ตามกฎหมายคุ้มครองข้อมูลส่วนบุคคล</p>
+
+            <h2 class="header-modal">การเก็บรวบรวมข้อมูลส่วนบุคคล</h2>
+            <p>
+              เราจะเก็บรวบรวมข้อมูลส่วนบุคคลที่ได้รับโดยตรงจากคุณผ่านช่องทาง ดังต่อไปนี้
+            </p>
+            <ul>
+              <li>การสมัครสมาชิก</li>
+              <li>อีเมล</li>
+              <li>Google Login</li>
+            </ul>
+            <p></p>
+
+            <h2 class="header-modal">ประเภทข้อมูลส่วนบุคคลที่เก็บรวบรวม</h2>
+            <p><b>ข้อมูลส่วนบุคคล</b> เช่น ชื่อ นามสกุล อายุ วันเดือนปีเกิด สัญชาติ เลขประจำตัวประชาชน หนังสือเดินทาง
+              เป็นต้น</p>
+            <p><b>ข้อมูลการติดต่อ</b> เช่น ที่อยู่ หมายเลขโทรศัพท์ อีเมล เป็นต้น</p>
+            <p><b>ข้อมูลบัญชี</b> เช่น บัญชีผู้ใช้งาน ประวัติการใช้งาน เป็นต้น</p>
+            <p><b>หลักฐานแสดงตัวตน</b> เช่น สำเนาบัตรประจำตัวประชาชน สำเนาหนังสือเดินทาง เป็นต้น</p>
+            <p><b>ข้อมูลการทำธุรกรรมและการเงิน</b> เช่น ประวัติการสั่งซื้อ รายละเอียดบัตรเครดิต บัญชีธนาคาร เป็นต้น</p>
+            <p><b>ข้อมูลทางเทคนิค</b> เช่น IP address, Cookie ID, ประวัติการใช้งานเว็บไซต์ (Activity Log) เป็นต้น</p>
+            <p><b>ข้อมูลอื่น ๆ</b> เช่น รูปภาพ ภาพเคลื่อนไหว
+              และข้อมูลอื่นใดที่ถือว่าเป็นข้อมูลส่วนบุคคลตามกฎหมายคุ้มครองข้อมูลส่วนบุคคล</p>
+
+            <h2 class="header-modal">ผู้เยาว์</h2>
+            <p>หากคุณมีอายุต่ำกว่า 20 ปีหรือมีข้อจำกัดความสามารถตามกฎหมาย เราอาจเก็บรวบรวม ใช้
+              หรือเปิดเผยข้อมูลส่วนบุคคลของคุณ
+              เราอาจจำเป็นต้องให้พ่อแม่หรือผู้ปกครองของคุณให้ความยินยอมหรือที่กฎหมายอนุญาตให้ทำได้
+              หากเราทราบว่ามีการเก็บรวบรวมข้อมูลส่วนบุคคลจากผู้เยาว์โดยไม่ได้รับความยินยอมจากพ่อแม่หรือผู้ปกครอง
+              เราจะดำเนินการลบข้อมูลนั้นออกจากเซิร์ฟเวอร์ของเรา</p>
+
+            <h2 class="header-modal">วิธีการเก็บรักษาข้อมูลส่วนบุคคล</h2>
+            <p>เราจะเก็บรักษาข้อมูลส่วนบุคคลของคุณในรูปแบบเอกสารและรูปแบบอิเล็กทรอนิกส์</p>
+            <p>เราเก็บรักษาข้อมูลส่วนบุคคลของคุณ ดังต่อไปนี้</p>
+            <ul>
+              <li>เซิร์ฟเวอร์บริษัทของเราในประเทศไทย</li>
+              <li>ผู้ให้บริการเซิร์ฟเวอร์ในต่างประเทศ</li>
+            </ul>
+
+            <h2 class="header-modal">การประมวลผลข้อมูลส่วนบุคคล</h2>
+            <p>เราจะเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลของคุณเพื่อวัตถุประสงค์ดังต่อไปนี้</p>
+            <ul>
+              <li>เพื่อสร้างและจัดการบัญชีผู้ใช้งาน</li>
+              <li>เพื่อปรับปรุงสินค้า บริการ หรือประสบการณ์การใช้งาน</li>
+              <li>เพื่อการบริหารจัดการภายในบริษัท</li>
+              <li>เพื่อรวบรวมข้อเสนอแนะ</li>
+              <li>เพื่อปฏิบัติตามข้อตกลงและเงื่อนไข (Terms and Conditions)</li>
+            </ul>
+
+          </div>
+          <div class="modal-footer border-0 mt-3">
+            <div class="col"> 
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal" @click="handleSignInGoogle" >
+                  อนุญาต
+                </button>     
+            </div>
+            <div class="col">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                ไม่อนุญาต
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </template>
 
 

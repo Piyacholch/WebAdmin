@@ -16,7 +16,10 @@
             </div>
           </li>
           <li class="crumb  active">
-            <div class="link"><a href="/">แก้ไขโปรไฟล์</a></div>
+            <div class="link"><a href="/">โปรไฟล์</a></div>
+          </li>
+          <li class="crumb  active">
+            <div class="link"><a href="/updateProfile">แก้ไขโปรไฟล์</a></div>
           </li>
         </ol>
       </nav>

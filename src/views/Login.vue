@@ -1,11 +1,8 @@
 <template>
+
   <head>
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
-      integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+      integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous" />
   </head>
   <div class="all">
     <div class="container" id="container">
@@ -15,56 +12,129 @@
 
           <div class="row">
             <div class="mb-3 mt-3">
-              <input
-                type="email"
-                placeholder="Email"
-                class="mb-3"
-                v-model="login_form.email"
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                v-model="login_form.password"
-              />
+              <input type="email" placeholder="Email" class="mb-3" v-model="login_form.email" />
+              <input type="password" placeholder="Password" v-model="login_form.password" />
             </div>
 
             <div v-show="error" class="error">{{ this.errorMsg }}</div>
             <a href="/forgotpassword" class="a_fg_text">ลืมรหัสผ่าน?</a>
 
             <div>
-              <button type="submit" class="btn btn-warning mb-3"  @click="$router.push(`/profile/${item.id}`)">
+              <button type="submit" class="btn btn-warning mb-3" @click="$router.push(`/profile/${item.id}`)">
                 เข้าสู่ระบบ
               </button>
             </div>
             <p class="mb-2 or">หรือ</p>
             <div id="GooglerSingIn" v-if="!isSignedIn" class="google mb-2">
-              <button
-                @click="handleSignInGoogle"
-                type="button"
-                class="btn btn-primary btn-sm btn-google"
-              >
+              <button type="button" class="btn btn-primary" @click="handleSignInGoogle">
                 <i class="fab fa-google-plus-g" @click="handleSignInGoogle"></i>
                 LogIn with Google
               </button>
+              <!-- <button type="button" class="btn btn-primary btn-sm btn-google">
+                <i class="fab fa-google-plus-g" @click="handleSignInGoogle"></i>
+                LogIn with Google
+              </button> -->
             </div>
           </div>
         </form>
       </div>
-
       <div class="overlay-container">
         <div class="overlay">
           <div class="overlay-panel overlay-right">
             <h1>สวัสดี, ยินดีต้อนรับ!</h1>
             <p>กรอกข้อมูลของคุณแล้วมาเริ่มต้นไปดวยกันเถอะ!</p>
-            <a href="/register"><button class="ghost">สมัครสมาชิก</button></a>
+            <button type="button" class="ghost" data-bs-toggle="modal" data-bs-target="#scrollable">
+              สมัครสมาชิก
+            </button>
+            <!-- <a href="/register"><button class="ghost">สมัครสมาชิก</button></a> -->
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- modal pdpa -->
+  <div class="modal fade" id="scrollable" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-left fs-4 fw-bold">
+          <h2 class="header-modal">นโยบายความเป็นส่วนตัวสำหรับลูกค้า</h2>
+          <p>เกลอ ให้ความสำคัญกับการคุ้มครองข้อมูลส่วนบุคคลของคุณ
+            โดยนโยบายความเป็นส่วนตัวฉบับนี้ได้อธิบายแนวปฏิบัติเกี่ยวกับการเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคล
+            รวมถึงสิทธิต่าง ๆ ของเจ้าของข้อมูลส่วนบุคคล ตามกฎหมายคุ้มครองข้อมูลส่วนบุคคล</p>
+
+          <h2 class="header-modal">การเก็บรวบรวมข้อมูลส่วนบุคคล</h2>
+          <p>
+            เราจะเก็บรวบรวมข้อมูลส่วนบุคคลที่ได้รับโดยตรงจากคุณผ่านช่องทาง ดังต่อไปนี้
+          </p>
+          <ul>
+            <li>การสมัครสมาชิก</li>
+            <li>อีเมล</li>
+            <li>Google Login</li>
+          </ul>
+          <p></p>
+
+          <h2 class="header-modal">ประเภทข้อมูลส่วนบุคคลที่เก็บรวบรวม</h2>
+          <p><b>ข้อมูลส่วนบุคคล</b> เช่น ชื่อ นามสกุล อายุ วันเดือนปีเกิด สัญชาติ เลขประจำตัวประชาชน หนังสือเดินทาง
+            เป็นต้น</p>
+          <p><b>ข้อมูลการติดต่อ</b> เช่น ที่อยู่ หมายเลขโทรศัพท์ อีเมล เป็นต้น</p>
+          <p><b>ข้อมูลบัญชี</b> เช่น บัญชีผู้ใช้งาน ประวัติการใช้งาน เป็นต้น</p>
+          <p><b>หลักฐานแสดงตัวตน</b> เช่น สำเนาบัตรประจำตัวประชาชน สำเนาหนังสือเดินทาง เป็นต้น</p>
+          <p><b>ข้อมูลการทำธุรกรรมและการเงิน</b> เช่น ประวัติการสั่งซื้อ รายละเอียดบัตรเครดิต บัญชีธนาคาร เป็นต้น</p>
+          <p><b>ข้อมูลทางเทคนิค</b> เช่น IP address, Cookie ID, ประวัติการใช้งานเว็บไซต์ (Activity Log) เป็นต้น</p>
+          <p><b>ข้อมูลอื่น ๆ</b> เช่น รูปภาพ ภาพเคลื่อนไหว
+            และข้อมูลอื่นใดที่ถือว่าเป็นข้อมูลส่วนบุคคลตามกฎหมายคุ้มครองข้อมูลส่วนบุคคล</p>
+
+          <h2 class="header-modal">ผู้เยาว์</h2>
+          <p>หากคุณมีอายุต่ำกว่า 20 ปีหรือมีข้อจำกัดความสามารถตามกฎหมาย เราอาจเก็บรวบรวม ใช้
+            หรือเปิดเผยข้อมูลส่วนบุคคลของคุณ
+            เราอาจจำเป็นต้องให้พ่อแม่หรือผู้ปกครองของคุณให้ความยินยอมหรือที่กฎหมายอนุญาตให้ทำได้
+            หากเราทราบว่ามีการเก็บรวบรวมข้อมูลส่วนบุคคลจากผู้เยาว์โดยไม่ได้รับความยินยอมจากพ่อแม่หรือผู้ปกครอง
+            เราจะดำเนินการลบข้อมูลนั้นออกจากเซิร์ฟเวอร์ของเรา</p>
+
+          <h2 class="header-modal">วิธีการเก็บรักษาข้อมูลส่วนบุคคล</h2>
+          <p>เราจะเก็บรักษาข้อมูลส่วนบุคคลของคุณในรูปแบบเอกสารและรูปแบบอิเล็กทรอนิกส์</p>
+          <p>เราเก็บรักษาข้อมูลส่วนบุคคลของคุณ ดังต่อไปนี้</p>
+          <ul>
+            <li>เซิร์ฟเวอร์บริษัทของเราในประเทศไทย</li>
+            <li>ผู้ให้บริการเซิร์ฟเวอร์ในต่างประเทศ</li>
+          </ul>
+
+          <h2 class="header-modal">การประมวลผลข้อมูลส่วนบุคคล</h2>
+          <p>เราจะเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลของคุณเพื่อวัตถุประสงค์ดังต่อไปนี้</p>
+          <ul>
+            <li>เพื่อสร้างและจัดการบัญชีผู้ใช้งาน</li>
+            <li>เพื่อปรับปรุงสินค้า บริการ หรือประสบการณ์การใช้งาน</li>
+            <li>เพื่อการบริหารจัดการภายในบริษัท</li>
+            <li>เพื่อรวบรวมข้อเสนอแนะ</li>
+            <li>เพื่อปฏิบัติตามข้อตกลงและเงื่อนไข (Terms and Conditions)</li>
+          </ul>
+
+        </div>
+        <div class="modal-footer border-0 mt-3">
+          <div class="col">
+            <a href="/register">
+              <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+                อนุญาต
+              </button>
+            </a>
+          </div>
+          <div class="col">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              ไม่อนุญาต
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </template>
   
-  <script>
+<script>
 import { ref } from "vue";
 import { useStore } from "vuex";
 import firebase from "../firebase";
@@ -120,8 +190,9 @@ export default {
 };
 </script>
   
-  <style>
+<style>
 @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap");
+
 * {
   font-family: "Kanit", sans-serif;
 }
@@ -187,6 +258,7 @@ button:focus {
 button.ghost {
   background-color: transparent;
   border-color: #ffffff;
+  color: #ffffff;
 }
 
 form {
@@ -208,6 +280,7 @@ input {
   width: 100%;
   border-radius: 5px;
 }
+
 .btn {
   width: 100%;
 }
@@ -255,7 +328,18 @@ input {
   animation: show 0.6s;
 }
 
+/* modal */
+.header-modal {
+  text-align: left;
+  font-weight: bold;
+}
+
+li {
+  font-size: 14px;
+}
+
 @keyframes show {
+
   0%,
   49.99% {
     opacity: 0;
@@ -375,6 +459,7 @@ footer a {
   color: #3c97bf;
   text-decoration: none;
 }
+
 @media (max-width: 720px) {
   body {
     padding: 0px;

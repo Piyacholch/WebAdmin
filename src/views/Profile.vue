@@ -42,7 +42,7 @@
                 class="form-control"
                 id="floatingInput"
                 placeholder="uid"
-                v-model="data.providerId"
+                v-model="providerId"
                 disabled
               />
               <label for="floatingInput">Provider</label>
@@ -53,7 +53,7 @@
                 class="form-control"
                 id="floatingInput"
                 placeholder="name@example.com"
-                v-model="data.email"
+                v-model="email"
                 disabled
               />
               <label for="floatingInput">อีเมล</label>
@@ -66,6 +66,7 @@
                 placeholder="photoUR"
                 id="inputChangeName"
                 v-model="photoURL"
+                disabled
               />
               <!-- <input
                 type="text"
@@ -84,6 +85,7 @@
                 class="form-control icon"
                 placeholder="dispassword"
                 v-model="displayName"
+                disabled
               />
               <div class="invalid-feedback">Please choose a username.</div>
               <!-- <input
@@ -94,51 +96,22 @@
                 v-model="displayName"
                 
               /> -->
-              <span class="material-symbols-outlined"> edit </span>
               <label for="floatingdisplayname">ชื่อผู้ใช้</label>
             </div>
-            <!--ชื่อจริง - นามสกุล-->
-            <div class="form-floating mb-3">
-              <div class="form-floating">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="ชื่อจริง - นามสกุล"
-                  id="validationCustomUsername"
-                  v-model="data.name"
-                />
-                <span class="material-symbols-outlined"> edit </span>
-                <label for="floatingphotoURL">ชื่อจริง - นามสกุล</label>
-              </div>
-            </div>
-            <!--ที่อยู่-->
-            <!-- <div class="form-floating mb-3">
-              <div class="form-floating">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="floatingaddress"
-                  placeholder="ที่อยู่"
-                  v-model="data.address"
-                />
-                <span class="material-symbols-outlined"> edit </span>
-                <label for="floatingphotoURL">ที่อยู่</label>
-              </div>
-            </div> -->
             <!--เบอร์โทร-->
             <div class="form-floating mb-3">
-              <div class="form-floating">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="floatingphonenum"
-                  placeholder="0xxxxxxxxx"
-                  v-model="data.phonenum"
-                />
-                <span class="material-symbols-outlined"> edit </span>
-                <label for="floatingphotoURL">เบอร์โทร</label>
-              </div>
-            </div>
+        <!-- <div class="form-floating">
+          <input
+            type="tel"
+            class="form-control"
+            id="floatingphonenum"
+            placeholder="0xxxxxxxxx"
+            v-model="data.phonenum"
+          />
+          <span class="material-symbols-outlined"> edit </span>
+          <label for="floatingphotoURL">เบอร์โทร</label>
+        </div> -->
+      </div>
           </div>
 
           <div class="pt-3">
@@ -147,7 +120,7 @@
               class="btn btn-warning"
               @click="$router.push(`/updateProfile/${uid}`)"
             >
-              ตกลง
+              แก้ไข
             </button>
             <!-- <button type="button" class="btn btn-danger" @click="cancel()">
               ยกเลิก
@@ -238,7 +211,6 @@ export default {
       email: "",
       // displayName: "",
       // photoURL: "",
-      name: "",
       phonenum: "",
       data: [],
 
@@ -255,8 +227,8 @@ export default {
       axios
         .get(process.env.VUE_APP_BACKEND_BASE_URL + "/Admin")
         .then((response) => {
-          (this.Name = name), (this.data = response.data);
-          // console.log(response);
+          (this.data = response.data);
+          console.log(response.data);
         });
     },
     GetUser() {
@@ -290,7 +262,7 @@ export default {
     },
 
     reset() {
-      this.data.Name = "";
+     
     },
     // Addata(uid,providerId, email, displayName, name, phonenum) {
     //     if(displayName == displayName|| name == null ||phonenum==null ){
