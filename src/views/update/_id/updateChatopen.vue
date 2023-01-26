@@ -45,7 +45,10 @@
         >
           ตกลง
         </button>
-        <button type="button" class="btn btn-danger" @click="reset()">
+        <button type="button" class="btn btn-danger" @click="
+          $router.push(
+            `/chatopen`
+          )">
           ยกเลิก
         </button>
       </div>

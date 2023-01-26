@@ -48,7 +48,11 @@
         >
           ตกลง
         </button>
-        <button type="button" class="btn btn-danger" @click="reset()">
+        <button type="button" class="btn btn-danger"  @click="
+          $router.push(
+            `/chatclose`
+          )
+        ">
           ยกเลิก
         </button>
       </div>
@@ -71,8 +75,9 @@ export default {
   },
   methods: {
     submit(iddocs, Text) {
-      // const formData = new FormData();
-      // formData.append("Text", this.Text);
+      if (iddocs == null || Text == null ) {
+        alert("กรุณากรอกข้อมูลทุกช่อง!!");
+      } else if (iddocs != null || Text != null) {
       axios
         .post(process.env.VUE_APP_BACKEND_BASE_URL+"/insertchatclose/" + iddocs + "/" + Text)
         .then((response) => {
@@ -80,6 +85,7 @@ export default {
           this.$router.push("/chatclose");
           // console.log(response.data)
         });
+      }
     },
     reset() {
       this.data.iddocs = "";

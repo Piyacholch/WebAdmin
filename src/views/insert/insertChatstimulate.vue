@@ -46,7 +46,10 @@
         >
           ตกลง
         </button>
-        <button type="button" class="btn btn-danger" @click="reset()">
+        <button type="button" class="btn btn-danger" @click="
+          $router.push(
+            `/chatstimulate`
+          )">
           ยกเลิก
         </button>
       </div>
@@ -69,6 +72,9 @@ export default {
   },
   methods: {
     submit(iddocs, Text) {
+      if (iddocs == null || Text == null ) {
+        alert("กรุณากรอกข้อมูลทุกช่อง!!");
+      } else if (iddocs != null || Text != null) {
       axios
         .post(
           process.env.VUE_APP_BACKEND_BASE_URL+"/insertchatstimulate/" + iddocs + "/" + Text
@@ -78,6 +84,7 @@ export default {
           this.$router.push("/chatstimulate");
           // console.log(response.data)
         });
+      }
     },
     reset() {
       this.data.iddocs = "";

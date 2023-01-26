@@ -95,7 +95,11 @@
         >
           ตกลง
         </button>
-        <button type="button" class="btn btn-danger" @click="reset()">
+        <button type="button" class="btn btn-danger"  @click="
+          $router.push(
+            `/assistance`
+          )
+        ">
           ยกเลิก
         </button>
       </div>
@@ -124,6 +128,10 @@ export default {
   methods: {
     
     submit(iddocs, title, tel, facebook, lineID,description) {
+
+      if (iddocs == null || title == null || tel == null || facebook == null || lineID == null || description == null ) {
+        alert("กรุณากรอกข้อมูลทุกช่อง!!");
+      } else if (iddocs != null || title != null || tel !== null || facebook !== null ||  lineID  !== null || description != null) {
       axios
         .post(process.env.VUE_APP_BACKEND_BASE_URL+"/insertassistance/" + iddocs +"/"+  title +"/"+ tel +"/"+ facebook+"/"+lineID+"/"+description)
         .then((response) => {
@@ -131,7 +139,7 @@ export default {
           this.$router.push("/assistance");
           // console.log(response.data)
         });
-      
+      }
     },
     reset() {
       this.data.iddocs = "";

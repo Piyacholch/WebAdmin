@@ -12,6 +12,19 @@
     <div class="box p-4">
       <h2>แก้ไขแหล่งช่วยเหลือ</h2>
 
+      <!-- <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label"
+          >ชื่อแหล่งช่วยเหลือ</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="เพิ่มชื่อแหล่งช่วยเหลือ"
+          v-model="data.id"
+        />
+      </div> -->
+
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label"
           >ชื่อแหล่งช่วยเหลือ</label
@@ -95,7 +108,10 @@
         >
           ตกลง
         </button>
-        <button type="button" class="btn btn-danger" @click="reset()">
+        <button type="button" class="btn btn-danger" @click="
+          $router.push(
+            `/assistance`
+          )">
           ยกเลิก
         </button>
       </div>

@@ -21,9 +21,9 @@
         <div class="img">
           <img :src="photoURL" alt="img-profile" class="photoURL mb-3" />
         </div>
-        <div class="content">
+        <div class="content ">
           <p class="dispalyname">{{ displayName }}</p>
-          <p class="email mb-5">{{ email }}</p>
+          <p class="email mb-3">{{ email }}</p>
           <div class="form">
             <div class="form-floating mb-3">
               <input

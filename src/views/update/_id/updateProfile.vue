@@ -56,7 +56,10 @@
             ">
               ตกลง
             </button>
-            <button type="button" class="btn btn-danger" @click="reset()">
+            <button type="button" class="btn btn-danger" @click="
+          $router.push(
+            `/`
+          )">
               ยกเลิก
             </button>
           </div>
@@ -254,6 +257,16 @@ h1 {
     background-color: #fff8e1;
     height: 75rem;
   }
+  h2{
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .box-item[data-v-2dc74e42] {
+    width: 90%;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    margin: auto;
+}
 }
 
 @media screen and (max-width: 767px) {

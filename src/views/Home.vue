@@ -88,7 +88,7 @@
     </div>
   </div>
 
-
+{{ level }}
   
 </template>
 
@@ -112,6 +112,7 @@ export default {
       normal: "",  // เฉยๆ
       worried: "",  // ไม่สบายใจ
       uncomfortable: "",  // ไม่สบายใจมาก
+      level:""
     };
   },
   mounted() {
@@ -231,15 +232,24 @@ export default {
     },
     getlevel() {
       axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/getlevel").then((response) => {
-        this.uncomfortable = response.data.filter((item)=>item.level == '1').length;
-        this.worried = response.data.filter((item)=>item.level == '2').length;
-        this.normal = response.data.filter((item)=>item.level == '3').length;
-        this.relaxed = response.data.filter((item)=>item.level == '4').length;
-        this.comfortable = response.data.filter((item)=>item.level == 5);
-        this.data = response.data; 
-        console.log(this.comfortable.length);
+        this.level = response.data.length;
+        console.log(response.data.length);
+        console.log(this.uncomfortable);
+        this.uncomfortable = response.data.filter((item)=>item.level == 1).length;
+        // this.google = response.data.filter((item)=>item.provider == 'google.com').length
       });
     },
+    // getlevel() {
+    //   axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/getlevel").then((response) => {
+    //     this.uncomfortable = response.data.filter((item)=>item.level == '1').length;
+    //     this.worried = response.data.filter((item)=>item.level == '2').length;
+    //     this.normal = response.data.filter((item)=>item.level == '3').length;
+    //     this.relaxed = response.data.filter((item)=>item.level == '4').length;
+    //     this.comfortable = response.data.filter((item)=>item.level == 5);
+    //     this.data = response.data; 
+    //     console.log(this.comfortable.length);
+    //   });
+    // },
   },
 
 };

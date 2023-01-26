@@ -12,7 +12,7 @@
     <div class="search">
       <div class="row row-menu">
         <div class="col-lg-9 search-res p-0">
-          <!-- <div class="input-group mb-3">
+          <div class="input-group mb-3">
             <input
               type="text"
               class="form-control"
@@ -20,7 +20,7 @@
               aria-describedby="button-addon2"
               v-model="search"
             />
-          </div> -->
+          </div>
         </div>
         <div class="col-lg-3 col-flex">
           <button
@@ -37,7 +37,8 @@
     </div>
 
     <div class="grid px-5 mt-3">
-      <div class="item" v-for="(item, index) in loaddata" :key="index">
+      <div class="item" v-for= "item in filtersearch"
+        :key="item">
         <div class="content px-3">
           <!-- <div class="img">
             <img :src="item.photoURL" alt="img-profile" class="profile-img" />
@@ -178,6 +179,11 @@ const actionCodeSettings = {
 
 export default {
   components: { Navbar, Breadcrumb },
+  // watch: {
+  //   search() {
+  //     this.getchatopen();
+  //   }
+  // },
   data() {
     return {
       id: "",
@@ -186,6 +192,7 @@ export default {
       phonenum: "",
       photoURL: "",
       loaddata: [],
+      search: "",
     };
   },
   mounted() {
@@ -222,14 +229,13 @@ export default {
     },
     
   },
-
-  // computed: {
-  //   filtersearch() {
-  //     return this.loaddata.filter((loaddata) => {
-  //       return loaddata.displayName.toLowerCase().includes(this.search.toLowerCase());
-  //     });
-  //   },
-  // },
+  computed: {
+    filtersearch() {
+      return this.loaddata.filter((loaddata) => {
+        return loaddata.displayName.toLowerCase().includes(this.search.toLowerCase());
+      });
+    },
+  },
   created() {
     this.sendEmail();
   },

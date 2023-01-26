@@ -280,7 +280,7 @@ h1 {
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .Box {
     background-color: #fff8e1;
-    height: auto;
+    height: 80rem;
   }
   .button-1 {
     display: none;
@@ -298,6 +298,9 @@ h1 {
   }
 }
 @media screen and (max-width: 767px) {
+  #control_btn_mobile{
+    height: 30px;
+  }
   .Box {
     background-color: #fff8e1;
     height: auto;
