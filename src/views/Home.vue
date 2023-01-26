@@ -235,7 +235,7 @@ export default {
         this.level = response.data.length;
         console.log(response.data.length);
         console.log(this.uncomfortable);
-        this.uncomfortable = response.data.filter((item)=>item.level == 1).length;
+        this.uncomfortable = response.data.filter((item)=>item.level == '1').length;
         // this.google = response.data.filter((item)=>item.provider == 'google.com').length
       });
     },
