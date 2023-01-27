@@ -128,7 +128,7 @@
           </div>
           <div class="modal-footer border-0 mt-3">
             <div class="col"> 
-                <button type="button" class="btn btn-warning" data-bs-dismiss="modal" @click="handleSignInGoogle" >
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal" @click="handleSignInGoogle" >
                   อนุญาต
                 </button>     
             </div>
