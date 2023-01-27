@@ -128,7 +128,7 @@ export default {
         datasets: [
           {
             label: "ข้อมูลภาพรวมวัดระดับอารมณ์",
-            data: [this.comfortable, 50, 100, 50, 60],
+            data: [this.comfortable, 50, 100, 50,10],
             backgroundColor: [
               "rgb(255, 99, 132)",
               "rgb(54, 162, 235)",
@@ -220,23 +220,34 @@ export default {
         this.maxloaddata = response.data.length;
         // console.log(response.data.length);
         // console.log(response.data);
-        this.password = response.data.filter((item)=>item.provider == 'password').length
-        this.google = response.data.filter((item)=>item.provider == 'google.com').length
+        this.password = response.data.filter((item)=>item.providerId == 'password').length;
+        this.google = response.data.filter((item)=>item.providerId == "google.com").length;
+        console.log(this.google);
       });
     },
     getuserline() {
       axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/getusers").then((response) => {
         this.userlength = response.data.length;
-        // console.log(response.data.length);
+        // const userEmotion = response.data.filter((item)=>item.id).collection('emotions').length
+        // console.log(userEmotion);
       });
     },
     getlevel() {
       axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/getlevel").then((response) => {
         this.level = response.data.length;
-        console.log(response.data.length);
-        console.log(this.uncomfortable);
-        this.uncomfortable = response.data.filter((item)=>item.level == '1').length;
-        // this.google = response.data.filter((item)=>item.provider == 'google.com').length
+        console.log("การประเมินอารมณ์ทั้งหมด : "+response.data.length);
+        
+        const uncomfortable = response.data.filter((item)=>item.level == '1').length;
+        const worried = response.data.filter((item)=>item.level == '2').length;
+        const normal = response.data.filter((item)=>item.level == '3').length;
+        const relaxed = response.data.filter((item)=>item.level == '4').length;
+        const comfortable = response.data.filter((item)=>item.level == '5').length;
+        console.log("ไม่สบายใจมาก : "+uncomfortable);
+        console.log("ไม่สบายใจ : "+worried);
+        console.log("เฉยๆ : "+normal);
+        console.log("สบายใจ : "+relaxed);
+        console.log("สบายใจมาก :"+comfortable);
+        
       });
     },
     // getlevel() {
