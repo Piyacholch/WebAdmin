@@ -355,5 +355,14 @@ h1 {
     font-size: 16px !important;
     text-align: center !important;
   }
+  .edit {
+  width: 30px;
+  height: 30px;
+}
+.delete {
+  width: 30px;
+  height: 30px;
+  
+}
 }
 </style>

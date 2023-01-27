@@ -49,7 +49,7 @@
               <label for="floatingphotoURL">เบอร์โทร</label>
             </div>
           </div>
-          <div class="footer d-flex justify-content-end mt-4">
+          <div class="footer d-flex justify-content-end mt-4" id="content_center">
             <button type="button" class="btn btn-warning mx-2" @click="
               Addata(uid, providerId, email, data.displayName, data.phonenum),
               UpdateUser()
@@ -251,7 +251,10 @@ h1 {
 .footer {
   width: 80%;
 }
-
+#content_center{
+  width: 90%;
+  
+}
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .container-fluid {
     background-color: #fff8e1;
@@ -267,6 +270,7 @@ h1 {
     padding-right: 0px !important;
     margin: auto;
 }
+
 }
 
 @media screen and (max-width: 767px) {
