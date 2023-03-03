@@ -15,87 +15,44 @@
       <h2>เพิ่มแหล่งช่วยเหลือ</h2>
 
       <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label"
-          >หมายเลขเอกสาร</label
-        >
-        <input
-          type="text"
-          class="form-control"
-          id="exampleFormControlInput1"
-          placeholder="id docs"
-          v-model="data.iddocs"
-        />
+        <label for="exampleFormControlInput1" class="form-label">หมายเลขเอกสาร</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="id docs"
+          v-model="data.iddocs" />
       </div>
       <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label"
-          >ชื่อแหล่งช่วยเหลือ</label
-        >
-        <input
-          type="text"
-          class="form-control"
-          id="exampleFormControlInput1"
-          placeholder="เพิ่มชื่อแหล่งช่วยเหลือ"
-          v-model="data.title"
-        />
+        <label for="exampleFormControlInput1" class="form-label">ชื่อแหล่งช่วยเหลือ</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="เพิ่มชื่อแหล่งช่วยเหลือ"
+          v-model="data.title" />
       </div>
       <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label"
-          >เบอร์โทรศัพท์แหล่งช่วยเหลือ</label
-        >
-        <input
-          type="text"
-          class="form-control"
-          id="exampleFormControlInput2"
-          placeholder="เพิ่มเบอร์โทรศัพท์แหล่งช่วยเหลือ"
-          v-model="data.tel"
-        />
+        <label for="exampleFormControlInput1" class="form-label">เบอร์โทรศัพท์แหล่งช่วยเหลือ</label>
+        <input type="url" class="form-control" id="exampleFormControlInput2"
+          placeholder="เพิ่มเบอร์โทรศัพท์แหล่งช่วยเหลือ" v-model="data.tel" />
       </div>
       <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label"
-          >Facebook แหล่งช่วยเหลือ</label
-        >
-        <input
-          type="text"
-          class="form-control"
-          id="exampleFormControlInput2"
-          placeholder="Facebook Page แหล่งช่วยเหลือ"
-          v-model="data.facebook"
-        />
+        <label for="exampleFormControlInput1" class="form-label">Facebook แหล่งช่วยเหลือ</label>
+        <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Facebook Page แหล่งช่วยเหลือ"
+          v-model="data.facebook" />
       </div>
       <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label"
-          >LineID แหล่งช่วยเหลือ</label
-        >
-        <input
-          type="text"
-          class="form-control"
-          id="exampleFormControlInput2"
-          placeholder="Line ID แหล่งช่วยเหลือ"
-          v-model="data.lineID"
-        />
+        <label for="exampleFormControlInput1" class="form-label">LineID แหล่งช่วยเหลือ</label>
+        <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Line ID แหล่งช่วยเหลือ"
+          v-model="data.lineID" />
       </div>
       <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label"
-          >ข้อมูลเพิ่มเติม</label
-        >
-        <textarea
-          class="form-control"
-          id="exampleFormControlTextarea1"
-          rows="7"
-          placeholder="ข้อมูลเพิ่มเติม"
-          v-model="data.description"
-        ></textarea>
+        <label for="exampleFormControlTextarea1" class="form-label">ข้อมูลเพิ่มเติม</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" placeholder="ข้อมูลเพิ่มเติม"
+          v-model="data.description"></textarea>
       </div>
 
+
+
       <div class="footer d-flex justify-content-end mt-4">
-        <button
-          type="button"
-          class="btn btn-warning mx-2"
-          @click="submit(data.iddocs, data.title, data.tel, data.facebook, data.lineID, data.description)"
-        >
+        <button type="button" class="btn btn-warning mx-2"
+          @click="submit(data.iddocs, data.title, data.tel, data.facebook, data.lineID, data.description)">
           ตกลง
         </button>
-        <button type="button" class="btn btn-danger"  @click="
+        <button type="button" class="btn btn-danger" @click="
           $router.push(
             `/assistance`
           )
@@ -116,7 +73,7 @@ export default {
   components: { Navbar, Breadcrumb },
   data() {
     return {
-      iddocs:"",
+      iddocs: "",
       title: "",
       tel: "",
       facebook: "",
@@ -126,34 +83,34 @@ export default {
     };
   },
   methods: {
-    
-    submit(iddocs, title, tel, facebook, lineID,description) {
 
-      if (iddocs == null || title == null || tel == null || facebook == null || lineID == null || description == null ) {
-        alert("กรุณากรอกข้อมูลทุกช่อง!!");
-      } else if (iddocs != null || title != null || tel !== null || facebook !== null ||  lineID  !== null || description != null) {
+    submit(iddocs, title, tel, facebook, lineID, description) {
+
+      // if (iddocs == null || title == null || tel == null || facebook == null || lineID == null || description == null ) {
+      //   alert("กรุณากรอกข้อมูลทุกช่อง!!");
+      // } else if (iddocs != null || title != null || tel !== null || facebook !== null ||  lineID  !== null || description != null) {
       axios
-        .post(process.env.VUE_APP_BACKEND_BASE_URL+"/insertassistance/" + iddocs +"/"+  title +"/"+ tel +"/"+ facebook+"/"+lineID+"/"+description)
+        .post(process.env.VUE_APP_BACKEND_BASE_URL + "/insertassistance/" + iddocs + "/" + title + "/" + tel + "/" + facebook + "/" + lineID + "/" + description)
         .then((response) => {
           this.data = response.data;
           this.$router.push("/assistance");
           // console.log(response.data)
         });
-      }
-    },
-    reset() {
-      this.data.iddocs = "";
-      this.data.title = "";
-      this.data.tel = "";
-      this.data.facebook = "";
-      this.data.lineID = "";
-      this.data.description = "";
-    },
+    }
   },
+  reset() {
+    this.data.iddocs = "";
+    this.data.title = "";
+    this.data.tel = "";
+    this.data.facebook = "";
+    this.data.lineID = "";
+    this.data.description = "";
+  },
+  // },
 };
 </script>
   
-  <style  scoped>
+<style  scoped>
 .Box {
   background-color: #fff8e1;
   height: auto;
@@ -163,10 +120,12 @@ h1 {
   padding-top: 40px;
   padding-bottom: 10px;
 }
+
 h2 {
   text-align: center;
   padding-bottom: 20px;
 }
+
 .box {
   background-color: #f5e5c1;
   width: 50%;
@@ -174,8 +133,9 @@ h2 {
   border-radius: 5px;
   box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.1);
 }
-@media screen and (max-width: 767px){
-  .box{
+
+@media screen and (max-width: 767px) {
+  .box {
     width: 90%;
   }
 }
