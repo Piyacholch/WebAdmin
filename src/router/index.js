@@ -29,6 +29,7 @@ import replymessage from '../views/reply_message.vue'
 import Register from '../views/Register.vue'
 import admin from '../views/admin.vue'
 import help from '../views/help.vue'
+import sorting from '../views/sorting.vue'
 //Chat
 import chatopen from '../views/chat/chatopen.vue'
 import chatpositive from '../views/chat/chatpositive.vue'
@@ -174,6 +175,11 @@ const routes = [
     path: '/help',
     name: 'help',
     component: help
+  },
+  {
+    path: '/sort',
+    name: 'sort',
+    component: sorting
   },
 
     /////////////  CHAT   ///////////

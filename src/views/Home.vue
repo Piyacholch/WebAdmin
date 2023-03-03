@@ -21,7 +21,7 @@
               </div>
               <div class="col">
                 <p class="num mt-3">{{ password }}</p>
-                <p class="name pt-2">เข้าใช้ด้วยอีเมลและรหัสผ่าน</p>
+                <p class="name pt-2 fs-6">เข้าใช้ด้วยอีเมลและรหัสผ่าน</p>
               </div>
             </div>
           </div>
@@ -37,7 +37,7 @@
               </div>
               <div class="col">
                 <p class="num mt-3">{{ google  }}</p>
-                <p class="name pt-2">เข้าใช้ด้วยบัญชี Google</p>
+                <p class="name pt-2 fs-6">เข้าใช้ด้วยบัญชี Google</p>
               </div>
             </div>
           </div>
@@ -52,7 +52,7 @@
               </div>
               <div class="col">
                 <p class="num mt-3">{{ maxloaddata }}</p>
-                <p class="name pt-2">ผู้ดูแลระบบทั้งหมด</p>
+                <p class="name pt-2 fs-6">ผู้ดูแลระบบทั้งหมด</p>
               </div>
             </div>
           </div>
@@ -67,7 +67,7 @@
               </div>
               <div class="col">
                 <p class="num mt-3">{{ userlength }}</p>
-                <p class="name pt-2">เพื่อนในไลน์ทั้งหมด</p>
+                <p class="name pt-2 fs-6">เพื่อนในไลน์ทั้งหมด</p>
               </div>
             </div>
           </div>
@@ -298,7 +298,7 @@ img {
 .num {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #ffffff;
+  color: black;
 }
 .name {
   font-size: 14px;

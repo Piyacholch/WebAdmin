@@ -25,7 +25,7 @@
         <div class="col-lg-3 col-flex">
           <button
             type="button"
-            class="btn btn-success"
+            class="btn btn-success fs-6"
             id="insertbtn"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
@@ -54,7 +54,7 @@
             data-bs-target="#staticBackdrop"
             @click="confirmdelete(item.id)"
           >
-            <span class="material-icons"> ลบ </span>
+            <span class="material-icons fs-6"> ลบ </span>
           </button>
             <!-- <button type="button" class="btn btn-danger delete" @click="deleteuser(id)">ลบ</button> -->
           </div>
@@ -300,17 +300,17 @@ h1 {
 .displayname {
   margin-top: 10px;
   color: #ffbd59;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
 }
 .email {
-  font-size: 0.7rem;
+  font-size: 1rem;
   font-weight: bold;
   font-style: italic;
   color: #c2c2c2;
 }
 .phone {
-  font-size: 0.7rem;
+  font-size: 1rem;
   font-weight: bold;
   font-style: italic;
   color: #c2c2c2;
