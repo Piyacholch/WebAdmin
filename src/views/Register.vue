@@ -32,6 +32,8 @@
                 placeholder="ConfirmPassword"
                 v-model="register_form.confirmPassword"
               />
+              <div class="warning"> <span id="warning">***กรุณกรอกรหัสความยาวอย่างน้อย 6 ตัวอักษร</span></div>
+             
             </div>
             <div>
               <button type="submit" class="btn btn-warning mb-3" :disabled="!isSamePassword()">
@@ -128,7 +130,7 @@
           </div>
           <div class="modal-footer border-0 mt-3">
             <div class="col"> 
-                <button type="button" class="btn btn-warning" data-bs-dismiss="modal" @click="handleSignInGoogle" >
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal" @click="handleSignInGoogle" >
                   อนุญาต
                 </button>     
             </div>
@@ -496,5 +498,13 @@ form {
 #a_toLogin:link,#a_toLogin:visited,#a_toLogin:hover,#a_toLogin:active{
 color: blue;
 }
+}
+.warning{
+  text-align: left;
+}
+#warning{
+  color: red;
+  font-weight: bold;
+  font-size: 12px;
 }
 </style>

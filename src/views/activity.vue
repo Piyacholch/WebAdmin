@@ -307,6 +307,15 @@ h1 {
   #control_btn_mobile{
     height: 30px;
   }
+  .edit {
+  width: 30px;
+  height: 30px;
+}
+.delete {
+  width: 30px;
+  height: 30px;
+  
+}
   .Box {
     background-color: #fff8e1;
     height: auto;
