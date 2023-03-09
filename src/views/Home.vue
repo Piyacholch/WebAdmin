@@ -77,32 +77,33 @@
     <div class="row px-5 mt-3">
       <div class="col-sm-8">
         <div class="chart">
-          <canvas id="myChart" width="400" height="350px"></canvas>
+         <chartemotion/>
         </div>
       </div>
       <div class="col-sm-4">
-        <div class="imformation">
-          <h3>ข้อมูลผู้ใช้</h3>
-        </div>
+        <!-- <div class="imformation">
+          <chartchat />
+        </div> -->
       </div>
     </div>
   </div>
 
-{{ level }}
   
 </template>
 
 <script>
-import Chart from "chart.js/auto";
 import Navbar from "../components/Navbar.vue";
+import chartemotion from "../components/chart/emotion.vue";
+// import chartchat from "../components/chart/chat.vue";
 import Breadcrumb from "../components/BC-dashboard.vue";
 import axios from "axios";
 
 export default {
-  components: { Navbar, Breadcrumb },
+  components: { Navbar, Breadcrumb, chartemotion,},
   data() {
     return {
       loaddata:[],
+      chatpositive:'',
       maxloaddata: "",
       password: '',
       google: '',
@@ -152,45 +153,24 @@ export default {
         
       });
     },
-    
+ 
+    getchatpositive() {
+      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/queryChatPositive").then((response) => {
+        this.chatpositive = response.data.length;
+        this.chatpositive = response.data;
+        console.log(response.data); 
+        console.log("ข้อความตอบกลับบวก : "+response.data.length); 
+      });
+    }
+
+
   },
   mounted() {
     this.getadmin();
     this.getuserline();
     this.getlevel();
-
-    const ctx = document.getElementById("myChart");
-    const myChart = new Chart(ctx, {
-      type: "bar",
-      data: {
-        labels: ["สบายใจมาก", "สบายใจ", "เฉยๆ", "ไม่สบายใจ", "ไม่สบายใจมาก"],
-        datasets: [
-          {
-            label: "ข้อมูลภาพรวมวัดระดับอารมณ์",
-            data: [8,10 , 6, 8,8],
-            backgroundColor: [
-              "rgb(255, 99, 132)",
-              "rgb(54, 162, 235)",
-              "rgb(255, 205, 86)",
-              'rgba(153, 102, 255)',
-              'rgba(75, 192, 192)',
-            ],
-            hoverOffset: 4,
-          },
-        ],
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
-      },
-    });
-
-    myChart;
-  
-  },
+    this.getchatpositive();
+  }
 };
 </script>
 
