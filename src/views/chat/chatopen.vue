@@ -20,22 +20,14 @@
               v-model="search" />
           </div>
         </div>
+
         <div class="col-4 search-res p-0">
           <div class="input-group mb-3">
-            <select class="form-select" aria-label="Default select example" v-model="sortBy"  @click="getchatopen()">
-          <option selected>Open this select menu</option>
-          <option value="iddocs" >ID</option>
-          <option value="Text">Text</option>
-        </select>
-          </div>
-        </div>
-         <div class="col-4 search-res p-0">
-          <div class="input-group mb-3">
             <select class="form-select" aria-label="Default select example" v-model="first" @click="getchatopen()">
-          <option selected>Open this select menu</option>
-          <option value="desc">มาก-น้อย</option>
-          <option value="asc">น้อย-มาก</option>
-        </select>
+              <option selected>Open this select menu</option>
+              <option value="desc">มาก-น้อย</option>
+              <option value="asc">น้อย-มาก</option>
+            </select>
           </div>
         </div>
 
@@ -47,7 +39,7 @@
           </span>
         </button> -->
 
-       
+
 
 
         <div class="col-lg-3 col-flex">
@@ -60,6 +52,26 @@
 
     <div class="block">
       <div class="row block-item block-bm" v-for="item in filtersearch" :key="item">
+        <div class="col-1 search-res p-0">
+          <div class="input-group mb-3">
+            <select class="form-select" aria-label="Default select example" v-model="sortBy" @click="getchatopen()">
+              <option selected>Open this select menu</option>
+              <option value="iddocs">ID</option>
+              <option value="Text">Text</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-7 search-res p-0">
+          <div class="input-group mb-3">
+            <select class="form-select" aria-label="Default select example" v-model="first" @click="getchatopen()">
+              <option selected>Open this select menu</option>
+              <option value="desc">มาก-น้อย</option>
+              <option value="asc">น้อย-มาก</option>
+            </select>
+          </div>
+        </div>
+
+        
         <div class="col-1">{{ item.id }}</div>
         <div class="col-7">{{ item.Text }}</div>
 
@@ -140,7 +152,7 @@ export default {
       search: "",
       Text: "",
       sortBy: "iddocs",
-      first:"desc",
+      first: "desc",
       // last:"desc",
     };
   },
@@ -149,7 +161,7 @@ export default {
   },
   methods: {
     getchatopen() {
-      axios.get(process.env.VUE_APP_BACKEND_BASE_URL + "/chatopen" ,{ params: { sortBy:this.sortBy, first:this.first }}).then((response) => {
+      axios.get(process.env.VUE_APP_BACKEND_BASE_URL + "/chatopen", { params: { sortBy: this.sortBy, first: this.first } }).then((response) => {
         this.loaddata = response.data;
         console.log(response);
       });
@@ -190,7 +202,8 @@ h1 {
   border: 5px solid #ffbd59;
   border-radius: 15px;
 }
-.form-select{
+
+.form-select {
   border: 5px solid #ffbd59;
   border-radius: 15px;
 }
