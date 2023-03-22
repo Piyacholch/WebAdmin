@@ -151,6 +151,9 @@ export default {
         });
     },
     updateAssistance() {
+      if (this.iddocs == null || this.title == null || this.tel == null|| this.facebook == null|| this.lineID == null|| this.description == null) {
+        alert("กรุณากรอกข้อมูลทุกช่อง!!");
+      } else if (this.iddocs != null || this.title != null || this.tel != null|| this.facebook != null|| this.lineID != null|| this.description != null) {
       axios
         .patch(
           process.env.VUE_APP_BACKEND_BASE_URL+`/updateAssistance/${this.$route.params.id}/${this.data?.Title}/${this.data?.Tel}/${this.data?.Facebook}/${this.data?.LineID}/${this.data?.Description}`
@@ -159,6 +162,7 @@ export default {
           this.data = response.data;
           this.$router.push("/assistance");
         });
+      }
     },
     reset() {
       this.data.Title = "";

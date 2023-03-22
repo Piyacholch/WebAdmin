@@ -41,7 +41,7 @@
         <button
           type="button"
           class="btn btn-warning mx-2"
-          @click="updateChatopen(data.title, data.description)"
+          @click="updateActivity(data.title, data.description)"
         >
           ตกลง
         </button>
@@ -66,7 +66,6 @@ export default {
     return {
       Text: null,
       data: {},
-      id: null, 
       title : "",
       description :"",
     };
@@ -82,12 +81,11 @@ export default {
           this.data = response.data;
         });
     },
-    updateChatopen() {
-      const title=this.title;
-      const description=this.description;
-      if(title == null || description == null ){
+    updateActivity() {
+
+      if(this.title == null || this.description == null ){
         alert("กรุณากรอกข้อมูลทุกช่อง!!");
-      }else if(title != null || description != null){
+      }else if(this.title != null || this.description != null){
       axios
         .patch(
           process.env.VUE_APP_BACKEND_BASE_URL+`/updateActivity/${this.$route.params.id}/${this.data?.title}/${this.data?.description}`
@@ -95,7 +93,8 @@ export default {
         .then((response) => {
           this.data = response.data;
           this.$router.push("/activity");
-        });}
+        });
+      }
     },
     reset() {
       this.data.title = "";
@@ -131,4 +130,4 @@ h2 {
     width: 90%;
   }
 }
-</style>>
+</style>

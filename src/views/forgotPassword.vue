@@ -43,6 +43,10 @@ export default {
   },
   methods: {
     forgotPassword() {
+      if(this.email == null){
+        alert("อีเมลไม่ถูกต้อง!!");
+      }else if(this.email != null){
+
       sendPasswordResetEmail(auth, this.user.email)
         .then(() => {
           alert("check your emailbox");
@@ -53,6 +57,7 @@ export default {
         .catch((error) => {
           console.log(error.message);
         });
+      }
     },
   },
 };

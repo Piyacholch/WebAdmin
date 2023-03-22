@@ -77,7 +77,10 @@ export default {
         alert("กรุณากรอกข้อมูลทุกช่อง!!");
       } else if (iddocs != null || Text != null) {
       axios
-        .post(process.env.VUE_APP_BACKEND_BASE_URL+"/insertchatopen/" + iddocs + "/" + Text)
+        .post(process.env.VUE_APP_BACKEND_BASE_URL+"/insertchatopen",{
+          iddocs:iddocs,
+          Text:Text
+        })
         .then((response) => {
           this.data = response.data;
           this.$router.push("/chatopen");

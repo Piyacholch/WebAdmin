@@ -35,9 +35,19 @@
           v-model="data.facebook" />
       </div>
       <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Link Facebook แหล่งช่วยเหลือ</label>
+        <input type="url" class="form-control" id="exampleFormControlInput2" placeholder="Link Facebook แหล่งช่วยเหลือ"
+          v-model="data.Linkfacebook" />
+      </div>
+      <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">LineID แหล่งช่วยเหลือ</label>
         <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Line ID แหล่งช่วยเหลือ"
           v-model="data.lineID" />
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Link Line แหล่งช่วยเหลือ</label>
+        <input type="url" class="form-control" id="exampleFormControlInput2" placeholder="Link Line แหล่งช่วยเหลือ"
+          v-model="data.uLinkline" />
       </div>
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">ข้อมูลเพิ่มเติม</label>
@@ -49,7 +59,7 @@
 
       <div class="footer d-flex justify-content-end mt-4">
         <button type="button" class="btn btn-warning mx-2"
-          @click="submit(data.iddocs, data.title, data.tel, data.facebook, data.lineID, data.description)">
+          @click="submit(data.iddocs, data.title, data.tel, data.facebook, data.Linkfacebook, data.lineID, data.Linkline, data.description)">
           ตกลง
         </button>
         <button type="button" class="btn btn-danger" @click="
@@ -76,27 +86,38 @@ export default {
       iddocs: "",
       title: "",
       tel: "",
+      Linkfacebook:"",
       facebook: "",
       lineID: "",
+      Linkline: "",
       description: "",
       data: [],
     };
   },
   methods: {
-
-    submit(iddocs, title, tel, facebook, lineID, description) {
-
-      // if (iddocs == null || title == null || tel == null || facebook == null || lineID == null || description == null ) {
+    submit(iddocs, title, tel, facebook, Linkfacebook, lineID, Linkline, description) {
+      // if (iddocs == null || title == null || tel == null|| facebook == null|| urlfacebook == null || lineID == null|| urllineID == null || description == null) {
       //   alert("กรุณากรอกข้อมูลทุกช่อง!!");
-      // } else if (iddocs != null || title != null || tel !== null || facebook !== null ||  lineID  !== null || description != null) {
+      // } else if (iddocs != null || title != null || tel != null|| facebook != null|| urlfacebook != null || lineID != null|| urllineID != null || description != null) {
+
       axios
-        .post(process.env.VUE_APP_BACKEND_BASE_URL + "/insertassistance/" + iddocs + "/" + title + "/" + tel + "/" + facebook + "/" + lineID + "/" + description)
+        .post(process.env.VUE_APP_BACKEND_BASE_URL + "/insertassistance/", {
+          iddocs : iddocs,
+          title : title,
+          tel : tel,
+          facebook : facebook,
+          Linkfacebook: Linkfacebook,
+          lineID : lineID, 
+          Linkline : Linkline,
+          description : description
+        })
         .then((response) => {
           this.data = response.data;
           this.$router.push("/assistance");
           // console.log(response.data)
         });
     }
+  // }
   },
   reset() {
     this.data.iddocs = "";

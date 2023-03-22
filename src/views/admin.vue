@@ -208,6 +208,11 @@ export default {
     sendEmail() {
       const email = this.email;
       const auth = getAuth();
+
+      if(email == null){
+        alert("กรุณากรอกอีเมล!!");
+      }else if(email != null){
+
       sendSignInLinkToEmail(auth, email, actionCodeSettings)
         .then(() => {
           console.log(email);
@@ -216,6 +221,7 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+      }
     },
     confirmdelete(id) {
       this.id = id;

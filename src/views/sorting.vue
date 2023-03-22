@@ -1,122 +1,92 @@
 <template>
-    <div class="p-10">
-      <div>
-        <input
-          type="text"
-          class="border-2 mb-5 rounded h-10 p-2"
-          placeholder="Search records"
-          @input="onSearch"
-        />
+  <div id="app">
+    <div class="container">
+      <div class="btn-wrapper">
+        <button class="btn" type="button" :disabled="currentPage === 1" @click="changePage(-1)"> Prev</button>
+        <button class="btn" type="button" :disabled="currentPage === 5" @click="changePage(1)">Next >></button>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th
-              v-for="(column, index) in columns"
-              v-bind:key="index"
-              class="border-2 p-2 text-left"
-              v-on:click="sortRecords(index)"
-            >
-              {{column}}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="(row, index) in rows"
-            v-bind:key="index"
-          >
-            <td
-              v-for="(rowItem, itemIndex) in row"
-              v-bind:key="itemIndex"
-              class="border-2 p-2"
-            >
-              {{rowItem}}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+
+      <div class="user" v-for="item in filteredList" :key="item">
+        <div class="text-wrapper">
+          <h3>
+            {{ item.id }}
+          </h3>
+          <h3>
+            {{ item.Text }}
+          </h3>
+        </div>
+      </div>
     </div>
-  </template>
-  
-  <script>
-  import axios from "axios";
-  const performSearch = (rows, term) => {
-    const results = rows.filter(
-      row => row.join(" ").toLowerCase().includes(term.toLowerCase())
-    )
-    return results;
-  }
-  export default {
-    name: 'Table',
-    data () {
-      return {
-        term: '',
-        rawRows: [
-            // {
-            //     Text:'',
-            //     id:''
-            // }
-        ],
-        Text:'',
-        id:'',
-        rows: [],
-        columns: [
-          'Name',
-          'Age',
-        ],
-        sortIndex: null,
-        sortDirection: null,
-        rowA:'',
-        rowB:''
-      }
-    },
-    methods: {
-        getchatopen() {
-            axios.get(process.env.VUE_APP_BACKEND_BASE_URL + "/chatclose").then((response) => {
-                this.rows = response.data;
+  </div>
+</template>
 
-                console.log(response);
+<script>
+import axios from 'axios';
+export default {
 
-            });
-        },
-      sortRecords (index) {
-        if (this.sortIndex === index) {
-          switch (this.sortDirection) {
-            case null:
-              this.sortDirection = 'asc';
-              break;
-            case 'asc':
-              this.sortDirection = 'desc';
-              break;
-            case 'desc':
-              this.sortDirection = null;
-              break;
-          }
-        } else {
-          this.sortDirection = 'asc'
-        }
-        this.sortIndex = index;
-        if (!this.sortDirection) {
-          this.rows = performSearch(this.rows, this.term);
-          return;
-        }
-        this.rows = this.rows.sort(
-          (rowA, rowB) => {
-            if (this.sortDirection === 'desc') {
-              return rowB[index].localeCompare(rowA[index]);
-            }
-            return rowA[index].localeCompare(rowB[index]);
-          }
-        )
-      },
-      onSearch (e) {
-        this.term = e.target.value;
-        this.rows = performSearch(this.rows, this.term);
-      }
+  data() {
+    return {
+      id: '',
+      Text: '',
+      loaddata: [],
+      list: [],
+      prePage: 5,
+      currentPage: 1,
+      sortBy: "iddocs",
+      first: "desc",
+      snapshot: "Text"
+
+    }
+
+  },
+  computed: {
+
+    filteredList() {
+      // cu1 filter 0~5
+      // cu2 filter 6~10
+      // (x-1)*n  .. x * n
+      console.log('this.currentPage', this.currentPage)
+      const star = (this.currentPage - 1) * this.prePage
+      const end = this.currentPage * this.prePage
+      console.log(star, end)
+      console.log('computed', this.loaddata)
+      console.log('result', this.loaddata.slice(star, end))
+      const result = this.loaddata.slice(star, end)
+      return result
+    }
+  },
+
+
+  mounted() {
+    this.getUsers();
+  },
+  methods: {
+    getUsers() {
+      axios.get(process.env.VUE_APP_BACKEND_BASE_URL + "/paginate", { params: { sortBy: this.sortBy, first: this.first} }).then((response) => {
+        this.loaddata = response.data;
+        console.log(response);
+      });
+      // axios.get(process.env.VUE_APP_BACKEND_BASE_URL + "/chatopen" )
+      //   .then(res => {
+      //     this.loaddata = res.data;
+      //   console.log(res);
+      //   })
+      //   .catch(error => {
+      //     console.log(error)
+      //   })
     },
-    mounted () {
-      this.getchatopen();
+    changePage(num) {
+      console.log('num', num)
+      console.log('this.currentPage', this.currentPage)
+      this.currentPage = this.currentPage + num
     }
   }
-  </script>
+
+
+}
+
+
+
+</script>
+
+<style></style>

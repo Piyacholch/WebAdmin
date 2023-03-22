@@ -81,9 +81,9 @@
         </div>
       </div>
       <div class="col-sm-4">
-        <!-- <div class="imformation">
+        <div class="imformation">
           <chartchat />
-        </div> -->
+        </div>
       </div>
     </div>
   </div>
@@ -94,12 +94,12 @@
 <script>
 import Navbar from "../components/Navbar.vue";
 import chartemotion from "../components/chart/emotion.vue";
-// import chartchat from "../components/chart/chat.vue";
+import chartchat from "../components/chart/chat.vue";
 import Breadcrumb from "../components/BC-dashboard.vue";
 import axios from "axios";
 
 export default {
-  components: { Navbar, Breadcrumb, chartemotion,},
+  components: { Navbar, Breadcrumb, chartemotion, chartchat},
   data() {
     return {
       loaddata:[],
@@ -135,41 +135,40 @@ export default {
         // console.log(userEmotion);
       });
     },
-    getlevel() {
-      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/getlevel").then((response) => {
-        this.level = response.data.length;
-        console.log("การประเมินอารมณ์ทั้งหมด : "+response.data.length);
+    // getlevel() {
+    //   axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/getlevel").then((response) => {
+    //     this.level = response.data.length;
+    //     console.log("การประเมินอารมณ์ทั้งหมด : "+response.data.length);
         
-        this.uncomfortable = response.data.filter((item)=>item.level == '1').length;
-        this.worried = response.data.filter((item)=>item.level == '2').length;
-        this.normal = response.data.filter((item)=>item.level == '3').length;
-        this.relaxed = response.data.filter((item)=>item.level == '4').length;
-        this.comfortable = response.data.filter((item)=>item.level == '5').length;
-        console.log("ไม่สบายใจมาก : "+this.uncomfortable);
-        console.log("ไม่สบายใจ : "+this.worried);
-        console.log("เฉยๆ : "+this.normal);
-        console.log("สบายใจ : "+this.relaxed);
-        console.log("สบายใจมาก :"+this.comfortable);
+    //     this.uncomfortable = response.data.filter((item)=>item.level == '1').length;
+    //     this.worried = response.data.filter((item)=>item.level == '2').length;
+    //     this.normal = response.data.filter((item)=>item.level == '3').length;
+    //     this.relaxed = response.data.filter((item)=>item.level == '4').length;
+    //     this.comfortable = response.data.filter((item)=>item.level == '5').length;
+    //     console.log("ไม่สบายใจมาก : "+this.uncomfortable);
+    //     console.log("ไม่สบายใจ : "+this.worried);
+    //     console.log("เฉยๆ : "+this.normal);
+    //     console.log("สบายใจ : "+this.relaxed);
+    //     console.log("สบายใจมาก :"+this.comfortable);
         
-      });
-    },
+    //   });
+    // },
  
-    getchatpositive() {
-      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/queryChatPositive").then((response) => {
-        this.chatpositive = response.data.length;
-        this.chatpositive = response.data;
-        console.log(response.data); 
-        console.log("ข้อความตอบกลับบวก : "+response.data.length); 
-      });
-    }
+    // getchatpositive() {
+    //   axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/queryChatPositive").then((response) => {
+    //     this.chatpositive = response.data.length;
+    //     this.chatpositive = response.data;
+    //     console.log("ข้อความตอบกลับบวก : "+response.data.length); 
+    //   });
+    // }
 
 
   },
   mounted() {
     this.getadmin();
     this.getuserline();
-    this.getlevel();
-    this.getchatpositive();
+    // this.getlevel();
+    // this.getchatpositive();
   }
 };
 </script>

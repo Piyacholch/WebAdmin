@@ -3,7 +3,7 @@
 
   <div class="Box pb-5">
     <div class="px-5">
-      <h1>แก้ไขกิจกรรมที่ชอบ</h1>
+      <h1>แก้ไขข้อความตอบกลับประโยคตอบกลับสุดท้าย</h1>
       <hr />
     </div>
     <div class="mb-5 px-5">
@@ -71,6 +71,9 @@ export default {
         });
     },
     updateChatopen() {
+      if (this.Text == null ) {
+        alert("กรุณากรอกข้อมูลทุกช่อง!!");
+      } else if (this.Text != null ) {
       axios
         .patch(
           process.env.VUE_APP_BACKEND_BASE_URL+`/updatechatClose/${this.$route.params.id}/${this.data?.Text}`
@@ -79,6 +82,7 @@ export default {
           this.data = response.data;
           this.$router.push("/chatclose");
         });
+      }
     },
     reset() {
       this.data.Text = "";

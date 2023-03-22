@@ -1,8 +1,9 @@
 <template>
-
   <head>
-    <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
   </head>
   <Navbar />
 
@@ -20,61 +21,120 @@
           <div class="px-5 mt-3 mb-5">
             <h2>แก้ไขโปรไฟล์ผู้ใช้</h2>
           </div>
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" placeholder="uid" v-model="uid" disabled />
-            <label for="floatingInput">UID</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" placeholder="uid" v-model="providerId"
-              disabled />
-            <label for="floatingInput">Provider</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" v-model="email"
-              disabled />
-            <label for="floatingInput">อีเมล</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" v-model="photoURL"
+        
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="floatingInput"
+                placeholder="uid"
+                v-model="uid"
+                disabled
               />
-            <label for="floatingInput">รูปภาพ</label>
-          </div>
-
-          <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" v-model="photoURL"
-              />
-            <label for="floatingInput">รูปภาพ</label>
-          </div>
-
-
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control icon" placeholder="dispassword" v-model="data.displayName" />
-            <div class="invalid-feedback">Please choose a username.</div>
-            <span class="material-symbols-outlined"> edit </span>
-            <label for="floatingdisplayname">ชื่อผู้ใช้</label>
-          </div>
-          <div class="form-floating mb-3">
-            <div class="form-floating">
-              <input type="tel" class="form-control" id="floatingphonenum" placeholder="0xxxxxxxxx"
-                v-model="data.phonenum" />
-              <span class="material-symbols-outlined"> edit </span>
-              <label for="floatingphotoURL">เบอร์โทร</label>
+              <label for="floatingInput">UID</label>
             </div>
-          </div>
-          <div class="footer d-flex justify-content-end mt-4" id="content_center">
-            <button type="button" class="btn btn-warning mx-2" @click="
-              Addata(uid, providerId, email, data.displayName, data.phonenum),
-              UpdateUser()
-            ">
-              ตกลง
-            </button>
-            <button type="button" class="btn btn-danger" @click="
-          $router.push(
-            `/`
-          )">
-              ยกเลิก
-            </button>
-          </div>
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="floatingInput"
+                placeholder="uid"
+                v-model="providerId"
+                disabled
+              />
+              <label for="floatingInput">Provider</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="email"
+                class="form-control"
+                id="floatingInput"
+                placeholder="name@example.com"
+                v-model="email"
+                disabled
+              />
+              <label for="floatingInput">อีเมล</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="email"
+                class="form-control"
+                id="floatingInput"
+                placeholder="name@example.com"
+                v-model="photoURL"
+              />
+              <span class="material-symbols-outlined"> edit </span>
+              <label for="floatingInput">รูปภาพ</label>
+            </div>
+
+            <!-- <div class="form-floating mb-3">
+              <input
+                type="email"
+                class="form-control"
+                id="floatingInput"
+                placeholder="name@example.com"
+                v-model="photoURL"
+              />
+              <label for="floatingInput">รูปภาพ</label>
+            </div> -->
+
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control icon"
+                placeholder="dispassword"
+                v-model="data.displayName"
+              />
+              <div class="invalid-feedback">Please choose a username.</div>
+              <span class="material-symbols-outlined"> edit </span>
+              <label for="floatingdisplayname">ชื่อผู้ใช้</label>
+            </div>
+            <div class="form-floating mb-3">
+              <div class="form-floating">
+                <input
+                  type="tel"
+                  id="typephone"
+                  name="phone"
+                  class="form-control"
+                  placeholder="0XXXXXXXXX"
+                  pattern="[0-9]{10}"
+                  v-model="data.phonenum"
+                  required
+                />
+                <!-- <input type="tel" class="form-control" id="floatingphonenum" placeholder="0xxxxxxxxx"
+                v-model="data.phonenum" /> -->
+                <span class="material-symbols-outlined"> edit </span>
+                <label for="floatingphotoURL">เบอร์โทร</label>
+              </div>
+            </div>
+            <div
+              class="footer d-flex justify-content-end mt-4"
+              id="content_center"
+            >
+              <button
+                type="button"
+                class="btn btn-warning mx-2"
+                @click="
+                  Addata(
+                    uid,
+                    providerId,
+                    email,
+                    data.displayName,
+                    data.phonenum
+                  ),
+                    UpdateUser()
+                "
+              >
+                ตกลง
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger"
+                @click="$router.push(`/`)"
+              >
+                ยกเลิก
+              </button>
+            </div>
         </div>
       </div>
     </div>
@@ -108,7 +168,10 @@ export default {
   methods: {
     getAdminByID() {
       axios
-        .get(process.env.VUE_APP_BACKEND_BASE_URL + `/AdminByID/${this.$route.params.id}`)
+        .get(
+          process.env.VUE_APP_BACKEND_BASE_URL +
+            `/AdminByID/${this.$route.params.id}`
+        )
         .then((response) => {
           this.data = response.data;
           console.log(response.data);
@@ -140,28 +203,35 @@ export default {
       }
     },
     Addata(uid, providerId, email, displayName, phonenum) {
-      //     if(displayName == displayName|| name == null ||phonenum==null ){
-      //   alert("กรุณากรอกข้อมูลทุกช่อง!!");
-      // }else if(displayName != displayName|| name != null || phonenum != null ){
-      axios
-        .post(
-          process.env.VUE_APP_BACKEND_BASE_URL +
-          "/insertadmindata/" +
-          uid +
-          "/" +
-          providerId +
-          "/" +
-          email +
-          "/" +
-          displayName +
-          "/" +
-          phonenum
-        )
-        .then((response) => {
-          this.data = response.data;
-          this.$router.push("/");
-          // console.log(response.data)
-        });
+      if (
+        this.displayName == null ||
+        this.phonenum == null
+      ) {
+        alert("กรุณากรอกข้อมูลทุกช่อง!!");
+      } else if (
+        this.displayName != null ||
+        this.phonenum != null
+      ) {
+        axios
+          .post(
+            process.env.VUE_APP_BACKEND_BASE_URL +
+              "/insertadmindata/" +
+              uid +
+              "/" +
+              providerId +
+              "/" +
+              email +
+              "/" +
+              displayName +
+              "/" +
+              phonenum
+          )
+          .then((response) => {
+            this.data = response.data;
+            this.$router.push("/");
+            // console.log(response.data)
+          });
+      }
     },
   },
   created() {
@@ -263,26 +333,28 @@ h1 {
 .footer {
   width: 80%;
 }
-#content_center{
+
+#content_center {
   width: 90%;
-  
 }
+
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .container-fluid {
     background-color: #fff8e1;
     height: 75rem;
   }
-  h2{
+
+  h2 {
     font-size: 18px;
     font-weight: bold;
   }
+
   .box-item[data-v-2dc74e42] {
     width: 90%;
     padding-left: 0px !important;
     padding-right: 0px !important;
     margin: auto;
-}
-
+  }
 }
 
 @media screen and (max-width: 767px) {

@@ -83,6 +83,9 @@ export default {
         });
     },
     updateChatopen() {
+      if (this.Text == null ) {
+        alert("กรุณากรอกข้อมูลทุกช่อง!!");
+      } else if (this.Text != null ) {
       axios
         .patch(
           process.env.VUE_APP_BACKEND_BASE_URL+`/updatechatOpen/${this.$route.params.id}/${this.data?.Text}`
@@ -91,6 +94,7 @@ export default {
           this.data = response.data;
           this.$router.push("/chatopen");
         });
+      }
     },
     reset() {
       this.data.Text = "";
