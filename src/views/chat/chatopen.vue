@@ -59,7 +59,7 @@
       <div class="row block-item block-bm" v-for="item in filtersearch" :key="item">
       
 
-        
+        <div class="col-1">{{ item.id }}</div>
         <div class="col-1">{{ item.id }}</div>
         <div class="col-7">{{ item.Text }}</div>
 
