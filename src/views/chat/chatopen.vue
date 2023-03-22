@@ -37,7 +37,7 @@
 
     <div class="row srot px-5">
       <div class="col-2 sortby">
-          <div class="input-group mb-3 d-flex justify-content-start">
+          <div class="input-group mb-3 d-flex justify-content-start input-sort">
             <select class="form-select" aria-label="Default select example" v-model="sortBy" @click="getchatopen()">
               <option selected>Open this select menu</option>
               <option value="iddocs">ID</option>
@@ -213,6 +213,10 @@ h1 {
 
 .input-group {
   width: 60%;
+  padding-bottom: 20px;
+}
+.input-sort{
+  width: 100% !important;
   padding-bottom: 20px;
 }
 .sortby{
