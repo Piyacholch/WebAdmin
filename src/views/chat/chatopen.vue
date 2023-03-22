@@ -35,9 +35,9 @@
       </div>
     </div>
 
-    <div class="srot">
-      <div class="col-1 search-res p-0">
-          <div class="input-group mb-3">
+    <div class="row srot px-5">
+      <div class="col-2 sortby">
+          <div class="input-group mb-3 d-flex justify-content-start">
             <select class="form-select" aria-label="Default select example" v-model="sortBy" @click="getchatopen()">
               <option selected>Open this select menu</option>
               <option value="iddocs">ID</option>
@@ -58,8 +58,6 @@
     <div class="block">
       <div class="row block-item block-bm" v-for="item in filtersearch" :key="item">
       
-
-        <div class="col-1">{{ item.id }}</div>
         <div class="col-1">{{ item.id }}</div>
         <div class="col-7">{{ item.Text }}</div>
 
@@ -214,8 +212,11 @@ h1 {
 }
 
 .input-group {
-  width: 90%;
+  width: 60%;
   padding-bottom: 20px;
+}
+.sortby{
+  width: 20%;
 }
 
 .col-flex {
