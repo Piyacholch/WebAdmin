@@ -46,7 +46,7 @@
           </div>
         </div>
         <div class="col-7 search-res p-0">
-          <div class="input-group mb-3">
+          <div class="input-group mb-3 sort-frist">
             <select class="form-select" aria-label="Default select example" v-model="first" @click="getchatopen()">
               <option selected>Open this select menu</option>
               <option value="desc">มาก-น้อย</option>
