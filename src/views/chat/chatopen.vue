@@ -3,6 +3,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   </head>
   <Navbar />
+
   <div class="Box">
     <div class="px-5">
       <h1>ชุดข้อความตอบกลับประโยคทักทาย</h1>
@@ -11,48 +12,31 @@
     <div class="mb-5 px-5">
       <Breadcrumb />
     </div>
-
     <div class="search">
       <div class="row row-menu">
-        <div class="col-4 search-res p-0">
+        <div class="col-lg-9 search-res p-0">
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Search.." aria-describedby="button-addon2"
-              v-model="search" />
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search.."
+              aria-describedby="button-addon2"
+              v-model="search"
+            />
           </div>
         </div>
-
-        <div class="col-4 search-res p-0">
-          <div class="input-group mb-3">
-            <select class="form-select" aria-label="Default select example" v-model="first" @click="getchatopen()">
-              <option selected>Open this select menu</option>
-              <option value="desc">มาก-น้อย</option>
-              <option value="asc">น้อย-มาก</option>
-            </select>
-          </div>
-        </div>
-
-
-
-        <!-- <button>
-          <span class="material-symbols-outlined">
-            sort_by_alpha
-          </span>
-        </button> -->
-
-
-
-
         <div class="col-lg-3 col-flex">
           <a href="/insertchatopen">
-            <button type="button" class="btn btn-success">เพิ่มข้อความ</button>
+            <button type="button" class="btn btn-success">
+              เพิ่มข้อความ
+            </button>
           </a>
         </div>
       </div>
     </div>
 
-    <div class="block">
-      <div class="row block-item block-bm" v-for="item in filtersearch" :key="item">
-        <div class="col-1 search-res p-0">
+    <div class="srot">
+      <div class="col-1 search-res p-0">
           <div class="input-group mb-3">
             <select class="form-select" aria-label="Default select example" v-model="sortBy" @click="getchatopen()">
               <option selected>Open this select menu</option>
@@ -70,6 +54,10 @@
             </select>
           </div>
         </div>
+    </div>
+    <div class="block">
+      <div class="row block-item block-bm" v-for="item in filtersearch" :key="item">
+      
 
         
         <div class="col-1">{{ item.id }}</div>
