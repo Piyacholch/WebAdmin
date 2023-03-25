@@ -13,54 +13,74 @@
       <div class="row row-menu">
         <div class="col-lg-9 search-res p-0">
           <div class="input-group mb-3">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Search.."
-              aria-describedby="button-addon2"
-              v-model="search"
-            />
+            <input type="text" class="form-control" placeholder="Search.." aria-describedby="button-addon2"
+              v-model="search" />
           </div>
         </div>
-        <div class="col-lg-3 col-flex">
-          <button
-            type="button"
-            class="btn btn-success fs-6"
-            id="insertbtn"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          >
-            เพิ่มแอดมิน
-          </button>
-        </div>
+
       </div>
     </div>
 
-    <div class="grid px-5 mt-3">
-      <div class="item" v-for= "item in filtersearch"
-        :key="item">
-        <div class="content px-3">
-          <!-- <div class="img">
-            <img :src="item.photoURL" alt="img-profile" class="profile-img" />
-          </div> -->
-          <div class="content1">
-            <p class="displayname">{{ item.displayName }}</p>
-            <p class="email">{{ item.email }}</p>
-            <p class="phone">{{ item.phonenum }}</p>
-            <button
-            type="button"
-            class="btn btn-danger delete delete-res"
-            data-bs-toggle="modal"
+    <div class="search mt-0">
+      <div class="row row-menu sort">
+        <div class="col-2 sortby p-0 mt-3">
+          <div class="sortby-input mt-2">
+            <p class="p-sortby fw-bold mb-2">Sort By:</p>
+          </div>
+          <div class="input-group mb-3 d-flex justify-content-start input-sort">
+            <select class="form-select" aria-label="Default select example" v-model="sortBy" @click="getassitance()">
+              <option value="iddocs">หมายเลขเอกสาร</option>
+              <option value="Text">ชื่อแหล่งช่วยเหลือ</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-2 sort px-0 mt-3">
+          <div class="sortby-input mt-2">
+            <p class="p-sortby fw-bold mb-2">Type:</p>
+          </div>
+          <div class="input-group mb-3 sort-frist">
+            <select class="form-select" aria-label="Default select example" v-model="first" @click="getassitance()">
+              <option value="desc">ล่าสุด-ลำดับแรก</option>
+              <option value="asc">ลำดับแรก-ล่าสุด</option>
+            </select>
+          </div>
+        </div>
+        <div class="div_add_admin" >
+          <button class="btn btn-success add " id="btn_del"  data-bs-toggle="modal"
+            data-bs-target="#exampleModal">เพิ่มแอดมิน</button>
+        </div>
+        <div class="admin_list">
+          <div class="grid" style="text-align: center;" id="thead">
+            <div class="g-col-6 g-col-md-4">ชื่อ</div>
+            <div class="g-col-6 g-col-md-4">อีเมล</div>
+            <div class="g-col-6 g-col-md-4">เบอร์โทร</div>
+            <div class="g-col-6 g-col-md-4">
+              จัดการ
+            </div>
+
+          </div>
+          <div class="item" v-for="item in filtersearch" :key="item">
+            <div class="grid" id="tbody">
+              <div class="g-col-6 g-col-md-4" style="text-align: left;">{{ item.displayName }}</div>
+              <div class="g-col-6 g-col-md-4" style="text-align: left;">{{ item.email }}</div>
+              <div class="g-col-6 g-col-md-4" style="text-align: center;">{{ item.phonenum }}</div>
+              <div class="g-col-6 g-col-md-4" style="text-align: center;"> <button class="btn btn-danger delete delete-res" id="btn_del"   data-bs-toggle="modal"
             data-bs-target="#staticBackdrop"
             @click="confirmdelete(item.id)"
-          >
-            <span class="material-icons fs-6"> ลบ </span>
-          </button>
-            <!-- <button type="button" class="btn btn-danger delete" @click="deleteuser(id)">ลบ</button> -->
+          >ลบ</button></div>
+   
+
+            </div>
           </div>
         </div>
       </div>
+
     </div>
+
+
+  </div>
+
+
 
    <!-- Modal deleteuser-->
    <div
@@ -109,9 +129,8 @@
       </div>
 
 
-
-    <!-- Modal email-->
-    <div
+<!-- Modal email-->
+<div
       class="modal fade"
       id="exampleModal"
       tabindex="-1"
@@ -162,8 +181,9 @@
         </div>
       </div>
     </div>
-  </div>
-  {{ loaddata.displayName }}
+
+
+
 </template>
 
 <script>
@@ -200,7 +220,7 @@ export default {
   },
   methods: {
     getadmin() {
-      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/Admin").then((response) => {
+      axios.get(process.env.VUE_APP_BACKEND_BASE_URL + "/Admin").then((response) => {
         this.loaddata = response.data;
         // console.log(response);
       });
@@ -209,31 +229,31 @@ export default {
       const email = this.email;
       const auth = getAuth();
 
-      if(email == null){
+      if (email == null) {
         alert("กรุณากรอกอีเมล!!");
-      }else if(email != null){
+      } else if (email != null) {
 
-      sendSignInLinkToEmail(auth, email, actionCodeSettings)
-        .then(() => {
-          console.log(email);
-          localStorage.setItem("emailForSignIn", email);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+        sendSignInLinkToEmail(auth, email, actionCodeSettings)
+          .then(() => {
+            console.log(email);
+            localStorage.setItem("emailForSignIn", email);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }
     },
     confirmdelete(id) {
       this.id = id;
     },
     deleteuser(id) {
-      axios.delete(process.env.VUE_APP_BACKEND_BASE_URL+"/deleteuser/" + id).then(() => {
+      axios.delete(process.env.VUE_APP_BACKEND_BASE_URL + "/deleteuser/" + id).then(() => {
         this.id = id;
         this.getadmin();
         // console.log(response.data)
       });
     },
-    
+
   },
   computed: {
     filtersearch() {
@@ -250,16 +270,47 @@ export default {
 
 <style scoped>
 .Box {
-  background-color: #fff8e1;
+  background-color: #fff;
   height: 50rem;
 }
+
 h1 {
   padding-top: 40px;
   padding-bottom: 10px;
 }
+
 .input-group {
-  width: 50%;
+  width: 48%;
 }
+
+.form-select {
+  border: 2px solid #ffbd59;
+  border-radius: 15px;
+}
+
+.input-group {
+  width: 48%;
+
+}
+
+.input-sort {
+  width: 90% !important;
+  padding-bottom: 20px;
+}
+
+.sortby {
+  width: 20%;
+}
+
+.p-sortby {
+  font-size: 16px;
+}
+
+.sort-frist {
+  width: 100% !important;
+  padding-bottom: 20px;
+}
+
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -280,41 +331,49 @@ h1 {
   border-radius: 12px;
   box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.11);
 }
+
 .row-menu {
   width: 90%;
   margin: auto;
 }
+
 .bnt-insert {
   display: flex;
   justify-content: end;
   align-items: flex-end;
   padding-bottom: 30px;
 }
+
 .form-control {
   border: 5px solid #ffbd59;
   border-radius: 15px;
 }
+
 .insert {
   width: 40%;
 }
+
 .profile-img {
   width: 100px;
   height: 100px;
   border: 3px solid #ffbd59;
   border-radius: 50%;
 }
+
 .displayname {
   margin-top: 10px;
   color: #ffbd59;
   font-size: 22px;
   font-weight: bold;
 }
+
 .email {
   font-size: 1rem;
   font-weight: bold;
   font-style: italic;
   color: #c2c2c2;
 }
+
 .phone {
   font-size: 1rem;
   font-weight: bold;
@@ -322,35 +381,71 @@ h1 {
   color: #c2c2c2;
   margin-top: -10px;
 }
+
 .col-flex {
   justify-content: end;
 }
+
 .delete {
   width: 80%;
 }
+
 .input-email {
   width: 80%;
   margin: auto;
 }
-.col-6 {
-  padding: 5px;
-}
+
+
+
 .confirm-1 {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
 }
+
 .confirm {
   width: 85% !important;
 }
+
 .cancel {
   width: 85% !important;
 }
+
+#thead {
+  padding: 0.9rem 0.9rem;
+
+  background-color: #ffbd59;
+  font-weight: bold;
+  border-radius: 8px;
+  border: 0.5px solid #e9e9e9;
+}
+
+#tbody {
+  padding: 0.7rem 0.7rem;
+  background-color: #fff;
+  margin-top: 1%;
+  border-radius: 8px;
+  border: 0.5px solid #e9e9e9;
+  box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.13);
+
+}
+
+.div_add_admin{
+  text-align: right;
+  margin-bottom: 1%;
+}
+
+#btn_del {
+  border-radius: 4px;
+  width: 120px;
+}
+
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .Box {
-    background-color: #fff8e1;
+    background-color: #fff;
     height: 80rem;
   }
+
   .grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -359,28 +454,35 @@ h1 {
     column-gap: 13px;
     row-gap: 20px;
   }
+
   .content {
     width: 70%;
     margin: auto;
   }
-  .col-flex{
+
+  .col-flex {
     text-align: end;
   }
-  #insertbtn{
+
+  #insertbtn {
     width: 50%;
     margin-bottom: 20px;
   }
 }
+
 @media screen and (max-width: 767px) {
-  
+
   .Box {
-    background-color: #fff8e1;
+    background-color: #fff;
+    /* background-color: #fff8e1; */
     height: auto;
   }
+
   .search-res {
     padding: 0px;
     display: contents !important;
   }
+
   .grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -401,10 +503,12 @@ h1 {
     border-radius: 12px;
     box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.11);
   }
-  .col-flex{
+
+  .col-flex {
     text-align: end;
   }
-  #insertbtn{
+
+  #insertbtn {
     width: 50%;
   }
 }

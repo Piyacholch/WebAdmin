@@ -19,6 +19,7 @@
       <Breadcrumb />
     </div>
 
+   
     <div class="search">
       <div class="row row-menu">
         <div class="col-lg-9 search-res p-0">
@@ -32,9 +33,40 @@
             />
           </div>
         </div>
-        <div class="col-lg-3 col-flex">
+      </div>
+    </div>
+
+   
+    <div class="search mt-0">
+      <div class="row row-menu sort">
+        <div class="col-2 sortby p-0 mt-3">
+          <div class="sortby-input mt-2">
+            <p class="p-sortby fw-bold mb-2">Sort By:</p>
+          </div>
+          <div class="input-group mb-3 d-flex justify-content-start input-sort">
+            <select class="form-select" aria-label="Default select example" v-model="sortBy" @click="getchatstimulate()">
+              <option value="iddocs">หมายเลขเอกสาร</option>
+              <option value="Text">ข้อความ</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-2 sort px-0 mt-3">
+          <div class="sortby-input mt-2">
+            <p class="p-sortby fw-bold mb-2">Type:</p>
+          </div>
+          <div class="input-group mb-3 sort-frist">
+            <select class="form-select" aria-label="Default select example" v-model="first" @click="getchatstimulate()">
+              <option value="desc">ล่าสุด-ลำดับแรก</option>
+              <option value="asc">ลำดับแรก-ล่าสุด</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col col-flex d-flex justify-content-end mt-5">
           <a href="/insertchatstimulate">
-            <button type="button" class="btn btn-success">เพิ่มข้อความ</button>
+            <button type="button" class="btn btn-success">
+              เพิ่มข้อความ
+            </button>
           </a>
         </div>
       </div>
@@ -46,15 +78,14 @@
         v-for="item in filtersearch"
         :key="item"
       >
+        <!-- <div class="col-1">{{ item.id }}</div> -->
         <div class="col-1">{{ item.id }}</div>
         <div class="col-7">{{ item.Text }}</div>
         <div class="col-3 button-1">
           <button
             type="button"
             class="btn btn-primary edit"
-            @click="
-              $router.push(`/updatechatstimulate/${item.id}`)
-            "
+            @click="$router.push(`/updatechatstimulate/${item.id}`)"
           >
             แก้ไข
           </button>
@@ -76,7 +107,7 @@
           <button
             type="button"
             class="btn btn-primary edit edit-res" id="control_btn_mobile"
-            @click="$router.push(`/updatechatopen/${item.id}`)"
+            @click="$router.push(`/updatechatnegative/${item.id}`)"
           >
             <span class="material-icons"> mode_edit </span>
           </button>
@@ -153,7 +184,7 @@ export default {
   components: { Navbar, Breadcrumb },
   watch: {
     search() {
-      this.getchatopen();
+      this.getchatstimulate();
     },
   },
   data() {
@@ -162,14 +193,16 @@ export default {
       id: "",
       search: "",
       Text: "",
+      sortBy: "iddocs",
+      first: "desc",
     };
   },
   mounted() {
-    this.getchatopen();
+    this.getchatstimulate();
   },
   methods: {
-    getchatopen() {
-      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/chatstimulate").then((response) => {
+    getchatstimulate() {
+      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/chatstimulate", { params: { sortBy: this.sortBy, first: this.first } }).then((response) => {
         this.loaddata = response.data;
         // console.log(response);
       });
@@ -180,7 +213,7 @@ export default {
     deletechat(id) {
       axios.delete(process.env.VUE_APP_BACKEND_BASE_URL+"/chatstimulate/" + id).then(() => {
         this.id = id;
-        this.getchatopen();
+        this.getchatstimulate();
         // console.log(response.data)
       });
     },
@@ -197,7 +230,7 @@ export default {
   
   <style scoped>
 .Box {
-  background-color: #fff8e1;
+  background-color: #fff;
   height: auto;
 }
 h1 {
@@ -205,10 +238,9 @@ h1 {
   padding-bottom: 10px;
 }
 .form-control {
-  border: 5px solid #ffbd59;
+  border: 2px solid #ffbd59;
   border-radius: 15px;
 }
-
 .row-menu {
   width: 90%;
   margin: auto;
@@ -226,6 +258,31 @@ h1 {
   width: 40%;
   padding-bottom: 20px;
 }
+.form-select {
+  border: 2px solid #ffbd59;
+  border-radius: 15px;
+}
+.input-group {
+  width: 48%;
+  
+}
+
+.input-sort {
+  width: 90% !important;
+  padding-bottom: 20px;
+}
+
+.sortby {
+  width: 20%;
+}
+.p-sortby{
+font-size: 16px;
+}
+
+.sort-frist {
+  width: 100% !important;
+  padding-bottom: 20px;
+}
 .col-flex {
   display: flex;
   justify-content: end;
@@ -238,7 +295,7 @@ h1 {
 }
 .block-item {
   border-radius: 8px;
-  background-color: #ffff;
+  background-color: #fff;
   margin-bottom: 10px;
   width: 90%;
   margin: auto;
@@ -279,7 +336,7 @@ h1 {
 }
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .Box {
-    background-color: #fff8e1;
+    background-color: #fff;
     height: 80rem;
   }
   .button-1 {
@@ -302,7 +359,7 @@ h1 {
     height: 30px;
   }
   .Box {
-    background-color: #fff8e1;
+    background-color: #fff;
     height: auto;
   }
   h1 {

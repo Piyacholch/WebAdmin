@@ -105,8 +105,8 @@ export default {
   
 <style  scoped>
 .Box {
-  background-color: #fff8e1;
-  height: auto;
+  background-color: #ffff;
+  height: 60rem;
 }
 h1 {
   padding-top: 40px;

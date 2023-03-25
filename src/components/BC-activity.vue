@@ -10,8 +10,8 @@
         <ol class="default-breadcrumb">
           <li class="crumb">
             <div class="link">
-              <a href="/dashboard" >
-                <span class="material-snedymbols-outli"> home </span>
+              <a href="/dashboard" class="fa fa-home">
+                <span class="material-symbols-outlined"> home </span>
               </a>
             </div>
           </li>

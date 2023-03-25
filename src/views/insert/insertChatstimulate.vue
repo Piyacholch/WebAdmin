@@ -96,7 +96,7 @@ export default {
   
   <style  scoped>
 .Box {
-  background-color: #fff8e1;
+  background-color: #ffff;
   height: 50rem;
 }
 
@@ -117,7 +117,8 @@ h2 {
 }
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .Box {
-    background-color: #fff8e1;
+    background-color: #ffff;
+;
     height: 80rem;
   }
   .box {
@@ -126,7 +127,7 @@ h2 {
 }
 @media screen and (max-width: 767px) {
   .Box {
-    background-color: #fff8e1;
+    background-color: #ffff;
     height: 55rem;
   }
   .box {

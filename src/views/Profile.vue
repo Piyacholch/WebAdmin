@@ -19,11 +19,11 @@
     <div class="box">
       <div class="box-item">
         <div class="img">
-          <img :src="photoURL" alt="img-profile" class="photoURL mb-3" />
+          <img :src="photoURL" alt="img-profile" class="photoURL mb-0" />
         </div>
         <div class="content ">
           <p class="dispalyname">{{ displayName }}</p>
-          <p class="email mb-3">{{ email }}</p>
+          <p class="email mb-5">{{ email }}</p>
           <div class="form">
             <div class="form-floating mb-3">
               <input
@@ -306,7 +306,7 @@ export default {
 
 <style scoped>
 .container-fluid {
-  background-color: #fff8e1;
+  background-color: #ffff;
   height: auto;
 }
 h1 {
@@ -327,8 +327,8 @@ h1 {
 }
 
 .photoURL {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border: 3px solid #ffbd59;
   border-radius: 50%;
 }
@@ -338,7 +338,7 @@ h1 {
   text-align: center;
 }
 .email {
-  font-size: 16px;
+  font-size: 18px;
   text-align: center;
   color: gray;
 }

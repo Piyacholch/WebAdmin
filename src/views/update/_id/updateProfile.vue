@@ -1,9 +1,7 @@
 <template>
   <head>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
-    />
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
   </head>
   <Navbar />
 
@@ -18,56 +16,35 @@
     <div class="box">
       <div class="box-item">
         <div class="content">
-          <div class="px-5 mt-3 mb-5">
+          <div class="px-5 mt-0 mb-3">
             <h2>แก้ไขโปรไฟล์ผู้ใช้</h2>
           </div>
-        
-            <div class="form-floating mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="floatingInput"
-                placeholder="uid"
-                v-model="uid"
-                disabled
-              />
-              <label for="floatingInput">UID</label>
-            </div>
-            <div class="form-floating mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="floatingInput"
-                placeholder="uid"
-                v-model="providerId"
-                disabled
-              />
-              <label for="floatingInput">Provider</label>
-            </div>
-            <div class="form-floating mb-3">
-              <input
-                type="email"
-                class="form-control"
-                id="floatingInput"
-                placeholder="name@example.com"
-                v-model="email"
-                disabled
-              />
-              <label for="floatingInput">อีเมล</label>
-            </div>
-            <div class="form-floating mb-3">
-              <input
-                type="email"
-                class="form-control"
-                id="floatingInput"
-                placeholder="name@example.com"
-                v-model="photoURL"
-              />
-              <span class="material-symbols-outlined"> edit </span>
-              <label for="floatingInput">รูปภาพ</label>
-            </div>
 
-            <!-- <div class="form-floating mb-3">
+
+          <div class="img mb-3">
+            <img :src="photoURL" alt="img-profile" class="photoURL mb-0" />
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="uid" v-model="uid" disabled />
+            <label for="floatingInput">UID</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="uid" v-model="providerId" disabled />
+            <label for="floatingInput">Provider</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" v-model="email"
+              disabled />
+            <label for="floatingInput">อีเมล</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+              v-model="photoURL" />
+            <span class="material-symbols-outlined"> edit </span>
+            <label for="floatingInput">รูปภาพ</label>
+          </div>
+
+          <!-- <div class="form-floating mb-3">
               <input
                 type="email"
                 class="form-control"
@@ -78,63 +55,39 @@
               <label for="floatingInput">รูปภาพ</label>
             </div> -->
 
-            <div class="form-floating mb-3">
-              <input
-                type="text"
-                class="form-control icon"
-                placeholder="dispassword"
-                v-model="data.displayName"
-              />
-              <div class="invalid-feedback">Please choose a username.</div>
-              <span class="material-symbols-outlined"> edit </span>
-              <label for="floatingdisplayname">ชื่อผู้ใช้</label>
-            </div>
-            <div class="form-floating mb-3">
-              <div class="form-floating">
-                <input
-                  type="tel"
-                  id="typephone"
-                  name="phone"
-                  class="form-control"
-                  placeholder="0XXXXXXXXX"
-                  pattern="[0-9]{10}"
-                  v-model="data.phonenum"
-                  required
-                />
-                <!-- <input type="tel" class="form-control" id="floatingphonenum" placeholder="0xxxxxxxxx"
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control icon" placeholder="dispassword" v-model="data.displayName" />
+            <div class="invalid-feedback">Please choose a username.</div>
+            <span class="material-symbols-outlined"> edit </span>
+            <label for="floatingdisplayname">ชื่อผู้ใช้</label>
+          </div>
+          <div class="form-floating mb-3">
+            <div class="form-floating">
+              <input type="tel" id="typephone" name="phone" class="form-control" placeholder="0XXXXXXXXX"
+                pattern="[0-9]{10}" v-model="data.phonenum" required />
+              <!-- <input type="tel" class="form-control" id="floatingphonenum" placeholder="0xxxxxxxxx"
                 v-model="data.phonenum" /> -->
-                <span class="material-symbols-outlined"> edit </span>
-                <label for="floatingphotoURL">เบอร์โทร</label>
-              </div>
+              <span class="material-symbols-outlined"> edit </span>
+              <label for="floatingphotoURL">เบอร์โทร</label>
             </div>
-            <div
-              class="footer d-flex justify-content-end mt-4"
-              id="content_center"
-            >
-              <button
-                type="button"
-                class="btn btn-warning mx-2"
-                @click="
-                  Addata(
-                    uid,
-                    providerId,
-                    email,
-                    data.displayName,
-                    data.phonenum
-                  ),
-                    UpdateUser()
-                "
-              >
-                ตกลง
-              </button>
-              <button
-                type="button"
-                class="btn btn-danger"
-                @click="$router.push(`/`)"
-              >
-                ยกเลิก
-              </button>
-            </div>
+          </div>
+          <div class="footer d-flex justify-content-end mt-4" id="content_center">
+            <button type="button" class="btn btn-warning mx-2" @click="
+              Addata(
+                uid,
+                providerId,
+                email,
+                data.displayName,
+                data.phonenum
+              ),
+              UpdateUser()
+            ">
+              ตกลง
+            </button>
+            <button type="button" class="btn btn-danger" @click="$router.push(`/`)">
+              ยกเลิก
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -170,7 +123,7 @@ export default {
       axios
         .get(
           process.env.VUE_APP_BACKEND_BASE_URL +
-            `/AdminByID/${this.$route.params.id}`
+          `/AdminByID/${this.$route.params.id}`
         )
         .then((response) => {
           this.data = response.data;
@@ -215,16 +168,16 @@ export default {
         axios
           .post(
             process.env.VUE_APP_BACKEND_BASE_URL +
-              "/insertadmindata/" +
-              uid +
-              "/" +
-              providerId +
-              "/" +
-              email +
-              "/" +
-              displayName +
-              "/" +
-              phonenum
+            "/insertadmindata/" +
+            uid +
+            "/" +
+            providerId +
+            "/" +
+            email +
+            "/" +
+            displayName +
+            "/" +
+            phonenum
           )
           .then((response) => {
             this.data = response.data;
@@ -252,7 +205,7 @@ export default {
 
 <style scoped>
 .container-fluid {
-  background-color: #fff8e1;
+  background-color: #ffff;
   height: auto;
 }
 
@@ -276,8 +229,8 @@ h1 {
 }
 
 .photoURL {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border: 3px solid #ffbd59;
   border-radius: 50%;
 }
@@ -321,6 +274,7 @@ h1 {
   margin: auto;
   text-align: center;
 }
+
 
 /* .photoURL mb-3{
   width: 80%;

@@ -13,50 +13,58 @@
 
     <div class="box p-4">
       <h2>เพิ่มแหล่งช่วยเหลือ</h2>
+<div class="row">
+      <div class="col">
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">หมายเลขเอกสาร</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="id docs"
+            v-model="data.iddocs" />
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">เบอร์โทรศัพท์แหล่งช่วยเหลือ</label>
+          <input type="url" class="form-control" id="exampleFormControlInput2"
+            placeholder="เพิ่มเบอร์โทรศัพท์แหล่งช่วยเหลือ" v-model="data.tel" />
+        </div>
 
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">หมายเลขเอกสาร</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="id docs"
-          v-model="data.iddocs" />
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">ชื่อแหล่งช่วยเหลือ</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="เพิ่มชื่อแหล่งช่วยเหลือ"
-          v-model="data.title" />
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">เบอร์โทรศัพท์แหล่งช่วยเหลือ</label>
-        <input type="url" class="form-control" id="exampleFormControlInput2"
-          placeholder="เพิ่มเบอร์โทรศัพท์แหล่งช่วยเหลือ" v-model="data.tel" />
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Facebook แหล่งช่วยเหลือ</label>
-        <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Facebook Page แหล่งช่วยเหลือ"
-          v-model="data.facebook" />
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Link Facebook แหล่งช่วยเหลือ</label>
-        <input type="url" class="form-control" id="exampleFormControlInput2" placeholder="Link Facebook แหล่งช่วยเหลือ"
-          v-model="data.Linkfacebook" />
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">LineID แหล่งช่วยเหลือ</label>
-        <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Line ID แหล่งช่วยเหลือ"
-          v-model="data.lineID" />
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Link Line แหล่งช่วยเหลือ</label>
-        <input type="url" class="form-control" id="exampleFormControlInput2" placeholder="Link Line แหล่งช่วยเหลือ"
-          v-model="data.uLinkline" />
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">ข้อมูลเพิ่มเติม</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" placeholder="ข้อมูลเพิ่มเติม"
-          v-model="data.description"></textarea>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Link Facebook แหล่งช่วยเหลือ</label>
+          <input type="url" class="form-control" id="exampleFormControlInput2" placeholder="Link Facebook แหล่งช่วยเหลือ"
+            v-model="data.Linkfacebook" />
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">LineID แหล่งช่วยเหลือ</label>
+          <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Line ID แหล่งช่วยเหลือ"
+            v-model="data.lineID" />
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Link Line แหล่งช่วยเหลือ</label>
+          <input type="url" class="form-control" id="exampleFormControlInput2" placeholder="Link Line แหล่งช่วยเหลือ"
+            v-model="data.uLinkline" />
+        </div>
+        
+        
       </div>
 
+      <div class="col">
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">ชื่อแหล่งช่วยเหลือ</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="เพิ่มชื่อแหล่งช่วยเหลือ"
+            v-model="data.title" />
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Facebook แหล่งช่วยเหลือ</label>
+          <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Facebook Page แหล่งช่วยเหลือ"
+            v-model="data.facebook" />
+        </div>
 
-
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">ข้อมูลเพิ่มเติม</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" placeholder="ข้อมูลเพิ่มเติม"
+            v-model="data.description"></textarea>
+        </div>
+       
+      </div>
+    </div>
       <div class="footer d-flex justify-content-end mt-4">
         <button type="button" class="btn btn-warning mx-2"
           @click="submit(data.iddocs, data.title, data.tel, data.facebook, data.Linkfacebook, data.lineID, data.Linkline, data.description)">
@@ -86,7 +94,7 @@ export default {
       iddocs: "",
       title: "",
       tel: "",
-      Linkfacebook:"",
+      Linkfacebook: "",
       facebook: "",
       lineID: "",
       Linkline: "",
@@ -102,14 +110,14 @@ export default {
 
       axios
         .post(process.env.VUE_APP_BACKEND_BASE_URL + "/insertassistance/", {
-          iddocs : iddocs,
-          title : title,
-          tel : tel,
-          facebook : facebook,
+          iddocs: iddocs,
+          title: title,
+          tel: tel,
+          facebook: facebook,
           Linkfacebook: Linkfacebook,
-          lineID : lineID, 
-          Linkline : Linkline,
-          description : description
+          lineID: lineID,
+          Linkline: Linkline,
+          description: description
         })
         .then((response) => {
           this.data = response.data;
@@ -117,7 +125,7 @@ export default {
           // console.log(response.data)
         });
     }
-  // }
+    // }
   },
   reset() {
     this.data.iddocs = "";
@@ -133,7 +141,7 @@ export default {
   
 <style  scoped>
 .Box {
-  background-color: #fff8e1;
+  background-color: #ffff;
   height: auto;
 }
 

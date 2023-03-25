@@ -11,95 +11,54 @@
     </div>
     <div class="box p-4">
       <h2>แก้ไขแหล่งช่วยเหลือ</h2>
+      
+      <div class="row">
+      <div class="col">
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">เบอร์โทรศัพท์แหล่งช่วยเหลือ</label>
+          <input type="url" class="form-control" id="exampleFormControlInput2"
+            placeholder="เพิ่มเบอร์โทรศัพท์แหล่งช่วยเหลือ" v-model="data.tel" />
+        </div>
 
-      <!-- <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label"
-          >ชื่อแหล่งช่วยเหลือ</label
-        >
-        <input
-          type="text"
-          class="form-control"
-          id="exampleFormControlInput1"
-          placeholder="เพิ่มชื่อแหล่งช่วยเหลือ"
-          v-model="data.id"
-        />
-      </div> -->
-
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label"
-          >ชื่อแหล่งช่วยเหลือ</label
-        >
-        <input
-          type="text"
-          class="form-control"
-          id="exampleFormControlInput1"
-          placeholder="เพิ่มชื่อแหล่งช่วยเหลือ"
-          v-model="data.Title"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label"
-          >เบอร์โทรศัพท์แหล่งช่วยเหลือ</label
-        >
-        <input
-          type="text"
-          class="form-control"
-          id="exampleFormControlInput2"
-          placeholder="เพิ่มเบอร์โทรศัพท์แหล่งช่วยเหลือ"
-          v-model="data.Tel"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label"
-          >Facebook แหล่งช่วยเหลือ</label
-        >
-        <input
-          type="text"
-          class="form-control"
-          id="exampleFormControlInput2"
-          placeholder="Facebook Page แหล่งช่วยเหลือ"
-          v-model="data.Facebook"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label"
-          >LineID แหล่งช่วยเหลือ</label
-        >
-        <input
-          type="text"
-          class="form-control"
-          id="exampleFormControlInput2"
-          placeholder="Line ID แหล่งช่วยเหลือ"
-          v-model="data.LineID"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label"
-          >ข้อมูลเพิ่มเติม</label
-        >
-        <textarea
-          class="form-control"
-          id="exampleFormControlTextarea1"
-          rows="7"
-          placeholder="ข้อมูลเพิ่มเติม"
-          v-model="data.Description"
-        ></textarea>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Link Facebook แหล่งช่วยเหลือ</label>
+          <input type="url" class="form-control" id="exampleFormControlInput2" placeholder="Link Facebook แหล่งช่วยเหลือ"
+            v-model="data.Linkfacebook" />
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">LineID แหล่งช่วยเหลือ</label>
+          <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Line ID แหล่งช่วยเหลือ"
+            v-model="data.lineID" />
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Link Line แหล่งช่วยเหลือ</label>
+          <input type="url" class="form-control" id="exampleFormControlInput2" placeholder="Link Line แหล่งช่วยเหลือ"
+            v-model="data.uLinkline" />
+        </div>
+        
+      
       </div>
 
-      <!-- <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label" 
-              >เพิ่มข้อความตอบกลับ</label
-            >
-            <textarea
-              class="form-control"
-              id="validationDefault"
-              for="validationDefault"
-              placeholder="เพิ่มข้อความ"
-              rows="7"
-              v-model="data.Text"
-              required
-            ></textarea>
-          </div> -->
+      <div class="col">
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">ชื่อแหล่งช่วยเหลือ</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="เพิ่มชื่อแหล่งช่วยเหลือ"
+            v-model="data.title" />
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Facebook แหล่งช่วยเหลือ</label>
+          <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Facebook Page แหล่งช่วยเหลือ"
+            v-model="data.facebook" />
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">ข้อมูลเพิ่มเติม</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="ข้อมูลเพิ่มเติม"
+            v-model="data.description"></textarea>
+        </div>
+       
+      </div>
+    </div>
       <div class="footer d-flex justify-content-end mt-4">
         <button
           type="button"
@@ -177,7 +136,7 @@ export default {
     
     <style  scoped>
 .Box {
-  background-color: #fff8e1;
+  background-color: #ffff;
   height: auto;
 }
 h1 {

@@ -14,18 +14,41 @@
     </div>
     <div class="search">
       <div class="row row-menu">
-        <div class="col-lg-9 search-res p-0">
-          <div class="input-group mb-3">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Search.."
-              aria-describedby="button-addon2"
-              v-model="search"
-            />
+        <div class="col-lg-9 search-res p-0 mt-3">
+          <div class="input-group ">
+            <input type="text" class="form-control" placeholder="Search.." aria-describedby="button-addon2"
+              v-model="search" />
           </div>
         </div>
-        <div class="col-lg-3 col-flex">
+      </div>
+    </div>
+
+    <div class="search mt-0">
+      <div class="row row-menu sort">
+        <div class="col-2 sortby p-0 mt-3">
+          <div class="sortby-input mt-2">
+            <p class="p-sortby fw-bold mb-2">Sort By:</p>
+          </div>
+          <div class="input-group mb-3 d-flex justify-content-start input-sort">
+            <select class="form-select" aria-label="Default select example" v-model="sortBy" @click="getchatopen()">
+              <option value="iddocs">หมายเลขเอกสาร</option>
+              <option value="Text">ข้อความ</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-2 sort px-0 mt-3">
+          <div class="sortby-input mt-2">
+            <p class="p-sortby fw-bold mb-2">Type:</p>
+          </div>
+          <div class="input-group mb-3 sort-frist">
+            <select class="form-select" aria-label="Default select example" v-model="first" @click="getchatopen()">
+              <option value="desc">ล่าสุด-ลำดับแรก</option>
+              <option value="asc">ลำดับแรก-ล่าสุด</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col col-flex d-flex justify-content-end mt-5">
           <a href="/insertchatopen">
             <button type="button" class="btn btn-success">
               เพิ่มข้อความ
@@ -34,30 +57,9 @@
         </div>
       </div>
     </div>
-
-    <div class="row srot px-5">
-      <div class="col-2 sortby">
-          <div class="input-group mb-3 d-flex justify-content-start input-sort">
-            <select class="form-select" aria-label="Default select example" v-model="sortBy" @click="getchatopen()">
-              <option selected>Open this select menu</option>
-              <option value="iddocs">ID</option>
-              <option value="Text">Text</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-7 search-res p-0">
-          <div class="input-group mb-3 sort-frist">
-            <select class="form-select" aria-label="Default select example" v-model="first" @click="getchatopen()">
-              <option selected>Open this select menu</option>
-              <option value="desc">มาก-น้อย</option>
-              <option value="asc">น้อย-มาก</option>
-            </select>
-          </div>
-        </div>
-    </div>
     <div class="block">
       <div class="row block-item block-bm" v-for="item in filtersearch" :key="item">
-      
+
         <div class="col-1">{{ item.id }}</div>
         <div class="col-7">{{ item.Text }}</div>
 
@@ -175,7 +177,7 @@ export default {
   
 <style scoped>
 .Box {
-  background-color: #fff8e1;
+  background-color: #ffff !important;
   height: auto;
 }
 
@@ -212,17 +214,29 @@ h1 {
 }
 
 .input-group {
-  width: 60%;
+  width: 48%;
+  
+}
+
+.input-sort {
+  width: 90% !important;
   padding-bottom: 20px;
 }
-.input-sort{
+
+.sortby {
+  width: 20%;
+}
+.p-sortby{
+font-size: 16px;
+}
+
+.sort-frist {
   width: 100% !important;
   padding-bottom: 20px;
 }
-.sortby{
-  width: 20%;
+.sort{
+  padding-right: 5px;
 }
-
 .col-flex {
   display: flex;
   justify-content: end;

@@ -1,7 +1,7 @@
 <template>
   <Navbar />
 
-  <div class="Box pb-5">
+  <div class="Box pt-5">
     <div class="px-5">
       <h1>เพิ่มข้อความตอบกลับประโยคด้านลบ</h1>
       <hr />
@@ -97,7 +97,7 @@ export default {
   
   <style  scoped>
 .Box {
-  background-color: #fff8e1;
+  background-color: #ffff;
   height: 750px;
 }
 h2 {
@@ -113,7 +113,7 @@ h2 {
 }
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .Box {
-  background-color: #fff8e1;
+  background-color: #ffff;
   height: 80rem;
 }
 .box {
@@ -122,7 +122,7 @@ h2 {
 }
 @media screen and (max-width: 767px) {
   .Box {
-  background-color: #fff8e1;
+  background-color: #ffff;
   height: 55rem;
 }
   .box {
@@ -137,5 +137,5 @@ h2 {
     margin-left: 0px !important;
   }
 }
-</style>>
+</style>
   

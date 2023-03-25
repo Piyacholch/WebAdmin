@@ -32,7 +32,35 @@
             />
           </div>
         </div>
-        <div class="col-lg-3 col-flex">
+      </div>
+    </div>
+
+    <div class="search mt-0">
+      <div class="row row-menu sort">
+        <div class="col-2 sortby p-0 mt-3">
+          <div class="sortby-input mt-2">
+            <p class="p-sortby fw-bold mb-2">Sort By:</p>
+          </div>
+          <div class="input-group mb-3 d-flex justify-content-start input-sort">
+            <select class="form-select" aria-label="Default select example" v-model="sortBy" @click="getchatopen()">
+              <option value="iddocs">หมายเลขเอกสาร</option>
+              <option value="Text">ข้อความ</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-2 sort px-0 mt-3">
+          <div class="sortby-input mt-2">
+            <p class="p-sortby fw-bold mb-2">Type:</p>
+          </div>
+          <div class="input-group mb-3 sort-frist">
+            <select class="form-select" aria-label="Default select example" v-model="first" @click="getchatopen()">
+              <option value="desc">ล่าสุด-ลำดับแรก</option>
+              <option value="asc">ลำดับแรก-ล่าสุด</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col col-flex d-flex justify-content-end mt-5">
           <a href="/insertchatpositive">
             <button type="button" class="btn btn-success">
               เพิ่มข้อความ
@@ -161,6 +189,8 @@ export default {
       id: "",
       search: "",
       Text: "",
+      sortBy: "iddocs",
+      first: "desc",
     };
   },
   mounted() {
@@ -168,7 +198,7 @@ export default {
   },
   methods: {
     getchatopen() {
-      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/chatpositive").then((response) => {
+      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/chatpositive", { params: { sortBy: this.sortBy, first: this.first } }).then((response) => {
         this.loaddata = response.data; 
         // console.log(response);
       });
@@ -200,7 +230,7 @@ export default {
   
   <style scoped>
 .Box {
-  background-color: #fff8e1;
+  background-color: #ffff !important;
   height: auto;
 }
 h1 {
@@ -225,8 +255,32 @@ h1 {
   padding-bottom: 30px;
 }
 .input-group {
-  width: 40%;
+  width: 48%;
+  
+}
+.form-select {
+  border: 5px solid #ffbd59;
+  border-radius: 15px;
+}
+
+.input-sort {
+  width: 90% !important;
   padding-bottom: 20px;
+}
+
+.sortby {
+  width: 20%;
+}
+.p-sortby{
+font-size: 16px;
+}
+
+.sort-frist {
+  width: 100% !important;
+  padding-bottom: 20px;
+}
+.sort{
+  padding-right: 5px;
 }
 .col-flex {
   display: flex;

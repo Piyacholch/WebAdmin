@@ -111,7 +111,7 @@ img.preview {
 }
 
 .Box {
-  background-color: #fff8e1;
+  background-color: #ffff;
   height: auto;
 }
 

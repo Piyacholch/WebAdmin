@@ -32,7 +32,35 @@
             />
           </div>
         </div>
-        <div class="col-lg-3 col-flex">
+      </div>
+    </div>
+
+    <div class="search mt-0">
+      <div class="row row-menu sort">
+        <div class="col-2 sortby p-0 mt-3">
+          <div class="sortby-input mt-2">
+            <p class="p-sortby fw-bold mb-2">Sort By:</p>
+          </div>
+          <div class="input-group mb-3 d-flex justify-content-start input-sort">
+            <select class="form-select" aria-label="Default select example" v-model="sortBy" @click="getchatstimulate()">
+              <option value="iddocs">หมายเลขเอกสาร</option>
+              <option value="title">ชื่อกิจกรรม</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-2 sort px-0 mt-3">
+          <div class="sortby-input mt-2">
+            <p class="p-sortby fw-bold mb-2">Type:</p>
+          </div>
+          <div class="input-group mb-3 sort-frist">
+            <select class="form-select" aria-label="Default select example" v-model="first" @click="getchatstimulate()">
+              <option value="desc">ล่าสุด-ลำดับแรก</option>
+              <option value="asc">ลำดับแรก-ล่าสุด</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col col-flex d-flex justify-content-end mt-5">
           <a href="/insertactivity">
             <button type="button" class="btn btn-success">
               เพิ่มกิจกรรมที่ชอบ
@@ -123,7 +151,7 @@
               ></button>
             </div>
             <div class="modal-body text-center fs-4 fw-bold">
-              คุณต้องการลบข้อความนี้หรือไม่ ?
+              คุณต้องการลบกิจกรรมนี้หรือไม่ ?
             </div>
             <div class="modal-footer border-0 mt-3">
               <div class="col">
@@ -165,6 +193,8 @@ export default {
       id: "",
       search: "",
       title: "",
+      sortBy: "iddocs",
+      first: "desc",
     };
   },
   mounted() {
@@ -172,7 +202,7 @@ export default {
   },
   methods: {
     getactivity() {
-      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/activity").then((response) => {
+      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/activity", { params: { sortBy: this.sortBy, first: this.first } }).then((response) => {
         this.loaddata = response.data;
         // console.log(response);
       });
@@ -204,7 +234,7 @@ export default {
     
     <style scoped>
 .Box {
-  background-color: #fff8e1;
+  background-color: #ffff;
   height: 50rem;
 }
 h1 {
@@ -229,7 +259,31 @@ h1 {
   padding-bottom: 30px;
 }
 .input-group {
-  width: 40%;
+  width: 48%;
+}
+.form-select {
+  border: 2px solid #ffbd59;
+  border-radius: 15px;
+}
+.input-group {
+  width: 48%;
+  
+}
+
+.input-sort {
+  width: 90% !important;
+  padding-bottom: 20px;
+}
+
+.sortby {
+  width: 20%;
+}
+.p-sortby{
+font-size: 16px;
+}
+
+.sort-frist {
+  width: 100% !important;
   padding-bottom: 20px;
 }
 .col-flex {
