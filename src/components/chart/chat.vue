@@ -51,6 +51,7 @@
               label: 'My Chart',
               data: [this.chatpositive,this.chatnegative],
               backgroundColor: [
+             
               "rgb(255, 99, 132)",
               "rgb(54, 162, 235)",
             ],
