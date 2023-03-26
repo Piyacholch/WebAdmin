@@ -28,9 +28,11 @@
             <p class="p-sortby fw-bold mb-2">Sort By:</p>
           </div>
           <div class="input-group mb-3 d-flex justify-content-start input-sort">
-            <select class="form-select" aria-label="Default select example" v-model="sortBy" @click="getassitance()">
-              <option value="iddocs">หมายเลขเอกสาร</option>
-              <option value="Text">ชื่อแหล่งช่วยเหลือ</option>
+            <select class="form-select" aria-label="Default select example" v-model="sortBy" @click="getadmin()">
+              <option value="displayName">ชื่อ</option>
+              <option value="email">อีเมล</option>
+              <option value="phonenum">เบอร์โทร</option>
+             
             </select>
           </div>
         </div>
@@ -39,7 +41,7 @@
             <p class="p-sortby fw-bold mb-2">Type:</p>
           </div>
           <div class="input-group mb-3 sort-frist">
-            <select class="form-select" aria-label="Default select example" v-model="first" @click="getassitance()">
+            <select class="form-select" aria-label="Default select example" v-model="first" @click="getadmin()">
               <option value="desc">ล่าสุด-ลำดับแรก</option>
               <option value="asc">ลำดับแรก-ล่าสุด</option>
             </select>
@@ -210,9 +212,12 @@ export default {
       email: "",
       displayName: "",
       phonenum: "",
-      photoURL: "",
+
       loaddata: [],
       search: "",
+
+      sortBy: "displayName",
+      first: "desc",
     };
   },
   mounted() {
@@ -220,11 +225,12 @@ export default {
   },
   methods: {
     getadmin() {
-      axios.get(process.env.VUE_APP_BACKEND_BASE_URL + "/Admin").then((response) => {
+      axios.get(process.env.VUE_APP_BACKEND_BASE_URL + "/Admin", { params: { sortBy: this.sortBy, first: this.first } }).then((response) => {
         this.loaddata = response.data;
-        // console.log(response);
+        console.log(response);
       });
     },
+
     sendEmail() {
       const email = this.email;
       const auth = getAuth();
@@ -284,7 +290,7 @@ h1 {
 }
 
 .form-select {
-  border: 2px solid #ffbd59;
+  border: 4px solid #ffbd59;
   border-radius: 15px;
 }
 
@@ -345,7 +351,7 @@ h1 {
 }
 
 .form-control {
-  border: 5px solid #ffbd59;
+  border: 4px solid #ffbd59;
   border-radius: 15px;
 }
 
@@ -404,11 +410,11 @@ h1 {
 }
 
 .confirm {
-  width: 85% !important;
+  width: 100% !important;
 }
 
 .cancel {
-  width: 85% !important;
+  width: 100% !important;
 }
 
 #thead {
