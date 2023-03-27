@@ -100,6 +100,7 @@ export default {
     width: 100%;
     margin: auto;
     border-radius: 40px;
+   
 }
 .box-item{
     margin-bottom: 5px;

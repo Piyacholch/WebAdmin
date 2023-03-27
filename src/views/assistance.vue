@@ -41,7 +41,7 @@
           <div class="input-group mb-3 d-flex justify-content-start input-sort">
             <select class="form-select" aria-label="Default select example" v-model="sortBy" @click="getassitance()">
               <option value="iddocs">หมายเลขเอกสาร</option>
-              <option value="Text">ชื่อแหล่งช่วยเหลือ</option>
+              <option value="title">ชื่อแหล่งช่วยเหลือ</option>
             </select>
           </div>
         </div>
@@ -76,7 +76,7 @@
       >
         <!-- <div class="col-1">{{ item.id }}</div> -->
         <div class="col-1">{{ item.id }}</div>
-        <div class="col-7">{{ item.Title }}</div>
+        <div class="col-7">{{ item.title }}</div>
         <div class="col-3 button-1">
           <button
             type="button"
@@ -190,7 +190,7 @@ export default {
       loaddata: [],
       id: "",
       search: "",
-      Title: "",
+      title: "",
       sortBy: "iddocs",
       first: "desc",
     };

@@ -42,7 +42,7 @@
             <p class="p-sortby fw-bold mb-2">Sort By:</p>
           </div>
           <div class="input-group mb-3 d-flex justify-content-start input-sort">
-            <select class="form-select" aria-label="Default select example" v-model="sortBy" @click="getchatstimulate()">
+            <select class="form-select" aria-label="Default select example" v-model="sortBy" @click="getactivity()">
               <option value="iddocs">หมายเลขเอกสาร</option>
               <option value="title">ชื่อกิจกรรม</option>
             </select>
@@ -53,7 +53,7 @@
             <p class="p-sortby fw-bold mb-2">Type:</p>
           </div>
           <div class="input-group mb-3 sort-frist">
-            <select class="form-select" aria-label="Default select example" v-model="first" @click="getchatstimulate()">
+            <select class="form-select" aria-label="Default select example" v-model="first" @click="getactivity()">
               <option value="desc">ล่าสุด-ลำดับแรก</option>
               <option value="asc">ลำดับแรก-ล่าสุด</option>
             </select>

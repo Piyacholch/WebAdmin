@@ -43,7 +43,7 @@
             <p class="p-sortby fw-bold mb-2">Sort By:</p>
           </div>
           <div class="input-group mb-3 d-flex justify-content-start input-sort">
-            <select class="form-select" aria-label="Default select example" v-model="sortBy" @click="getchatstimulate()">
+            <select class="form-select" aria-label="Default select example" v-model="sortBy" @click="getchatclose()">
               <option value="iddocs">หมายเลขเอกสาร</option>
               <option value="Text">ข้อความ</option>
             </select>
@@ -54,7 +54,7 @@
             <p class="p-sortby fw-bold mb-2">Type:</p>
           </div>
           <div class="input-group mb-3 sort-frist">
-            <select class="form-select" aria-label="Default select example" v-model="first" @click="getchatstimulate()">
+            <select class="form-select" aria-label="Default select example" v-model="first" @click="getchatclose()">
               <option value="desc">ล่าสุด-ลำดับแรก</option>
               <option value="asc">ลำดับแรก-ล่าสุด</option>
             </select>
@@ -195,10 +195,10 @@ export default {
     };
   },
   mounted() {
-    this.getchatopen();
+    this.getchatclose();
   },
   methods: {
-    getchatopen() {
+    getchatclose() {
       axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/chatclose" , { params: { sortBy: this.sortBy, first: this.first } }).then((response) => {
         this.loaddata = response.data;
         // console.log(response);
@@ -211,7 +211,7 @@ export default {
     deletechat(id) {
       axios.delete(process.env.VUE_APP_BACKEND_BASE_URL+"/chatclose/" + id).then(() => {
         this.id = id;
-        this.getchatopen();
+        this.getchatclose();
         // console.log(response.data)
       });
     },
