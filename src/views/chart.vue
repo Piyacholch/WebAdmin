@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import chart  from "../components/chart/queryText.vue";
+import chart  from "../components/chart/review.vue";
 export default {
   components: { chart },
 }

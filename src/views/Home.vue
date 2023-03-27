@@ -28,7 +28,7 @@
         </div>
         <div class="item">
           <div class="content">
-           
+
             <div class="row align-items-center">
               <div class="col">
                 <div class="bg-icon">
@@ -36,7 +36,7 @@
                 </div>
               </div>
               <div class="col">
-                <p class="num mt-3">{{ google  }}</p>
+                <p class="num mt-3">{{ google }}</p>
                 <p class="name pt-2 fs-6">เข้าใช้ด้วยบัญชี Google</p>
               </div>
             </div>
@@ -74,7 +74,47 @@
         </div>
       </div>
     </div>
-    <div class="row px-5 mt-3">
+
+
+    <div class="row align-items-start px-5">
+
+      <div class="col-5 mt-4">
+        <div class="chart">
+          <chartemotion />
+        </div>
+        <div class="chart p-3 mt-4 ">
+          <charttotal />
+        </div>
+      </div>
+      
+      <div class="col-4 mt-4">
+        <div class="row align-items-start">
+          <div class="col">
+            <div class="chart">
+              <chartchat />
+            </div>
+          </div>
+          <div class="col">
+            <div class="chart">
+              <chartchat />
+            </div>
+          </div>
+        </div>
+
+        <div class="chart mt-4">
+          <queryText/>
+        </div>
+      </div>
+
+
+      <div class="col-3 mt-4">
+        <div class="">
+              <chartreview  />
+            </div>
+      </div>
+    </div>
+
+    <!-- <div class="row px-5 mt-3">
       <div class="col-sm-8">
         <div class="chart">
          <chartemotion/>
@@ -85,25 +125,26 @@
           <chartchat />
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
-
-  
 </template>
 
 <script>
 import Navbar from "../components/Navbar.vue";
 import chartemotion from "../components/chart/emotion.vue";
+import charttotal from "../components/chart/total.vue";
 import chartchat from "../components/chart/chat.vue";
+import chartreview from "../components/chart/review.vue";
+import queryText from "../components/chart/queryText.vue";
 import Breadcrumb from "../components/BC-dashboard.vue";
 import axios from "axios";
 
 export default {
-  components: { Navbar, Breadcrumb, chartemotion, chartchat},
+  components: { Navbar, Breadcrumb, chartemotion, charttotal, chartchat, queryText, chartreview  },
   data() {
     return {
-      loaddata:[],
-      chatpositive:'',
+      loaddata: [],
+      chatpositive: '',
       maxloaddata: "",
       password: '',
       google: '',
@@ -113,23 +154,26 @@ export default {
       normal: "",  // เฉยๆ
       worried: "",  // ไม่สบายใจ
       uncomfortable: "",  // ไม่สบายใจมาก
-      level:""
+      level: "",
+
+      sortBy: "displayName",
+      first: "desc",
     };
   },
- 
+
   methods: {
     getadmin() {
-      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/admin").then((response) => {
+      axios.get(process.env.VUE_APP_BACKEND_BASE_URL + "/Admin", { params: { sortBy: this.sortBy, first: this.first } }).then((response) => {
         this.maxloaddata = response.data.length;
-        // console.log(response.data.length);
-        // console.log(response.data);
-        this.password = response.data.filter((item)=>item.providerId == 'password').length;
-        this.google = response.data.filter((item)=>item.providerId == "google.com").length;
-       
+        console.log(response.data.length);
+        console.log(response.data);
+        this.password = response.data.filter((item) => item.providerId == 'password').length;
+        this.google = response.data.filter((item) => item.providerId == "google.com").length;
+
       });
     },
     getuserline() {
-      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/getusers").then((response) => {
+      axios.get(process.env.VUE_APP_BACKEND_BASE_URL + "/getusers").then((response) => {
         this.userlength = response.data.length;
         // const userEmotion = response.data.filter((item)=>item.id).collection('emotions').length
         // console.log(userEmotion);
@@ -139,7 +183,7 @@ export default {
     //   axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/getlevel").then((response) => {
     //     this.level = response.data.length;
     //     console.log("การประเมินอารมณ์ทั้งหมด : "+response.data.length);
-        
+
     //     this.uncomfortable = response.data.filter((item)=>item.level == '1').length;
     //     this.worried = response.data.filter((item)=>item.level == '2').length;
     //     this.normal = response.data.filter((item)=>item.level == '3').length;
@@ -150,10 +194,10 @@ export default {
     //     console.log("เฉยๆ : "+this.normal);
     //     console.log("สบายใจ : "+this.relaxed);
     //     console.log("สบายใจมาก :"+this.comfortable);
-        
+
     //   });
     // },
- 
+
     // getchatpositive() {
     //   axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/queryChatPositive").then((response) => {
     //     this.chatpositive = response.data.length;
@@ -175,9 +219,10 @@ export default {
 
 <style scoped>
 .Box {
-  background-color: #fff8e1;
+  background-color: #F9F5EF;
   height: auto;
 }
+
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -209,45 +254,53 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
 img {
   padding: 20px;
   width: 90px;
 }
+
 .num {
   font-size: 2.5rem;
   font-weight: bold;
   color: black;
 }
+
 .name {
   font-size: 14px;
   font-weight: bold;
   color: #f5f5f5;
 }
+
 .pie {
   padding-left: 0px;
 }
+
 .chart-pie {
   background-color: #ffff;
   border-radius: 8px;
 }
+
 .chart {
   background-color: white;
   border-radius: 12px;
-  width: 100%;
   height: auto;
   box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.13);
 }
+
 .imformation {
   background-color: #ffff;
   border-radius: 8px;
   height: 100%;
   box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.13);
 }
+
 .dash-2 {
   background-color: #ffff;
   border-radius: 8px;
   height: 100%;
 }
+
 .line-chart {
   width: 80%;
   height: auto;
@@ -256,45 +309,49 @@ img {
 
 @media screen and (max-width: 767px) {
   .Box {
-  background-color: #fff8e1;
-  height: auto;
-}
+    background-color: #fff8e1;
+    height: auto;
+  }
+
   .grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  justify-items: stretch;
-  align-items: stretch;
-  column-gap: 13px;
-  row-gap: 20px;
-}
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+    align-items: stretch;
+    column-gap: 13px;
+    row-gap: 20px;
+  }
 
-.content {
-  color: #242424;
-  background-color: #ffbd59;
-  font-weight: 600;
-  text-align: center;
-  box-sizing: border-box;
-  height: 100%;
-  padding: 10px;
-}
-.bg-icon {
-  margin: auto;
-  width: 70px;
-  height: 70px;
-  background-color: #ffffff;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-img {
-  padding: 20px;
-  width: 80px;
-}
-.imformation{
-  margin-top: 10px;
-  height: 200px;
-}
+  .content {
+    color: #242424;
+    background-color: #ffbd59;
+    font-weight: 600;
+    text-align: center;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 10px;
+  }
 
-} 
+  .bg-icon {
+    margin: auto;
+    width: 70px;
+    height: 70px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  img {
+    padding: 20px;
+    width: 80px;
+  }
+
+  .imformation {
+    margin-top: 10px;
+    height: 200px;
+  }
+
+}
 </style>

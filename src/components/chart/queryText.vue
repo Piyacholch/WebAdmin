@@ -1,6 +1,6 @@
 <template>
     <div>
-        <canvas ref="chart" width="600"></canvas>
+        <canvas ref="chart" width="600" height="470"></canvas>
     </div>
 </template>
   
@@ -14,12 +14,19 @@ export default {
             chartData: null,
             chart: null,
             chatpositive: "",
-            chatnegative: ""
+            chatnegative: "",
+            chatopen: "",
+            chatstimulate: "",
+            chatclose: "",
+
         };
     },
     async mounted() {
         this.getchatpositive();
         this.getchatnegative();
+        this.getchatopen();
+        this.getchatstimulate();
+        this.getchatclose();
 
         const response = await axios.get(process.env.VUE_APP_BACKEND_BASE_URL + "/queryChatPositive");
         this.chartData = response.data;
@@ -41,6 +48,24 @@ export default {
                 console.log("ข้อความตอบกลับลบ : " + response.data.length);
             });
         },
+        getchatopen() {
+            axios.get(process.env.VUE_APP_BACKEND_BASE_URL + "/queryChatOpen").then((response) => {
+                this.chatopen = response.data.length;
+                console.log("ข้อความตอบกลับประโยคเปิด : " + response.data.length);
+            });
+        },
+        getchatstimulate() {
+            axios.get(process.env.VUE_APP_BACKEND_BASE_URL + "/queryChatStimulate").then((response) => {
+                this.chatstimulate = response.data.length;
+                console.log("ข้อความตอบกลับประโยคระตุ้น : " + response.data.length);
+            });
+        },
+        getchatclose() {
+            axios.get(process.env.VUE_APP_BACKEND_BASE_URL + "/queryChatClose").then((response) => {
+                this.chatclose = response.data.length;
+                console.log("ข้อความตอบกลับประโยคปิด : " + response.data.length);
+            });
+        },
         renderChart() {
             const ctx = this.$refs.chart.getContext('2d');
             this.chart = new Chart(ctx, {
@@ -49,8 +74,8 @@ export default {
                     labels: ["ประโยคเปิด", "ประโยคด้านบวก", "ประโยคด้านลบ", "ประโยคกระตุ้น", "ประโยคปิด"],
                     datasets: [
                         {
-                            label: 'Dataset 1',
-                            data: [this.chatpositive, this.chatnegative],
+                            label: 'ประโยคตอบกลับ',
+                            data: [this.chatopen, this.chatpositive, this.chatnegative, this.chatstimulate, this.chatclose],
                             borderColor: [" rgb(255, 26, 104, 0.2)",
                             ],
                             backgroundColor: ["rgb(255, 26, 104, 0.5)",],

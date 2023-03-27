@@ -1,6 +1,6 @@
 <template>
     <div>
-      <canvas ref="chart" width="600"></canvas>
+      <canvas ref="chart" width="220" height="300" class="chart"></canvas>
     </div>
   </template>
   
@@ -52,8 +52,8 @@
               data: [this.chatpositive,this.chatnegative],
               backgroundColor: [
              
-              "rgb(255, 99, 132)",
-              "rgb(54, 162, 235)",
+              "rgb(240,128,128)",
+              "rgb(255, 165, 0)",
             ],
             }],
           },
@@ -67,3 +67,9 @@
     },
   };
   </script>
+  <style scoped>
+
+.chart{
+  height: 230px !important;
+}
+</style>

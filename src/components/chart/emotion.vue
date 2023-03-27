@@ -1,6 +1,6 @@
 <template>
     <div>
-      <canvas ref="chart" width="700"></canvas>
+      <canvas ref="chart" width="700" height="230"></canvas>
     </div>
   </template>
   
@@ -65,7 +65,7 @@
           data: {
             labels: ["ไม่สบายใจมาก","ไม่สบายใจ","เฉยๆ","สบายใจ","สบายใจมาก"],
             datasets: [{
-              label: 'My Chart',
+              label: 'ระดับอารมณ์',
               data: [this.uncomfortable,this.worried,this.normal,this.relaxed,this.comfortable],
               backgroundColor: [
               "rgb(255, 99, 132)",
