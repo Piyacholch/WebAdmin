@@ -11,7 +11,7 @@
     </div>
     <div class="box p-4">
       <h2>แก้ไขข้อความตอบกลับประโยคทักทาย</h2>
-      <!-- <div class="mb-3">
+      <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label"
           >หมายเลขเอกสาร</label
         >
@@ -20,9 +20,10 @@
           class="form-control"
           id="exampleFormControlInput1"
           placeholder="id docs"
-          v-model="data.id"
+          v-model="data.iddocs"
+          disabled
         />
-      </div> -->
+      </div>
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label"
           >แก้ไขข้อความตอบกลับ</label
@@ -45,10 +46,11 @@
         >
           ตกลง
         </button>
-        <button type="button" class="btn btn-danger" @click="
-          $router.push(
-            `/chatopen`
-          )">
+        <button
+          type="button"
+          class="btn btn-danger"
+          @click="$router.push(`/chatopen`)"
+        >
           ยกเลิก
         </button>
       </div>
@@ -65,10 +67,11 @@ export default {
   components: { Navbar, Breadcrumb },
   data() {
     return {
-      Text: null,
+      iddocs: "",
+      Text: "",
       data: {},
-      // id: null,
-      id: null, //this is the id from the browser
+
+      id: "", //this is the id from the browser
     };
   },
   mounted() {
@@ -77,23 +80,27 @@ export default {
   methods: {
     getChatByID() {
       axios
-        .get(process.env.VUE_APP_BACKEND_BASE_URL+`/chatopenByID/${this.$route.params.id}`)
+        .get(
+          process.env.VUE_APP_BACKEND_BASE_URL +
+            `/chatopenByID/${this.$route.params.id}`
+        )
         .then((response) => {
           this.data = response.data;
         });
     },
-    updateChatopen() {
-      if (this.Text == null ) {
+    updateChatopen(Text) {
+      if (Text == "" || Text == null) {
         alert("กรุณากรอกข้อมูลทุกช่อง!!");
-      } else if (this.Text != null ) {
-      axios
-        .patch(
-          process.env.VUE_APP_BACKEND_BASE_URL+`/updatechatOpen/${this.$route.params.id}/${this.data?.Text}`
-        )
-        .then((response) => {
-          this.data = response.data;
-          this.$router.push("/chatopen");
-        });
+      } else if (Text != "") {
+        axios
+          .patch(
+            process.env.VUE_APP_BACKEND_BASE_URL +
+              `/updatechatOpen/${this.$route.params.id}/${this.data?.Text}`
+          )
+          .then((response) => {
+            this.data = response.data;
+            this.$router.push("/chatopen");
+          });
       }
     },
     reset() {

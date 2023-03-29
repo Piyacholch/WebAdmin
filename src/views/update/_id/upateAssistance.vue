@@ -110,9 +110,14 @@ export default {
         });
     },
     updateAssistance(iddocs, title, tel, facebook, Linkfacebook, lineid, Linkline, description) {
-      if (this.title == null || this.tel == null || this.facebook == null || this.Linkfacebook == null || this.lineid == null || this.Linkline == null || this.description == null) {
+      if (title == "" || title == null || tel == "" || tel == null ||
+      facebook == "" || facebook == null || Linkfacebook == "" || Linkfacebook == null ||
+      lineid == "" || lineid == null || Linkline == "" || Linkline == null ||
+      description == "" || description == null) {
         alert("กรุณากรอกข้อมูลทุกช่อง!!");
-      } else if (this.title != null || this.tel != null || this.facebook != null || this.Linkfacebook != null || this.lineid != null || this.Linkline != null || this.description != null) {
+      } else if (title != "" || tel != "" ||
+      facebook != "" || Linkfacebook != "" || lineid != "" || 
+      Linkline != "" || description != "") {
         axios
           .patch(
             process.env.VUE_APP_BACKEND_BASE_URL + "/updateAssistance", {

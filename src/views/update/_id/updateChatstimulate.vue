@@ -11,6 +11,19 @@
     </div>
     <div class="box p-4">
       <h2>แก้ไขข้อความตอบกลับประโยคกระตุ้น</h2>
+
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label"
+          >หมายเลขเอกสาร</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="id docs"
+          v-model="data.iddocs" disabled
+        />
+      </div>
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label"
           >แก้ไขข้อความตอบกลับ</label
@@ -53,10 +66,10 @@ export default {
   components: { Navbar, Breadcrumb },
   data() {
     return {
-      Text: null,
-      data: {},
+      Text: '',
+      data: [],
       // id: null,
-      id: null, //this is the id from the browser
+      id: '', //this is the id from the browser
     };
   },
   mounted() {
@@ -70,10 +83,10 @@ export default {
           this.data = response.data;
         });
     },
-    updateChatopen() {
-      if (this.Text == null ) {
+    updateChatopen(Text) {
+      if (Text == "" || Text == null) {
         alert("กรุณากรอกข้อมูลทุกช่อง!!");
-      } else if (this.Text != null ) {
+      } else if (Text != "") {
       axios
         .patch(
           process.env.VUE_APP_BACKEND_BASE_URL+`/updatechatStimulate/${this.$route.params.id}/${this.data?.Text}`

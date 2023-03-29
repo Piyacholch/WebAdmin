@@ -12,6 +12,11 @@
     <div class="box p-4">
       <h2>แก้ไขข้อความตอบกลับประโยคด้านบวก</h2>
       <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">หมายเลขเอกสาร</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="id docs"
+          v-model="data.iddocs" disabled/>
+      </div>
+      <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label"
           >แก้ไขข้อความตอบกลับ</label
         >
@@ -70,10 +75,10 @@ export default {
           this.data = response.data;
         });
     },
-    updateChatopen() {
-      if (this.Text == null ) {
+    updateChatopen(Text) {
+      if (Text == "" || Text == null) {
         alert("กรุณากรอกข้อมูลทุกช่อง!!");
-      } else if (this.Text != null ) {
+      } else if (Text != "") {
       axios
         .patch(
           process.env.VUE_APP_BACKEND_BASE_URL+`/updatechatPositive/${this.$route.params.id}/${this.data?.Text}`
