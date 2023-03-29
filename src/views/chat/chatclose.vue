@@ -38,7 +38,7 @@
 
     <div class="search mt-0">
       <div class="row row-menu sort">
-        <div class="col-2 sortby p-0 mt-3">
+        <div class="col-2 sortby p-0 mt-3" id="div-desktop">
           <div class="sortby-input mt-2">
             <p class="p-sortby fw-bold mb-2">Sort By:</p>
           </div>
@@ -49,7 +49,7 @@
             </select>
           </div>
         </div>
-        <div class="col-2 sort px-0 mt-3">
+        <div class="col-2 sort px-0 mt-3" id="div-desktop">
           <div class="sortby-input mt-2">
             <p class="p-sortby fw-bold mb-2">Type:</p>
           </div>
@@ -61,8 +61,35 @@
           </div>
         </div>
 
+        <!-- resposive -->
+        <div class="row">
+          <div class="col  sortby p-0 mt-3" id="div-mobile">
+            <div class="sortby-input mt-2">
+              <p class="p-sortby fw-bold mb-2">Sort By:</p>
+            </div>
+            <div class="input-group mb-3 d-flex justify-content-start input-sort">
+              <select class="form-select" aria-label="Default select example" v-model="sortBy" @click="getchatopen()">
+                <option value="iddocs">หมายเลขเอกสาร</option>
+                <option value="Text">ข้อความ</option>
+              </select>
+            </div>
+          </div>
+          <div class="col sort px-0 mt-3" id="div-mobile" >
+            <div class="sortby-input mt-2">
+              <p class="p-sortby fw-bold mb-2">Type:</p>
+            </div>
+            <div class="input-group mb-3 sort-frist">
+              <select class="form-select" aria-label="Default select example" v-model="first" @click="getchatopen()">
+                <option value="desc">ล่าสุด-ลำดับแรก</option>
+                <option value="asc">ลำดับแรก-ล่าสุด</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        </div>
+
         <div class="col col-flex d-flex justify-content-end mt-5">
-          <a href="/insertchatclose">
+          <a href="/insertchatclose" class="a-insert"> 
             <button type="button" class="btn btn-success">
               เพิ่มข้อความ
             </button>
@@ -133,7 +160,7 @@
         aria-hidden="true"
       >
         <div class="modal-dialog modal-dialog-centered modal-md">
-          <div class="modal-content border border-warning border-5">
+          <div class="modal-content border border-5">
             <div class="modal-header border-0">
               <button
                 type="button"
@@ -170,7 +197,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
   
 <script>
@@ -198,7 +224,9 @@ export default {
     this.getchatclose();
   },
   methods: {
+    
     getchatclose() {
+      
       axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/chatclose" , { params: { sortBy: this.sortBy, first: this.first } }).then((response) => {
         this.loaddata = response.data;
         // console.log(response);
@@ -330,9 +358,19 @@ font-size: 16px;
 .button-res {
   display: none;
 }
+#div-mobile {
+    display: none;
+  }
+
+  #div-desktop {
+    display: block;
+  }
+  .a-insert{
+    padding-right: 50px;
+  }
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .Box {
-    background-color: #fff8e1;
+    background-color: #ffff;
     height: 80rem;
   }
   .button-1 {
@@ -351,11 +389,19 @@ font-size: 16px;
   }
 }
 @media screen and (max-width: 767px) {
+  #div-mobile {
+    display: block;
+  }
+
+  #div-desktop {
+    display: none;
+  }
+
   #control_btn_mobile{
     height: 30px;
   }
   .Box {
-    background-color: #fff8e1;
+    background-color: #ffff;
     height: auto;
   }
   h1 {
@@ -398,6 +444,9 @@ font-size: 16px;
   .material-icons {
     font-size: 16px !important;
     text-align: center !important;
+  }
+  .a-insert{
+    padding-right:15px !important ;
   }
 }
 </style>

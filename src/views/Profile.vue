@@ -223,14 +223,18 @@ export default {
   },
 
   methods: {
-    getadmin() {
+    getadmin(uid) {
+      if (uid != uid ) {
+        alert("กรุณากรอกข้อมูลทุกช่อง!!");
+      } else if (uid == uid ) {
       axios
         .get(process.env.VUE_APP_BACKEND_BASE_URL + "/Admin")
         .then((response) => {
           (this.data = response.data);
           console.log(response.data);
         });
-    },
+    }
+  },
     GetUser() {
       const auth = getAuth();
       const user = auth.currentUser;

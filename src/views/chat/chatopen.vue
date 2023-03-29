@@ -25,7 +25,7 @@
 
     <div class="search mt-0">
       <div class="row row-menu sort">
-        <div class="col-2 sortby p-0 mt-3">
+        <div class="col-2  sortby p-0 mt-3" id="div-desktop">
           <div class="sortby-input mt-2">
             <p class="p-sortby fw-bold mb-2">Sort By:</p>
           </div>
@@ -36,7 +36,7 @@
             </select>
           </div>
         </div>
-        <div class="col-2 sort px-0 mt-3">
+        <div class="col-2 sort px-0 mt-3" id="div-desktop">
           <div class="sortby-input mt-2">
             <p class="p-sortby fw-bold mb-2">Type:</p>
           </div>
@@ -47,79 +47,108 @@
             </select>
           </div>
         </div>
+        <!-- resposive -->
+        <div class="row">
+          <div class="col  sortby p-0 mt-3" id="div-mobile">
+            <div class="sortby-input mt-2">
+              <p class="p-sortby fw-bold mb-2">Sort By:</p>
+            </div>
+            <div class="input-group mb-3 d-flex justify-content-start input-sort">
+              <select class="form-select" aria-label="Default select example" v-model="sortBy" @click="getchatopen()">
+                <option value="iddocs">หมายเลขเอกสาร</option>
+                <option value="Text">ข้อความ</option>
+              </select>
+            </div>
+          </div>
+          <div class="col sort px-0 mt-3" id="div-mobile" >
+            <div class="sortby-input mt-2">
+              <p class="p-sortby fw-bold mb-2">Type:</p>
+            </div>
+            <div class="input-group mb-3 sort-frist">
+              <select class="form-select" aria-label="Default select example" v-model="first" @click="getchatopen()">
+                <option value="desc">ล่าสุด-ลำดับแรก</option>
+                <option value="asc">ลำดับแรก-ล่าสุด</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        </div>
 
         <div class="col col-flex d-flex justify-content-end mt-5">
-          <a href="/insertchatopen">
+          <a href="/insertchatopen" class="a-insert">
             <button type="button" class="btn btn-success">
               เพิ่มข้อความ
             </button>
           </a>
         </div>
       </div>
-    </div>
-    <div class="block">
-      <div class="row block-item block-bm" v-for="item in filtersearch" :key="item">
 
-        <div class="col-1">{{ item.id }}</div>
-        <div class="col-7">{{ item.Text }}</div>
 
-        <div class="col-3 button-1">
-          <button type="button" class="btn btn-primary edit" @click="$router.push(`/updatechatopen/${item.id}`)">
-            แก้ไข
-          </button>
 
-          <button type="button" class="btn btn-danger delete" data-bs-toggle="modal" data-bs-target="#exampleModal"
-            @click="confirmdeletezone(item.id)">
-            ลบ
-          </button>
-          <a href="/dashboard" class="fa fa-home"></a>
-        </div>
+  <div class="block">
 
-        <!-- resposive -->
+    <div class="row block-item block-bm" v-for="item in filtersearch" :key="item">
 
-        <div class="col-3 button-res">
-          <button type="button" class="btn btn-primary edit edit-res" id="control_btn_mobile"
-            @click="$router.push(`/updatechatopen/${item.id}`)">
-            <span class="material-icons"> mode_edit </span>
-          </button>
+      <div class="col-1">{{ item.id }}</div>
+      <div class="col-7">{{ item.Text }}</div>
 
-          <button type="button" class="btn btn-danger delete delete-res" id="control_btn_mobile" data-bs-toggle="modal"
-            data-bs-target="#exampleModal" @click="confirmdeletezone(item.id)">
-            <span class="material-icons"> delete_outline </span>
-          </button>
+      <div class="col-3 button-1">
+        <button type="button" class="btn btn-primary edit" @click="$router.push(`/updatechatopen/${item.id}`)">
+          แก้ไข
+        </button>
 
-        </div>
+        <button type="button" class="btn btn-danger delete" data-bs-toggle="modal" data-bs-target="#exampleModal"
+          @click="confirmdeletezone(item.id)">
+          ลบ
+        </button>
+        <a href="/dashboard" class="fa fa-home"></a>
+      </div>
+
+      <!-- resposive -->
+
+      <div class="col-3 button-res">
+        <button type="button" class="btn btn-primary edit edit-res" id="control_btn_mobile"
+          @click="$router.push(`/updatechatopen/${item.id}`)">
+          <span class="material-icons"> mode_edit </span>
+        </button>
+
+        <button type="button" class="btn btn-danger delete delete-res" id="control_btn_mobile" data-bs-toggle="modal"
+          data-bs-target="#exampleModal" @click="confirmdeletezone(item.id)">
+          <span class="material-icons"> delete_outline </span>
+        </button>
+
       </div>
     </div>
+  </div>
 
-    <!-- Button trigger modal -->
+  <!-- Button trigger modal -->
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-md">
-        <div class="modal-content border border-warning border-5">
-          <div class="modal-header border-0">
-            <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+      <div class="modal-content border border-5">
+        <div class="modal-header border-0">
+          <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center fs-4 fw-bold">
+          คุณต้องการลบข้อความนี้หรือไม่ ?
+        </div>
+        <div class="modal-footer border-0 mt-3">
+          <div class="col">
+            <button type="button" class="btn btn-warning" data-bs-dismiss="modal" @click="deletechat(id)">
+              ยืนยัน
+            </button>
           </div>
-          <div class="modal-body text-center fs-4 fw-bold">
-            คุณต้องการลบข้อความนี้หรือไม่ ?
-          </div>
-          <div class="modal-footer border-0 mt-3">
-            <div class="col">
-              <button type="button" class="btn btn-warning" data-bs-dismiss="modal" @click="deletechat(id)">
-                ยืนยัน
-              </button>
-            </div>
-            <div class="col">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                ยกเลิก
-              </button>
-            </div>
+          <div class="col">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              ยกเลิก
+            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 </template>
   
 <script>
@@ -191,12 +220,6 @@ h1 {
   border-radius: 15px;
 }
 
-.form-select {
-  border: 5px solid #ffbd59;
-  border-radius: 15px;
-}
-
-
 .row-menu {
   width: 90%;
   margin: auto;
@@ -215,7 +238,12 @@ h1 {
 
 .input-group {
   width: 48%;
-  
+
+}
+
+.form-select {
+  border: 5px solid #ffbd59;
+  border-radius: 15px;
 }
 
 .input-sort {
@@ -226,17 +254,20 @@ h1 {
 .sortby {
   width: 20%;
 }
-.p-sortby{
-font-size: 16px;
+
+.p-sortby {
+  font-size: 16px;
 }
 
 .sort-frist {
   width: 100% !important;
   padding-bottom: 20px;
 }
-.sort{
+
+.sort {
   padding-right: 5px;
 }
+
 .col-flex {
   display: flex;
   justify-content: end;
@@ -297,10 +328,21 @@ font-size: 16px;
 .button-res {
   display: none;
 }
+#div-mobile {
+    display: none;
+  }
+
+  #div-desktop {
+    display: block;
+  }
+  .a-insert{
+    padding-right: 50px;
+  }
+
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .Box {
-    background-color: #fff8e1;
+    background-color: #ffff;
     height: 80rem;
   }
 
@@ -324,12 +366,20 @@ font-size: 16px;
 }
 
 @media screen and (max-width: 767px) {
+  #div-mobile {
+    display: block;
+  }
+
+  #div-desktop {
+    display: none;
+  }
+
   #control_btn_mobile {
     height: 30px;
   }
 
   .Box {
-    background-color: #fff8e1;
+    background-color: #ffff;
     height: auto;
   }
 
@@ -385,5 +435,7 @@ font-size: 16px;
     font-size: 16px !important;
     text-align: center !important;
   }
-}
-</style>
+  .a-insert{
+    padding-right:15px !important ;
+  }
+}</style>
