@@ -1,13 +1,29 @@
 <template>
-  <div>
+ 
+ <input type="text" v-model="numericInput" @input="filterNonNumeric" />
+
+  <!-- <div>
     <chart />
-  </div>
+  </div> -->
 </template>
 
 <script>
-import chart  from "../components/chart/review.vue";
+
+// import chart  from "../components/chart/total.vue";
 export default {
-  components: { chart },
+
+  // components: { chart },
+  data() {
+				return {
+					numericInput: ""
+				}
+      },
+      methods: {
+				filterNonNumeric() {
+					// Replace non-numeric characters with an empty string
+					this.numericInput = this.numericInput.replace(/[^0-9]/g, "");
+				}
+			}
 }
 </script>
 

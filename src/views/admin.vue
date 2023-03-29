@@ -51,6 +51,7 @@
           <button class="btn btn-success add " id="btn_del"  data-bs-toggle="modal"
             data-bs-target="#exampleModal">เพิ่มแอดมิน</button>
         </div>
+        
         <div class="admin_list">
           <div class="grid" style="text-align: center;" id="thead">
             <div class="g-col-6 g-col-md-4">ชื่อ</div>
@@ -93,7 +94,7 @@
         aria-hidden="true"
       >
         <div class="modal-dialog modal-dialog-centered modal-md">
-          <div class="modal-content border border-warning border-5">
+          <div class="modal-content border  border-5">
             <div class="modal-header border-0">
               <button
                 type="button"

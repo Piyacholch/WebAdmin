@@ -76,7 +76,7 @@
     </div>
 
 
-    <div class="row align-items-start px-5">
+    <div class="row align-items-start px-5" id="div-desktop">
 
       <div class="col-5 mt-4">
         <div class="chart">
@@ -86,7 +86,7 @@
           <charttotal />
         </div>
       </div>
-      
+
       <div class="col-4 mt-4">
         <div class="row align-items-start">
           <div class="col">
@@ -102,30 +102,57 @@
         </div>
 
         <div class="chart mt-4">
-          <queryText/>
+          <queryText />
         </div>
       </div>
 
 
       <div class="col-3 mt-4">
         <div class="">
-              <chartreview  />
-            </div>
+          <chartreview />
+        </div>
       </div>
     </div>
 
-    <!-- <div class="row px-5 mt-3">
-      <div class="col-sm-8">
-        <div class="chart">
-         <chartemotion/>
+    <!-- responsive -->
+
+    <div class="row align-items-start px-5" id="div-mobile">
+
+      <div class="col mt-4 ">
+        <div class="chart" id="total">
+          <chartemotion />
+        </div>
+        <div class="chart p-0 mt-4 " id="total">
+          <charttotal />
         </div>
       </div>
-      <div class="col-sm-4">
-        <div class="imformation">
-          <chartchat />
+
+      <div class="col mt-4">
+        <div class="row align-items-start">
+          <div class="col">
+            <div class="chart">
+              <chartchat />
+            </div>
+          </div>
+          <div class="col">
+            <div class="chart">
+              <chartchat />
+            </div>
+          </div>
+        </div>
+
+        <div class="chart mt-4">
+          <queryText />
         </div>
       </div>
-    </div> -->
+
+
+      <div class="col mt-4">
+        <div class="">
+          <chartreview />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -140,7 +167,7 @@ import Breadcrumb from "../components/BC-dashboard.vue";
 import axios from "axios";
 
 export default {
-  components: { Navbar, Breadcrumb, chartemotion, charttotal, chartchat, queryText, chartreview  },
+  components: { Navbar, Breadcrumb, chartemotion, charttotal, chartchat, queryText, chartreview },
   data() {
     return {
       loaddata: [],
@@ -307,7 +334,7 @@ img {
   margin: auto;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (min-width: 0px) and (max-width: 700px) {
   .Box {
     background-color: #fff8e1;
     height: auto;
@@ -351,6 +378,14 @@ img {
   .imformation {
     margin-top: 10px;
     height: 200px;
+  }
+
+  #div-mobile {
+    display: block;
+  }
+
+  #div-desktop {
+    display: none;
   }
 
 }

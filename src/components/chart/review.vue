@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-6 bg-color">
 
-                <h3 class="text-center mb-3 mt-3">ความคิดเห็นเพิ่มเติม</h3>
+                <h3 class="text-center mb-3 mt-3 haed">ความคิดเห็นเพิ่มเติม</h3>
 
                 <div class="d-flex flex-row-reverse bd-highlight">
                     <div class="p-2 bd-highlight">
@@ -91,6 +91,7 @@ export default {
     width: 90%;
     margin: auto;
 }
+
 /* .scroll{
     scroll-behavior: smooth !important; 
 } */
@@ -100,9 +101,10 @@ export default {
     width: 100%;
     margin: auto;
     border-radius: 40px;
-   
+
 }
-.box-item{
+
+.box-item {
     margin-bottom: 5px;
 }
 
@@ -130,7 +132,22 @@ export default {
     font-family: 'Kanit', sans-serif;
     font-weight: bold;
     white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
-width: 200px;
-}</style>
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 200px;
+}
+
+@media screen and (min-width: 0px) and (max-width: 700px) {
+    .text-level p {
+        width: 100px !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+    }
+    .haed{
+        font-size: 18px;
+        font-weight: bold;
+    }
+}
+</style>

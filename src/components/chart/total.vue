@@ -6,7 +6,7 @@
     </head>
     <div>
 
-        <div class="row ma-auto item">
+        <div class="row ma-auto item " id="div-desktop">
             <div class="col-6">
                 <div class="box-item d-flex justify-content-center mb-2">
                     <div class="col emoji">
@@ -146,13 +146,167 @@
                             </div>
                             <div class="col p-1">
                                 <div class="text-level">
-                                    <p>ไม่สบายใจมาก :  {{ uncomfortable }} </p>
+                                    <p>ไม่สบายใจมาก : {{ uncomfortable }} </p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- responsive -->
+
+    <div class="row ma-auto item" id="div-mobile">
+        <div class="row mb-3 p-0">
+            <div class="col p-0">
+                <div class="box-item d-flex justify-content-center mb-2">
+                    <div class="col emoji">
+                        <div class="bg-icon">
+                            <div class="bg-icon">
+                                <img src="../../assets/emotion/happy.png" alt="icon" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="total">
+                            {{ level }}
+                        </div>
+                        <div class="text">
+                            <p>จำนวนการเลือกกิจกรรมที่ชอบ</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-item d-flex mb-2">
+                    <div class="col emoji">
+                        <div class="bg-icon">
+                            <div class="bg-icon">
+                                <img src="../../assets/emotion/volleyball.png" alt="icon" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="total">
+                            {{ totalActivity }}
+                        </div>
+                        <div class="text">
+                            <p>จำนวนความคิดเห็นเพิ่มเติม</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="box-item d-flex ">
+                    <div class="col emoji">
+                        <div class="bg-icon ">
+                            <div class="bg-icon">
+                                <img src="../../assets/emotion/messenger.png" alt="icon" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="total">
+                            {{ totalReviews }}
+                        </div>
+                        <div class="text">
+                            <p>จำนวนการประเมินอารมณ์</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row p-0">
+            <div class="col bg-color p-0 ">
+                <div class="p-2 mt-2">
+                    <div class="box-item d-flex">
+                        <div class="box d-flex">
+                            <div class="col-3 emoji-level">
+                                <div class="bg-level">
+                                    <div class="bg-level">
+                                        <img src="../../assets/emotion/comfortable.png" alt="icon" class="icon" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col p-1">
+                                <div class="text-level">
+                                    <p>สบายใจมาก : {{ comfortable }} </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-item d-flex">
+                        <div class="box d-flex">
+                            <div class="col-3 emoji-level">
+                                <div class="bg-level">
+                                    <div class="bg-level">
+                                        <img src="../../assets/emotion/relaxed.png" alt="icon" class="icon" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col p-1">
+                                <div class="text-level">
+                                    <p>สบายใจ : {{ relaxed }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-item d-flex">
+                        <div class="box d-flex">
+                            <div class="col-3 emoji-level">
+                                <div class="bg-level">
+                                    <div class="bg-level">
+                                        <img src="../../assets/emotion/normal.png" alt="icon" class="icon" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col p-1">
+                                <div class="text-level">
+                                    <p>เฉยๆ : {{ normal }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-item d-flex">
+                        <div class="box d-flex">
+                            <div class="col-3 emoji-level">
+                                <div class="bg-level">
+                                    <div class="bg-level">
+                                        <img src="../../assets/emotion/worried.png" alt="icon" class="icon" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col p-1">
+                                <div class="text-level">
+                                    <p>ไม่สบายใจ : {{ worried }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-item d-flex">
+                        <div class="box d-flex">
+                            <div class="col-3 emoji-level">
+                                <div class="bg-level">
+                                    <div class="bg-level">
+                                        <img src="../../assets/emotion/uncomfortable.png" alt="icon" class="icon" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col p-1">
+                                <div class="text-level">
+                                    <p>ไม่สบายใจมาก : {{ uncomfortable }} </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -254,7 +408,7 @@ img {
 
 .bg-color {
     background-color: #F9F5EF;
-    
+
 }
 
 .box {
@@ -288,4 +442,33 @@ img {
     font-family: 'Kanit', sans-serif;
     font-weight: bold;
 }
-</style>
+
+@media screen and (min-width: 0px) and (max-width: 700px) {
+    #div-mobile {
+        display: block;
+    }
+
+    #div-desktop {
+        display: none;
+    }
+    img {
+    width: 20px;
+}
+.bg-icon {
+    width: 50px;
+    height: 50px;
+}
+.total {
+    font-size: 20px;
+}
+.text p{
+    font-size: 12px !important;
+}
+.box-item {
+    width: 90%;
+    margin: auto;
+}
+.icon {
+    width: 25px;
+}
+}</style>
