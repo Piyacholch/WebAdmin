@@ -42,10 +42,15 @@
             </div>
             <p class="mb-2 or">หรือ</p>
             <div id="GooglerSingIn" v-if="!isSignedIn" class="google mb-2">
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#scrollable1">
-                <i class="fab fa-google-plus-g"></i>
+              <button type="button" class="btn btn-primary" @click="handleSignInGoogle">
+                <i class="fab fa-google-plus-g" @click="handleSignInGoogle"></i>
                 LogIn with Google
               </button>
+            
+              <!-- <button type="button" class="btn btn-primary btn-sm btn-google">
+                <i class="fab fa-google-plus-g" @click="handleSignInGoogle"></i>
+                LogIn with Google
+              </button> -->
             </div>
             <div class="toLogin">
              <a href="/login"><p class="mb-2 or" id="a_toLogin">เข้าสู่ระบบ</p></a> 
