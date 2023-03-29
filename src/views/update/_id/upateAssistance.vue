@@ -11,60 +11,60 @@
     </div>
     <div class="box p-4">
       <h2>แก้ไขแหล่งช่วยเหลือ</h2>
-      
+
       <div class="row">
-      <div class="col">
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">เบอร์โทรศัพท์แหล่งช่วยเหลือ</label>
-          <input type="url" class="form-control" id="exampleFormControlInput2"
-            placeholder="เพิ่มเบอร์โทรศัพท์แหล่งช่วยเหลือ" v-model="data.tel" />
+        <div class="col">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">หมายเลขเอกสาร</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="id docs"
+              v-model="data.iddocs" disabled />
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">ชื่อแหล่งช่วยเหลือ</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="เพิ่มชื่อแหล่งช่วยเหลือ"
+              v-model="data.title" />
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">เบอร์โทรศัพท์แหล่งช่วยเหลือ</label>
+            <input type="url" class="form-control" id="exampleFormControlInput2"
+              placeholder="เพิ่มเบอร์โทรศัพท์แหล่งช่วยเหลือ" v-model="data.tel" />
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Facebook แหล่งช่วยเหลือ</label>
+            <input type="text" class="form-control" id="exampleFormControlInput2"
+              placeholder="Facebook Page แหล่งช่วยเหลือ" v-model="data.facebook" />
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Link Facebook แหล่งช่วยเหลือ</label>
+            <input type="url" class="form-control" id="exampleFormControlInput2"
+              placeholder="Link Facebook แหล่งช่วยเหลือ" v-model="data.Linkfacebook" />
+          </div>
         </div>
 
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Link Facebook แหล่งช่วยเหลือ</label>
-          <input type="url" class="form-control" id="exampleFormControlInput2" placeholder="Link Facebook แหล่งช่วยเหลือ"
-            v-model="data.Linkfacebook" />
+        <div class="col">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">LineID แหล่งช่วยเหลือ</label>
+            <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Line ID แหล่งช่วยเหลือ"
+              v-model="data.lineid" />
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Link Line แหล่งช่วยเหลือ</label>
+            <input type="url" class="form-control" id="exampleFormControlInput2" placeholder="Link Line แหล่งช่วยเหลือ"
+              v-model="data.Linkline" />
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">ข้อมูลเพิ่มเติม</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" placeholder="ข้อมูลเพิ่มเติม"
+              v-model="data.description"></textarea>
+          </div>
+
         </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">LineID แหล่งช่วยเหลือ</label>
-          <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Line ID แหล่งช่วยเหลือ"
-            v-model="data.lineID" />
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Link Line แหล่งช่วยเหลือ</label>
-          <input type="url" class="form-control" id="exampleFormControlInput2" placeholder="Link Line แหล่งช่วยเหลือ"
-            v-model="data.uLinkline" />
-        </div>
-        
-      
       </div>
-
-      <div class="col">
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">ชื่อแหล่งช่วยเหลือ</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="เพิ่มชื่อแหล่งช่วยเหลือ"
-            v-model="data.title" />
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Facebook แหล่งช่วยเหลือ</label>
-          <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Facebook Page แหล่งช่วยเหลือ"
-            v-model="data.facebook" />
-        </div>
-
-        <div class="mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label">ข้อมูลเพิ่มเติม</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="ข้อมูลเพิ่มเติม"
-            v-model="data.description"></textarea>
-        </div>
-       
-      </div>
-    </div>
       <div class="footer d-flex justify-content-end mt-4">
-        <button
-          type="button"
-          class="btn btn-warning mx-2"
-          @click="updateAssistance(data.Title, data.Tel, data.Facebook, data.LineID, data.Description)"
-        >
+        <button type="button" class="btn btn-warning mx-2"
+          @click="updateAssistance(data.iddocs, data.title, data.tel, data.facebook, data.Linkfacebook, data.lineid, data.Linkline, data.description)">
           ตกลง
         </button>
         <button type="button" class="btn btn-danger" @click="
@@ -78,7 +78,7 @@
   </div>
 </template>
     
-    <script>
+<script>
 import axios from "axios";
 import Navbar from "../../../components/Navbar.vue";
 import Breadcrumb from "../../../components/bcupdate/bc-updateassistance.vue";
@@ -87,15 +87,15 @@ export default {
   components: { Navbar, Breadcrumb },
   data() {
     return {
-      Text: null,
-      data: {},
-      id: null, 
+      iddocs: "",
       title: "",
       tel: "",
+      Linkfacebook: "",
       facebook: "",
-      lineID: "",
+      lineid: "",
+      Linkline: "",
       description: "",
-      
+      data: [],
     };
   },
   mounted() {
@@ -104,49 +104,61 @@ export default {
   methods: {
     getAssistanceByID() {
       axios
-        .get(process.env.VUE_APP_BACKEND_BASE_URL+`/AssistanceByID/${this.$route.params.id}`)
+        .get(process.env.VUE_APP_BACKEND_BASE_URL + `/AssistanceByID/${this.$route.params.id}`)
         .then((response) => {
           this.data = response.data;
         });
     },
-    updateAssistance() {
-      if (this.iddocs == null || this.title == null || this.tel == null|| this.facebook == null|| this.lineID == null|| this.description == null) {
+    updateAssistance(iddocs, title, tel, facebook, Linkfacebook, lineid, Linkline, description) {
+      if (this.title == null || this.tel == null || this.facebook == null || this.Linkfacebook == null || this.lineid == null || this.Linkline == null || this.description == null) {
         alert("กรุณากรอกข้อมูลทุกช่อง!!");
-      } else if (this.iddocs != null || this.title != null || this.tel != null|| this.facebook != null|| this.lineID != null|| this.description != null) {
-      axios
-        .patch(
-          process.env.VUE_APP_BACKEND_BASE_URL+`/updateAssistance/${this.$route.params.id}/${this.data?.Title}/${this.data?.Tel}/${this.data?.Facebook}/${this.data?.LineID}/${this.data?.Description}`
-        )
-        .then((response) => {
-          this.data = response.data;
-          this.$router.push("/assistance");
-        });
+      } else if (this.title != null || this.tel != null || this.facebook != null || this.Linkfacebook != null || this.lineid != null || this.Linkline != null || this.description != null) {
+        axios
+          .patch(
+            process.env.VUE_APP_BACKEND_BASE_URL + "/updateAssistance", {
+            iddocs: iddocs,
+            title: title,
+            tel: tel,
+            facebook: facebook,
+            Linkfacebook: Linkfacebook,
+            lineid: lineid,
+            Linkline: Linkline,
+            description: description,
+          }
+          )
+          .then((response) => {
+            this.data = response.data;
+            this.$router.push("/assistance");
+          });
       }
     },
-    reset() {
-      this.data.Title = "";
-      this.data.Tel = "";
-      this.data.Facebook = "";
-      this.data.LineID = "";
-      this.data.Description = "";
-    },
+    // reset() {
+    //   this.data.Title = "";
+    //   this.data.Tel = "";
+    //   this.data.Facebook = "";
+    //   this.data.LineID = "";
+    //   this.data.Description = "";
+    // },
   },
 };
 </script>
     
-    <style  scoped>
+<style  scoped>
 .Box {
   background-color: #ffff;
   height: auto;
 }
+
 h1 {
   padding-top: 40px;
   padding-bottom: 10px;
 }
+
 h2 {
   text-align: center;
   padding-bottom: 20px;
 }
+
 .box {
   background-color: #f5e5c1;
   width: 50%;
@@ -154,31 +166,37 @@ h2 {
   border-radius: 5px;
   box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.1);
 }
+
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .Box {
     background-color: #fff8e1;
     height: 80rem;
   }
+
   .box {
     width: 90%;
   }
 }
+
 @media screen and (max-width: 767px) {
   .Box {
     background-color: #fff8e1;
     height: 80rem;
   }
+
   .box {
     width: 80%;
   }
+
   .footer {
     display: flex;
     justify-content: center !important;
     align-items: center;
   }
+
   .btn-1 {
     margin-left: 0px !important;
   }
 }
-</style>>
+</style>
     
