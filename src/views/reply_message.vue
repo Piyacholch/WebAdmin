@@ -160,5 +160,15 @@ a {
   .col-3{
     padding: 0px;
   }
+  a {
+  text-decoration: none;
+  width: 50%;
+}
+.col-9 {
+  width: 50%;
+}
+.col-3 {
+  width: 50%;
+}
 }
 </style>
