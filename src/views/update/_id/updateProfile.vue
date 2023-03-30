@@ -38,7 +38,7 @@
             <label for="floatingInput">อีเมล</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
               v-model="photoURL" />
             <span class="material-symbols-outlined"> edit </span>
             <label for="floatingInput">รูปภาพ</label>
@@ -156,15 +156,7 @@ export default {
       }
     },
     Addata(uid, providerId, email, displayName, phonenum) {
-      if (
-        this.displayName == null ||
-        this.phonenum == null
-      ) {
-        alert("กรุณากรอกข้อมูลทุกช่อง!!");
-      } else if (
-        this.displayName != null ||
-        this.phonenum != null
-      ) {
+      {
         axios
           .post(
             process.env.VUE_APP_BACKEND_BASE_URL +
