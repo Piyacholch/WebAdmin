@@ -23,6 +23,8 @@
           id="exampleFormControlInput1"
           placeholder="id docs"
           v-model="data.iddocs"
+          @change="isInt(iddocs)"
+          onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
         />
       </div>
       <div class="mb-3">
@@ -85,6 +87,14 @@ export default {
           this.$router.push("/chatnegative");
           // console.log(response.data)
         });
+      }
+    },
+    isInt(n) {
+      if (n % 1 === 0) {
+        return;
+      } else {
+        alert("กรุณากรอกตัวเลข!!");
+        this.iddocs = 1;
       }
     },
     reset() {

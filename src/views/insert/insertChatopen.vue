@@ -11,7 +11,7 @@
     </div>
     <div class="box p-4">
       <h2>เพิ่มข้อความตอบกลับประโยคทักทาย</h2>
-
+     
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label"
           >หมายเลขเอกสาร</label
@@ -22,6 +22,9 @@
           id="exampleFormControlInput1"
           placeholder="id docs"
           v-model="data.iddocs"
+          @change="isInt(iddocs)"
+          onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+          
         />
       </div>
       <div class="mb-3">
@@ -64,19 +67,24 @@ import Navbar from "../../components/Navbar.vue";
 import Breadcrumb from "../../components/Bcinsert/bc-insertchatopen.vue";
 export default {
   components: { Navbar, Breadcrumb },
+  
   data() {
     return {
       iddocs: "",
       Text: "",
       data: [],
+      numericInput: ""
     };
   },
   methods: {
     submit(iddocs, Text) {
-      if (iddocs == null || Text == null ) {
+      if (iddocs == null || Text == null 
+      ) {
         alert("กรุณากรอกข้อมูลทุกช่อง!!");
-      } else if (iddocs != null || Text != null) {
+      } else if (iddocs != null || Text != null)
+       {
       axios
+      
         .post(process.env.VUE_APP_BACKEND_BASE_URL+"/insertchatopen",{
           iddocs:iddocs,
           Text:Text
@@ -88,6 +96,18 @@ export default {
         });
       }
     },
+    isInt(n) {
+      if (n % 1 === 0) {
+        return;
+      } else {
+        alert("กรุณากรอกตัวเลข!!");
+        this.iddocs = 1;
+      }
+    },
+    // filterNonNumeric() {
+		// 			// Replace non-numeric characters with an empty string
+		// 			this.numericInput = this.numericInput.replace(/[^0-9]/g, "");
+		// },
     reset() {
       this.data.iddocs = "";
       this.Text = "";
