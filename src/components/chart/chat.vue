@@ -72,10 +72,22 @@ export default {
 <style scoped>
 
 .chart{
-height: 230px !important;
-width: 230px !important;
-
+  height: 230px !important;
+  width: 230px !important;
+ 
 }
+.body{
+  margin-left: 22%;
+}
+@media screen and (min-width: 340px) and (max-width: 768px) {
+  .chart{
+  height: 200px !important;
+  width: 200px !important;
+ 
+}
+  .body{
+  margin-left: 18%;
+}}
 /* .body{
 margin-left: 22%;
 } */
