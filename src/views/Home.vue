@@ -89,16 +89,12 @@
 
       <div class="col-4 mt-4">
         <div class="row align-items-start">
-          <div class="col">
+          <div class="col-">
             <div class="chart">
               <chartchat />
             </div>
           </div>
-          <div class="col">
-            <div class="chart">
-              <chartchat />
-            </div>
-          </div>
+      
         </div>
 
         <div class="chart mt-4">
@@ -134,11 +130,7 @@
               <chartchat />
             </div>
           </div>
-          <div class="col">
-            <div class="chart">
-              <chartchat />
-            </div>
-          </div>
+
         </div>
 
         <div class="chart mt-4">
@@ -380,12 +372,16 @@ img {
     height: 200px;
   }
 
-  #div-mobile {
-    display: block;
-  }
+
 
   #div-desktop {
-    display: none;
+    display: none !important;
+  }
+
+}
+@media screen and (min-width: 700px) and (max-width: 2000px) {
+  #div-mobile {
+    display: none !important;
   }
 
 }

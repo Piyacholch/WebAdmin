@@ -159,7 +159,7 @@
     </div>
 
     <!-- responsive -->
-
+<!-- 
     <div class="row ma-auto item" id="div-mobile">
         <div class="row mb-3 p-0">
             <div class="col p-0">
@@ -310,7 +310,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </template>
 
 <script>
@@ -445,11 +445,11 @@ img {
 
 @media screen and (min-width: 0px) and (max-width: 700px) {
     #div-mobile {
-        display: block;
+        display: block !important;
     }
 
     #div-desktop {
-        display: none;
+        display: none !important;
     }
     img {
     width: 20px;
