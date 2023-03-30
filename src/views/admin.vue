@@ -87,10 +87,10 @@
 
       <div class="col-3 button-1">
 
-        <button type="button" class="btn btn-danger delete" data-bs-toggle="modal" data-bs-target="#exampleModal"
-          @click="confirmdeletezone(item.id)">
-          ลบ
-        </button>
+        <button class="btn btn-danger" id="btn_del1"   data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+            @click="confirmdelete(item.id)"
+          >ลบ</button>
         <a href="/dashboard" class="fa fa-home"></a>
       </div>
 
@@ -394,7 +394,11 @@ h1 {
     padding-right: 50px;
   }
   #btn_del{
-    width: 15% !important;
+    width: 10% !important;
+    margin-right: 65px;
+  }
+  #btn_del1{
+    width: 50% !important;
     margin-right: 65px;
   }
 
