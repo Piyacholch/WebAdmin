@@ -64,9 +64,7 @@
           <div class="form-floating mb-3">
             <div class="form-floating">
               <input type="tel" id="typephone" name="phone" class="form-control" placeholder="0XXXXXXXXX"
-                @change="isInt(iddocs)"
-                onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
-                pattern="[0-9]{10}" v-model="data.phonenum" required />
+              v-model="data.phonenum"   />
               <!-- <input type="tel" class="form-control" id="floatingphonenum" placeholder="0xxxxxxxxx"
                 v-model="data.phonenum" /> -->
               <span class="material-symbols-outlined"> edit </span>
