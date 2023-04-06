@@ -9,7 +9,9 @@ import VueAxios from 'vue-axios'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 
-
+global.jQuery = require('jquery');
+var $ = global.jQuery;
+window.$ = $;
 
 createApp(App).use(store).use(router).mount('#app')
 createApp(App).use(VueAxios, axios)

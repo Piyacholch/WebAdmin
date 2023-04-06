@@ -94,7 +94,7 @@
               <chartchat />
             </div>
           </div>
-      
+
         </div>
 
         <div class="chart mt-4">
@@ -145,6 +145,13 @@
         </div>
       </div>
     </div>
+    <!-- <div>
+      <div class="row px-5">
+        <div class="chart ">
+          <userEmotion />
+        </div>
+      </div>
+    </div> -->
   </div>
 </template>
 
@@ -155,6 +162,7 @@ import charttotal from "../components/chart/total.vue";
 import chartchat from "../components/chart/chat.vue";
 import chartreview from "../components/chart/review.vue";
 import queryText from "../components/chart/queryText.vue";
+
 import Breadcrumb from "../components/BC-dashboard.vue";
 import axios from "axios";
 
@@ -174,7 +182,6 @@ export default {
       worried: "",  // ไม่สบายใจ
       uncomfortable: "",  // ไม่สบายใจมาก
       level: "",
-
       sortBy: "displayName",
       first: "desc",
     };
@@ -379,6 +386,7 @@ img {
   }
 
 }
+
 @media screen and (min-width: 700px) and (max-width: 2000px) {
   #div-mobile {
     display: none !important;

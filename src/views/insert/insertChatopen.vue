@@ -10,8 +10,8 @@
       <Breadcrumb />
     </div>
     <div class="box p-4">
-      <h2>เพิ่มข้อความตอบกลับประโยคทักทาย</h2>
-     
+      <h2>เพิ่มข้อความตอบกลับประโยคทักทาย</h2> 
+
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label"
           >หมายเลขเอกสาร</label
@@ -21,10 +21,8 @@
           class="form-control"
           id="exampleFormControlInput1"
           placeholder="id docs"
-          v-model="data.iddocs"
-          @change="isInt(iddocs)"
-          onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
-          
+          v-model="iddocs"
+          :disabled="true"
         />
       </div>
       <div class="mb-3">
@@ -37,7 +35,7 @@
           for="validationDefault"
           placeholder="เพิ่มข้อความ"
           rows="7"
-          v-model="data.Text"
+          v-model="Text"
           required
         ></textarea>
       </div>
@@ -45,7 +43,7 @@
         <button
           type="button"
           class="btn btn-warning mx-2"
-          @click="submit(data.iddocs, data.Text)"
+          @click="submit(iddocs, Text)"
         >
           ตกลง
         </button>
@@ -67,24 +65,18 @@ import Navbar from "../../components/Navbar.vue";
 import Breadcrumb from "../../components/Bcinsert/bc-insertchatopen.vue";
 export default {
   components: { Navbar, Breadcrumb },
-  
   data() {
     return {
       iddocs: "",
       Text: "",
       data: [],
-      numericInput: ""
+    
     };
   },
+
   methods: {
     submit(iddocs, Text) {
-      if (iddocs == null || Text == null 
-      ) {
-        alert("กรุณากรอกข้อมูลทุกช่อง!!");
-      } else if (iddocs != null || Text != null)
-       {
       axios
-      
         .post(process.env.VUE_APP_BACKEND_BASE_URL+"/insertchatopen",{
           iddocs:iddocs,
           Text:Text
@@ -92,26 +84,24 @@ export default {
         .then((response) => {
           this.data = response.data;
           this.$router.push("/chatopen");
-          // console.log(response.data)
         });
+    },
+    getchatOpen() {
+      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/chatOpenautoid").then((response) => {
+        this.datalenght = response.data.length+1;
+        this.iddocs =  this.datalenght.toString();
+        if (this.datalenght < 10) {
+          this.iddocs = "0" + this.iddocs;
       }
+      });
     },
-    isInt(n) {
-      if (n % 1 === 0) {
-        return;
-      } else {
-        alert("กรุณากรอกตัวเลข!!");
-        this.iddocs = 1;
-      }
-    },
-    // filterNonNumeric() {
-		// 			// Replace non-numeric characters with an empty string
-		// 			this.numericInput = this.numericInput.replace(/[^0-9]/g, "");
-		// },
-    reset() {
-      this.data.iddocs = "";
-      this.Text = "";
-    },
+  },
+  created() {
+    this.getchatOpen();
+  },
+  mounted() {
+    this.getchatOpen();
+    
   },
 };
 </script>
@@ -138,7 +128,7 @@ h2 {
 }
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .Box {
-    background-color: #fff8e1;
+    background-color: #ffff;
     height: 80rem;
   }
   .box {
@@ -148,7 +138,7 @@ h2 {
 }
 @media screen and (max-width: 767px) {
   .Box {
-    background-color: #fff8e1;
+    background-color: #ffff;
     height: 55rem;
   }
   .box {

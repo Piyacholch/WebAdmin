@@ -175,6 +175,12 @@ export default {
           tooltip: "จัดการแอดมิน",
           icon: "bx-notepad",
         },
+        {
+          link: "getusers",
+          name: "ดูระดับอารมณ์ผู้ใช้งาน",
+          tooltip: "ดูระดับอารมณ์ผู้ใช้งาน",
+          icon: "bx-happy",
+        },
         // {
         //   link: '#',
         //   name: 'Saved',

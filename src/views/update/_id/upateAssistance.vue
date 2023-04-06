@@ -13,7 +13,7 @@
       <h2>แก้ไขแหล่งช่วยเหลือ</h2>
 
       <div class="row">
-        <div class="col">
+       
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">หมายเลขเอกสาร</label>
             <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="id docs"
@@ -31,26 +31,26 @@
           </div>
 
           <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Facebook แหล่งช่วยเหลือ</label>
+            <label for="exampleFormControlInput1" class="form-label">ชื่อเฟซบุ๊กแหล่งช่วยเหลือ</label>
             <input type="text" class="form-control" id="exampleFormControlInput2"
               placeholder="Facebook Page แหล่งช่วยเหลือ" v-model="data.facebook" />
           </div>
 
           <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Link Facebook แหล่งช่วยเหลือ</label>
+            <label for="exampleFormControlInput1" class="form-label">ลิงก์เฟซบุ๊กแหล่งช่วยเหลือ</label>
             <input type="url" class="form-control" id="exampleFormControlInput2"
               placeholder="Link Facebook แหล่งช่วยเหลือ" v-model="data.Linkfacebook" />
           </div>
-        </div>
+       
 
-        <div class="col">
+      
           <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">LineID แหล่งช่วยเหลือ</label>
+            <label for="exampleFormControlInput1" class="form-label">ชื่อไอดีไลน์แหล่งช่วยเหลือ</label>
             <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Line ID แหล่งช่วยเหลือ"
               v-model="data.lineid" />
           </div>
           <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Link Line แหล่งช่วยเหลือ</label>
+            <label for="exampleFormControlInput1" class="form-label">ลิงก์ไลน์แหล่งช่วยเหลือ</label>
             <input type="url" class="form-control" id="exampleFormControlInput2" placeholder="Link Line แหล่งช่วยเหลือ"
               v-model="data.Linkline" />
           </div>
@@ -60,7 +60,7 @@
               v-model="data.description"></textarea>
           </div>
 
-        </div>
+       
       </div>
       <div class="footer d-flex justify-content-end mt-4">
         <button type="button" class="btn btn-warning mx-2"

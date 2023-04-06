@@ -31,7 +31,9 @@ import admin from '../views/admin.vue'
 import help from '../views/help.vue'
 import sorting from '../views/sorting.vue'
 import chart from '../views/chart.vue'
-
+import verify from '../views/verify.vue'
+import userEmotion from '../views/userEmotion.vue'
+import getusers from '../views/getusers.vue'
 //Chat
 import chatopen from '../views/chat/chatopen.vue'
 import chatpositive from '../views/chat/chatpositive.vue'
@@ -61,6 +63,21 @@ const routes = [
     path: '/chart',
     name: 'chart',
     component: chart
+  },
+  {
+    path: '/verify',
+    name: 'verify',
+    component: verify
+  },
+  {
+    path: '/useremotion/:id',
+    name: 'useremotion',
+    component: userEmotion
+  },
+  {
+    path: '/getusers',
+    name: 'getusers',
+    component: getusers
   },
   /////////////////////// insert ////////////////////////
   {

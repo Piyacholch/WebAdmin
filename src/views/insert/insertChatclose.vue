@@ -22,9 +22,8 @@
           class="form-control"
           id="exampleFormControlInput1"
           placeholder="id docs"
-          v-model="data.iddocs"
-          @change="isInt(iddocs)"
-          onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+          v-model="iddocs"
+          disabled 
         />
       </div>
       
@@ -38,7 +37,7 @@
           for="validationDefault"
           placeholder="เพิ่มข้อความ"
           rows="7"
-          v-model="data.Text"
+          v-model="Text"
           required
         ></textarea>
       </div>
@@ -46,7 +45,7 @@
         <button
           type="button"
           class="btn btn-warning mx-2"
-          @click="submit(data.iddocs, data.Text)"
+          @click="submit(iddocs, Text)"
         >
           ตกลง
         </button>
@@ -77,31 +76,62 @@ export default {
   },
   methods: {
     submit(iddocs, Text) {
-      if (iddocs == null || Text == null ) {
-        alert("กรุณากรอกข้อมูลทุกช่อง!!");
-      } else if (iddocs != null || Text != null) {
       axios
-        .post(process.env.VUE_APP_BACKEND_BASE_URL+"/insertchatclose/" + iddocs + "/" + Text)
+        .post(process.env.VUE_APP_BACKEND_BASE_URL+"/insertchatclose",{
+          iddocs:iddocs,
+          Text:Text
+        })
         .then((response) => {
           this.data = response.data;
           this.$router.push("/chatclose");
-          // console.log(response.data)
         });
-      }
     },
-    isInt(n) {
-      if (n % 1 === 0) {
-        return;
-      } else {
-        alert("กรุณากรอกตัวเลข!!");
-        this.iddocs = 1;
+    // submit(iddocs, Text) {
+    //   if (Text == null ) {
+    //     alert("กรุณากรอกข้อมูลทุกช่อง!!");
+    //   } else if (Text != null) {
+    //   axios
+    //     .post(process.env.VUE_APP_BACKEND_BASE_URL+"/insertchatclose/" + iddocs + "/" + Text)
+    //     .then((response) => {
+    //       this.data = response.data;
+    //       this.$router.push("/chatclose");
+    //       // console.log(response.data)
+    //     });
+    //   }
+    // },
+    // isInt(n) {
+    //   if (n % 1 === 0) {
+    //     return;
+    //   } else {
+    //     alert("กรุณากรอกตัวเลข!!");
+    //     this.iddocs = 1;
+    //   }
+    // },
+    // reset() {
+    //   this.data.iddocs = "";
+    //   this.data.Text = "";
+    // },
+
+    getchatClose() {
+      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/chatCloseautoid").then((response) => {
+        this.datalenght = response.data.length+1;
+        this.iddocs =  this.datalenght.toString();
+        if (this.datalenght < 10) {
+          this.iddocs = "0" + this.iddocs;
       }
-    },
-    reset() {
-      this.data.iddocs = "";
-      this.data.Text = "";
+      });
     },
   },
+  created() {
+    this.getchatClose();
+  },
+  mounted() {
+    this.getchatClose();
+    
+  },
+
+
+
 };
 </script>
   

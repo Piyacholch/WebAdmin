@@ -14,18 +14,17 @@
 
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">หมายเลขเอกสาร</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="id docs"
-          v-model="data.iddocs" 
-          @change="isInt(iddocs)"
-          onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"/>
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="id docs" disabled
+          v-model="iddocs" 
+          />
       </div>
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">เพิ่มข้อความตอบกลับ</label>
         <textarea class="form-control" id="validationDefault" for="validationDefault" placeholder="เพิ่มข้อความ" rows="7"
-          v-model="data.Text" required></textarea>
+        v-model="Text" required></textarea>
       </div>
       <div class="footer d-flex justify-content-end mt-4">
-        <button type="button" class="btn btn-warning mx-2" @click="submit(data.iddocs, data.Text)">
+        <button type="button" class="btn btn-warning mx-2"  @click="submit(iddocs, Text)">
           ตกลง
         </button>
         <button type="button" class="btn btn-danger" @click="
@@ -54,34 +53,65 @@ export default {
     };
   },
   methods: {
+
+
     submit(iddocs, Text) {
-      if (iddocs == null || Text == null) {
-        alert("กรุณากรอกข้อมูลทุกช่อง!!");
-      } else if (iddocs != null || Text != null) {
-        axios
-          .post(process.env.VUE_APP_BACKEND_BASE_URL + "/insertchatpositive", {
-            iddocs: iddocs,
-            Text: Text
-          })
-          .then((response) => {
-            this.data = response.data;
-            this.$router.push("/chatpositive");
-            // console.log(response.data)
-          });
+      axios
+        .post(process.env.VUE_APP_BACKEND_BASE_URL+"/insertchatpositive",{
+          iddocs:iddocs,
+          Text:Text
+        })
+        .then((response) => {
+          this.data = response.data;
+          this.$router.push("/chatpositive");
+        });
+    },
+
+    // submit(iddocs, Text) {
+    //   if (Text == null) {
+    //     alert("กรุณากรอกข้อมูลทุกช่อง!!");
+    //   } else if (Text != null) {
+    //     axios
+    //       .post(process.env.VUE_APP_BACKEND_BASE_URL + "/insertchatpositive", {
+    //         iddocs: iddocs,
+    //         Text: Text
+    //       })
+    //       .then((response) => {
+    //         this.data = response.data;
+    //         this.$router.push("/chatpositive");
+    //         // console.log(response.data)
+    //       });
+    //   }
+    // },
+    // isInt(n) {
+    //   if (n % 1 === 0) {
+    //     return;
+    //   } else {
+    //     alert("กรุณากรอกข้อมูลทุกช่อง!!");
+    //     this.iddocs = 1;
+    //   }
+    // },
+    // reset() {
+    //   this.data.iddocs = "";
+    //   this.Text = "";
+    // },
+
+    getchatPositive() {
+      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/chatPositiveautoid").then((response) => {
+        this.datalenght = response.data.length+1;
+        this.iddocs =  this.datalenght.toString();
+        if (this.datalenght < 10) {
+          this.iddocs = "0" + this.iddocs;
       }
+      });
     },
-    isInt(n) {
-      if (n % 1 === 0) {
-        return;
-      } else {
-        alert("กรุณากรอกข้อมูลทุกช่อง!!");
-        this.iddocs = 1;
-      }
-    },
-    reset() {
-      this.data.iddocs = "";
-      this.Text = "";
-    },
+  },
+  created() {
+    this.getchatPositive();
+  },
+  mounted() {
+    this.getchatPositive();
+    
   },
 };
 </script>

@@ -79,7 +79,7 @@
               <label for="floatingphotoURL">URL รูปภาพ</label>
             </div>
             <br />
-            <div class="form-floating mb-3">
+            <!-- <div class="form-floating mb-3">
               <input
                 type="text"
                 class="form-control icon"
@@ -88,16 +88,9 @@
                 disabled
               />
               <div class="invalid-feedback">Please choose a username.</div>
-              <!-- <input
-                type="text"
-                class="form-control icon"
-                id="floatingdisplayname"
-                placeholder="dispassword"
-                v-model="displayName"
-                
-              /> -->
+            
               <label for="floatingdisplayname">ชื่อผู้ใช้</label>
-            </div>
+            </div> -->
             <!--เบอร์โทร-->
             <div class="form-floating mb-3">
         <!-- <div class="form-floating">
@@ -111,7 +104,11 @@
           <span class="material-symbols-outlined"> edit </span>
           <label for="floatingphotoURL">เบอร์โทร</label>
         </div> -->
+        <div class="description">
+    <p class="description" style="color: red;"> *หากผู้ใช้งานสมัครครั้งแรกกรุณาแก้ไขข้อมูลส่วนตัว เพื่อเพิ่มข้อมูลลงฐานข้อมูล</p>
+  </div>
       </div>
+    
           </div>
 
           <div class="pt-3">

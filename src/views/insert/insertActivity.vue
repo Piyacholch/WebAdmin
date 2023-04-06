@@ -16,40 +16,25 @@
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">หมายเลขเอกสาร</label>
         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="id docs"
-          v-model="data.iddocs"
-          @change="isInt(iddocs)"
-          onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" />
+          v-model="iddocs" disabled />
       </div>
 
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">ชื่อกิจกรรม</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="เพิ่มชื่อแหล่งช่วยเหลือ"
-          v-model="data.title" />
+        <input type="text" class="form-control title" id="exampleFormControlInput1" placeholder="เพิ่มชื่อแหล่งช่วยเหลือ"
+          v-model="data.title" 
+        />
       </div>
 
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">ข้อมูลเพิ่มเติม</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" placeholder="ข้อมูลเพิ่มเติม"
+        <textarea class="form-control title" id="exampleFormControlTextarea1" rows="7" placeholder="ข้อมูลเพิ่มเติม"
           v-model="data.description"></textarea>
       </div>
 
-      <!-- <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label" 
-          >เพิ่มข้อความตอบกลับ</label
-        >
-        <textarea
-          class="form-control"
-          id="validationDefault"
-          for="validationDefault"
-          placeholder="เพิ่มข้อความ"
-          rows="7"
-          v-model="data.Text"
-          required
-        ></textarea>
-      </div> -->
       <div class="footer d-flex justify-content-end mt-4">
         <button type="button" class="btn btn-warning mx-2" @click="
-          submit(data.iddocs, data.title, data.description)
+          submit(iddocs, data.title, data.description)
         ">
           ตกลง
         </button>
@@ -72,6 +57,7 @@
 import axios from "axios";
 import Navbar from "../../components/Navbar.vue";
 import Breadcrumb from "../../components/Bcinsert/bc-insertactivity.vue";
+// import $ from "jquery";
 export default {
   components: { Navbar, Breadcrumb },
   data() {
@@ -84,10 +70,22 @@ export default {
   },
   methods: {
     submit(iddocs, title, description) {
+      // if (this.title == null || this.title == "") {
+      //   $(".title").on({
+      //     keydown: function (event) {
+      //       if (event.which === 32) return false;
+      //     },
+      //     change: function () {
+      //       this.value = this.value.replace(/\s/g, "");
+      //     },
+      //   });
 
-      if (iddocs == null || title == null || description == null) {
+      //   alert("กรุณากรอกข้อมูล!!");
+      // } 
+
+      if (title == null || description == null) {
         alert("กรุณากรอกข้อมูลทุกช่อง!!");
-      } else if (iddocs != null || title != null || description != null) {
+      } else if (title != null || description != null) {
         axios
           .post(process.env.VUE_APP_BACKEND_BASE_URL + "/insertactivity/" + iddocs + "/" + title + "/" + description)
           .then((response) => {
@@ -105,13 +103,23 @@ export default {
         this.iddocs = 1;
       }
     },
-    reset() {
-      this.data.iddocs = "";
-      this.data.title = "";
-      this.data.description = "";
+    getActivity() {
+      axios.get(process.env.VUE_APP_BACKEND_BASE_URL+"/activityautoid").then((response) => {
+        this.datalenght = response.data.length+1;
+        this.iddocs =  this.datalenght.toString();
+        if (this.datalenght < 10) {
+          this.iddocs = "0" + this.iddocs;
+      }
+      });
     },
   },
-  created() { },
+  created() {
+    this.getActivity();
+  },
+  mounted() {
+    this.getActivity();
+    
+  },
 };
 </script>
 

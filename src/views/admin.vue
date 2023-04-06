@@ -146,7 +146,7 @@
   <!-- Modal email-->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-md">
-      <div class="modal-content border border-warning border-5">
+      <div class="modal-content border border border-5">
         <div class="modal-header border-0 px-2 pt-0 pb-0 mt-2">
           <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>

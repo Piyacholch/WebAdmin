@@ -166,7 +166,7 @@
         aria-hidden="true"
       >
         <div class="modal-dialog modal-dialog-centered modal-md">
-          <div class="modal-content border border-warning border-5">
+          <div class="modal-content border border border-5">
             <div class="modal-header border-0">
               <button
                 type="button"

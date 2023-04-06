@@ -81,6 +81,7 @@ export default {
         .get(process.env.VUE_APP_BACKEND_BASE_URL+`/chatstimulateByID/${this.$route.params.id}`)
         .then((response) => {
           this.data = response.data;
+          console.log(response)
         });
     },
     updateChatopen(Text) {

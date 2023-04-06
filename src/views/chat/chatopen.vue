@@ -1,6 +1,9 @@
 <template>
   <head>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
   </head>
   <Navbar />
 
@@ -15,9 +18,14 @@
     <div class="search">
       <div class="row row-menu">
         <div class="col-lg-9 search-res p-0 mt-3">
-          <div class="input-group ">
-            <input type="text" class="form-control" placeholder="Search.." aria-describedby="button-addon2"
-              v-model="search" />
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search.."
+              aria-describedby="button-addon2"
+              v-model="search"
+            />
           </div>
         </div>
       </div>
@@ -25,12 +33,17 @@
 
     <div class="search mt-0">
       <div class="row row-menu sort">
-        <div class="col-2  sortby p-0 mt-3" id="div-desktop">
+        <div class="col-2 sortby p-0 mt-3" id="div-desktop">
           <div class="sortby-input mt-2">
             <p class="p-sortby fw-bold mb-2">Sort By:</p>
           </div>
           <div class="input-group mb-3 d-flex justify-content-start input-sort">
-            <select class="form-select" aria-label="Default select example" v-model="sortBy" @click="getchatopen()">
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              v-model="sortBy"
+              @click="getchatopen()"
+            >
               <option value="iddocs">หมายเลขเอกสาร</option>
               <option value="Text">ข้อความ</option>
             </select>
@@ -41,116 +54,164 @@
             <p class="p-sortby fw-bold mb-2">Type:</p>
           </div>
           <div class="input-group mb-3 sort-frist">
-            <select class="form-select" aria-label="Default select example" v-model="first" @click="getchatopen()">
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              v-model="first"
+              @click="getchatopen()"
+            >
               <option value="desc">ล่าสุด-ลำดับแรก</option>
               <option value="asc">ลำดับแรก-ล่าสุด</option>
             </select>
           </div>
         </div>
+        
         <!-- resposive -->
         <div class="row">
-          <div class="col  sortby p-0 mt-3" id="div-mobile">
+          <div class="col sortby p-0 mt-3" id="div-mobile">
             <div class="sortby-input mt-2">
               <p class="p-sortby fw-bold mb-2">Sort By:</p>
             </div>
-            <div class="input-group mb-3 d-flex justify-content-start input-sort">
-              <select class="form-select" aria-label="Default select example" v-model="sortBy" @click="getchatopen()">
+            <div
+              class="input-group mb-3 d-flex justify-content-start input-sort"
+            >
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                v-model="sortBy"
+                @click="getchatopen()"
+              >
                 <option value="iddocs">หมายเลขเอกสาร</option>
                 <option value="Text">ข้อความ</option>
               </select>
             </div>
           </div>
-          <div class="col sort px-0 mt-3" id="div-mobile" >
+          <div class="col sort px-0 mt-3" id="div-mobile">
             <div class="sortby-input mt-2">
               <p class="p-sortby fw-bold mb-2">Type:</p>
             </div>
             <div class="input-group mb-3 sort-frist">
-              <select class="form-select" aria-label="Default select example" v-model="first" @click="getchatopen()">
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                v-model="first"
+                @click="getchatopen()"
+              >
                 <option value="desc">ล่าสุด-ลำดับแรก</option>
                 <option value="asc">ลำดับแรก-ล่าสุด</option>
               </select>
             </div>
           </div>
         </div>
-        </div>
-
-        <div class="col col-flex d-flex justify-content-end mt-5">
-          <a href="/insertchatopen" class="a-insert">
-            <button type="button" class="btn btn-success">
-              เพิ่มข้อความ
-            </button>
-          </a>
-        </div>
       </div>
+      <!-- <div class="AddChatOpen">
+        <h1>iddocs ต่อไป : {{ maxloaddata }}</h1>
+      
+      </div> -->
+      <div class="col col-flex d-flex justify-content-end mt-5">
+     
+        <a href="insertchatopen" class="a-insert">  <button type="button" class="btn btn-success">เพิ่มข้อความ</button></a>
 
+      </div>
+    </div>
 
+    <div class="block">
+ 
 
-  <div class="block">
+      <div
+        class="row block-item block-bm"
+        v-for="item in filtersearch"
+        :key="item"
+      >
+        <div class="col-1">{{ item.id }}</div>
+        <div class="col-7">{{ item.Text }}</div>
 
-    <div class="row block-item block-bm" v-for="item in filtersearch" :key="item">
+        <div class="col-3 button-1">
+          <button
+            type="button"
+            class="btn btn-primary edit"
+            @click="$router.push(`/updatechatopen/${item.id}`)"
+          >
+            แก้ไข
+          </button>
 
-      <div class="col-1">{{ item.id }}</div>
-      <div class="col-7">{{ item.Text }}</div>
-
-      <div class="col-3 button-1">
-        <button type="button" class="btn btn-primary edit" @click="$router.push(`/updatechatopen/${item.id}`)">
-          แก้ไข
-        </button>
-
-        <button type="button" class="btn btn-danger delete" data-bs-toggle="modal" data-bs-target="#exampleModal"
+          <!-- <button type="button" class="btn btn-danger delete" data-bs-toggle="modal" data-bs-target="#exampleModal"
           @click="confirmdeletezone(item.id)">
           ลบ
-        </button>
-        <a href="/dashboard" class="fa fa-home"></a>
-      </div>
+        </button> -->
+          <a href="/dashboard" class="fa fa-home"></a>
+        </div>
 
-      <!-- resposive -->
+        <!-- resposive -->
 
-      <div class="col-3 button-res">
-        <button type="button" class="btn btn-primary edit edit-res" id="control_btn_mobile"
-          @click="$router.push(`/updatechatopen/${item.id}`)">
-          <span class="material-icons"> mode_edit </span>
-        </button>
+        <div class="col-3 button-res">
+          <button
+            type="button"
+            class="btn btn-primary edit edit-res"
+            id="control_btn_mobile"
+            @click="$router.push(`/updatechatopen/${item.id}`)"
+          >
+            <span class="material-icons"> mode_edit </span>
+          </button>
 
-        <button type="button" class="btn btn-danger delete delete-res" id="control_btn_mobile" data-bs-toggle="modal"
+          <!-- <button type="button" class="btn btn-danger delete delete-res" id="control_btn_mobile" data-bs-toggle="modal"
           data-bs-target="#exampleModal" @click="confirmdeletezone(item.id)">
           <span class="material-icons"> delete_outline </span>
-        </button>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- Button trigger modal -->
-
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-md">
-      <div class="modal-content border border-5">
-        <div class="modal-header border-0">
-          <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body text-center fs-4 fw-bold">
-          คุณต้องการลบข้อความนี้หรือไม่ ?
-        </div>
-        <div class="modal-footer border-0 mt-3">
-          <div class="col">
-            <button type="button" class="btn btn-warning" data-bs-dismiss="modal" @click="deletechat(id)">
-              ยืนยัน
-            </button>
-          </div>
-          <div class="col">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-              ยกเลิก
-            </button>
-          </div>
+        </button> -->
         </div>
       </div>
     </div>
+
+    <!-- Button trigger modal -->
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content border border-5">
+          <div class="modal-header border-0">
+            <button
+              type="button"
+              class="btn-close float-end"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body text-center fs-4 fw-bold">
+            คุณต้องการลบข้อความนี้หรือไม่ ?
+          </div>
+          <div class="modal-footer border-0 mt-3">
+            <div class="col">
+              <button
+                type="button"
+                class="btn btn-warning"
+                data-bs-dismiss="modal"
+                @click="deletechat(id)"
+              >
+                ยืนยัน
+              </button>
+            </div>
+            <div class="col">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                ยกเลิก
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 </template>
-  
+
 <script>
 import Navbar from "../../components/Navbar.vue";
 import Breadcrumb from "../../components/BC-chatopen.vue";
@@ -164,35 +225,46 @@ export default {
   // },
   data() {
     return {
+    
       loaddata: [],
       id: "",
       search: "",
       Text: "",
       sortBy: "iddocs",
       first: "desc",
-      // last:"desc",
+      maxloaddata: "",
     };
   },
   mounted() {
     this.getchatopen();
+    // , this.lastidchatopen();
   },
   methods: {
     getchatopen() {
-      axios.get(process.env.VUE_APP_BACKEND_BASE_URL + "/chatopen", { params: { sortBy: this.sortBy, first: this.first } }).then((response) => {
-        this.loaddata = response.data;
-        console.log(response);
-      });
+      axios
+        .get(process.env.VUE_APP_BACKEND_BASE_URL + "/chatopen", {
+          params: { sortBy: this.sortBy, first: this.first },
+        })
+        .then((response) => {
+          this.loaddata = response.data;
+          this.maxloaddata = response.data.length + 1;
+        });
     },
-
+    // lastidchatopen() {
+    //   axios.get(process.env.VUE_APP_BACKEND_BASE_URL + "/lastidchatopen", { params: { sortBy: this.sortBy, first: this.first } }).then((response) => {
+    //     this.loaddata = response.data;
+    //     console.log(response);
+    //   });
+    // },
     confirmdeletezone(id) {
       this.id = id;
     },
-    deletechat(id) {
-      axios.delete(process.env.VUE_APP_BACKEND_BASE_URL + "/chatopen/" + id).then(() => {
-        this.id = id;
-        this.getchatopen();
-      });
-    },
+    // deletechat(id) {
+    //   axios.delete(process.env.VUE_APP_BACKEND_BASE_URL + "/chatopen/" + id).then(() => {
+    //     this.id = id;
+    //     this.getchatopen();
+    //   });
+    // },
   },
   computed: {
     filtersearch() {
@@ -203,7 +275,7 @@ export default {
   },
 };
 </script>
-  
+
 <style scoped>
 .Box {
   background-color: #ffff !important;
@@ -238,7 +310,6 @@ h1 {
 
 .input-group {
   width: 48%;
-
 }
 
 .form-select {
@@ -329,16 +400,15 @@ h1 {
   display: none;
 }
 #div-mobile {
-    display: none;
-  }
+  display: none;
+}
 
-  #div-desktop {
-    display: block;
-  }
-  .a-insert{
-    padding-right: 50px;
-  }
-
+#div-desktop {
+  display: block;
+}
+.a-insert {
+  padding-right: 80px;
+}
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .Box {
@@ -435,7 +505,8 @@ h1 {
     font-size: 16px !important;
     text-align: center !important;
   }
-  .a-insert{
-    padding-right:15px !important ;
+  .a-insert {
+    padding-right: 15px !important ;
   }
-}</style>
+}
+</style>

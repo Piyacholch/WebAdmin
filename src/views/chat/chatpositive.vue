@@ -368,7 +368,7 @@ font-size: 16px;
     display: block;
   }
   .a-insert{
-    padding-right: 50px;
+    padding-right: 80px;
   }
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .Box {
